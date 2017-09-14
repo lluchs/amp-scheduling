@@ -1,5 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include "msrtools.h"
+#include "amdccx.h"
 
 static const uint32_t
 	PStateCurLim   = 0xc0010061,
@@ -8,8 +12,18 @@ static const uint32_t
 	PStateDef      = 0xc0010064,
 	PStateDef_last = 0xc001006c;
 
+// Components of the PStateCurLim register.
+union PStateCurLim {
+	struct {
+		unsigned CurPstateLimit:3;
+		unsigned _reserved1:1;
+		unsigned PstateMaxVal:3;
+	};
+	uint64_t value;
+};
+
 // Components of the PStateDef register.
-union PState {
+union PStateDef {
 	struct {
 		unsigned CpuFid:8;
 		unsigned CpuDfsId:6;
@@ -24,22 +38,23 @@ union PState {
 
 // Core current operating frequency in MHz for a given PStateDef.
 // Defined in AMD PPR Table 14 (Definitions).
-static int CoreCOF(union PState pstate) {
+static int CoreCOF(union PStateDef pstate) {
 	return pstate.CpuDfsId > 0 ? 200 * pstate.CpuFid / pstate.CpuDfsId : -1;
 }
 
 // Core voltage in Volt for a given PStateDef.
 // TODO: Formular is from some overclocking forums, any better references?
-static double CoreVoltage(union PState pstate) {
+static double CoreVoltage(union PStateDef pstate) {
 	return 1.55 - 0.00625 * (double) pstate.CpuVid;
 }
 
 static void print_pstate_info(int cpu) {
-	uint64_t cur_lim = rdmsr_on_cpu(PStateCurLim, cpu);
-	printf("CPU %2d: PStateCurLim = max %"PRIu64" min %"PRIu64"\n", cpu, (cur_lim & 0x70) >> 4, cur_lim & 0x7);
+	union PStateCurLim cur_lim = {.value = rdmsr_on_cpu(PStateCurLim, cpu)};
+	printf("CPU %2d: CCX ID = %u\n", cpu, apicid_on_cpu(cpu).CCXID);
+	printf("CPU %2d: PStateCurLim = min %u max %u\n", cpu, cur_lim.CurPstateLimit, cur_lim.PstateMaxVal);
 	printf("CPU %2d: PStateCtl = %"PRIu64"\n", cpu, rdmsr_on_cpu(PStateCtl, cpu) & 0x7);
 	printf("CPU %2d: PStateStat = %"PRIu64"\n", cpu, rdmsr_on_cpu(PStateStat, cpu) & 0x7);
-	union PState pstate;
+	union PStateDef pstate;
 	for (uint32_t reg = PStateDef; reg < PStateDef_last; reg++) {
 		pstate.value = rdmsr_on_cpu(reg, cpu);
 		printf("CPU %2d: PStateDef[%"PRIu32"] = PStateEn %u IddDiv %u IddValue %u CpuVid %u CpuDfsId 0x%u CpuFid %u\n",
@@ -49,7 +64,34 @@ static void print_pstate_info(int cpu) {
 	}
 }
 
-int main() {
+static void usage(char *argv0) {
+	fprintf(stderr, "Usage: %s [-c cpu] COMMAND\n", argv0);
+	fprintf(stderr, "where COMMAND := { status | set-limits }\n");
+	exit(1);
+}
+
+int main(int argc, char *argv[]) {
 	int cpu = 0;
-	print_pstate_info(cpu);
+
+	int opt;
+	while ((opt = getopt(argc, argv, "c:")) != -1) {
+		switch (opt) {
+		case 'c':
+			cpu = atoi(optarg);
+			break;
+		default:
+			usage(argv[0]);
+		}
+	}
+
+	if (optind >= argc) {
+		usage(argv[0]);
+	}
+
+	char *cmd = argv[optind];
+	if (strcmp(cmd, "status") == 0) {
+		print_pstate_info(cpu);
+	}  else {
+		usage(argv[0]);
+	}
 }

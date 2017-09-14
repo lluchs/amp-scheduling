@@ -1,1 +1,1 @@
-executable('amdpstate', 'amdpstate.c', 'msrtools.c')
+executable('amdpstate', 'amdpstate.c', 'msrtools.c', 'amdccx.c')
