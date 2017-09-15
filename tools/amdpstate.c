@@ -70,11 +70,61 @@ static void usage(char *argv0) {
 	exit(1);
 }
 
-int main(int argc, char *argv[]) {
-	int cpu = 0;
+static int cpu = 0;
 
+static void def_pstate(int argc, char *argv[]) {
+	if (argc < 3) {
+def_pstate_usage:
+		fprintf(stderr, "Usage: ... %s STATE COMPONENT=VALUE...\n", argv[0]);
+		fprintf(stderr, "where STATE between 0 and 7\n");
+		fprintf(stderr, "      COMPONENT := { PstateEn | IddDiv | IddValue | CpuVid | CpuDfsId | CpuFid }\n\n");
+		usage("...");
+	}
+	int state = atoi(argv[1]);
+	if (state < 0 || state > 7) {
+		fprintf(stderr, "Invalid state %d\n", state);
+		goto def_pstate_usage;
+	}
+	uint32_t reg = PStateDef + state;
+	union PStateDef pstate = {.value = rdmsr_on_cpu(reg, cpu)};
+	unsigned long arg;
+	for (int i = 2; i < argc; i++) {
+		char *kv = argv[i];
+#define IS(name) (strncmp(name "=", kv, strlen(name "=")) == 0 && (kv += strlen(name "=")))
+#define CHECK_ARG(min, max) do { arg = strtoul(kv, NULL, 0); if (arg < (min) || arg > (max)) { fprintf(stderr, "Invalid value %lu, must be between %d and %d\n", arg, min, max); goto def_pstate_usage; } } while (0)
+		if (IS("PstateEn")) {
+			CHECK_ARG(0, 1);
+			pstate.PStateEn = arg;
+		} else if (IS("IddDiv")) {
+			CHECK_ARG(0, 3);
+			pstate.IddDiv = arg;
+		} else if (IS("IddValue")) {
+			CHECK_ARG(0, 0xff);
+			pstate.IddValue = arg;
+		} else if (IS("CpuVid")) {
+			CHECK_ARG(0, 0xff);
+			pstate.CpuVid = arg;
+		} else if (IS("CpuDfsId")) {
+			CHECK_ARG(0, 0x3f);
+			pstate.CpuDfsId = arg;
+		} else if (IS("CpuFid")) {
+			CHECK_ARG(0, 0xff);
+			pstate.CpuFid = arg;
+		} else {
+			fprintf(stderr, "Invalid component %s\n", kv);
+			goto def_pstate_usage;
+		}
+#undef CHECK_ARG
+#undef IS
+	}
+	// The PPR requires P-state definitions to be identical on all cores of a
+	// coherence fabric, so just set it for all CPUs here.
+	wrmsr_on_all_cpus(reg, pstate.value);
+}
+
+int main(int argc, char *argv[]) {
 	int opt;
-	while ((opt = getopt(argc, argv, "c:")) != -1) {
+	while ((opt = getopt(argc, argv, "+c:")) != -1) {
 		switch (opt) {
 		case 'c':
 			cpu = atoi(optarg);
@@ -100,6 +150,8 @@ change_usage:
 		int state = atoi(argv[optind+1]);
 		if (state < 0 || state > 7) goto change_usage;
 		wrmsr_on_cpu(PStateCtl, cpu, (uint64_t) state);
+	} else if (strcmp(cmd, "def") == 0) {
+		def_pstate(argc - optind, argv + optind);
 	} else {
 		usage(argv[0]);
 	}
