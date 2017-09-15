@@ -10,7 +10,11 @@ static const uint32_t
 	PStateCtl      = 0xc0010062,
 	PStateStat     = 0xc0010063,
 	PStateDef      = 0xc0010064,
-	PStateDef_last = 0xc001006c;
+	PStateDef_last = 0xc001006c,
+	MPerf          = 0x000000e7,
+	APerf          = 0x000000e8,
+	MPerfReadOnly  = 0xc00000e7,
+	APerfReadOnly  = 0xc00000e8;
 
 // Components of the PStateCurLim register.
 union PStateCurLim {
@@ -64,9 +68,32 @@ static void print_pstate_info(int cpu) {
 	}
 }
 
+// See 2.1.4 Effective Frequency
+static void print_frequency_info(int cpu, int duration) {
+	uint64_t mperf, aperf, mperf_ro, aperf_ro;
+	int freq, freq_ro, p0freq;
+	if (duration > 0) {
+		// Reset APerf and MPerf and wait.
+		wrmsr_on_cpu(MPerf, cpu, 0);
+		wrmsr_on_cpu(APerf, cpu, 0);
+		usleep(duration * 1000);
+	}
+	mperf = rdmsr_on_cpu(MPerf, cpu);
+	aperf = rdmsr_on_cpu(APerf, cpu);
+	mperf_ro = rdmsr_on_cpu(MPerfReadOnly, cpu);
+	aperf_ro = rdmsr_on_cpu(APerfReadOnly, cpu);
+	p0freq = CoreCOF((union PStateDef) {.value = rdmsr_on_cpu(PStateDef, cpu)});
+	freq = p0freq * ((long double) aperf / mperf);
+	freq_ro = p0freq * ((long double) aperf_ro / mperf_ro);
+	printf("CPU %2d: P0 frequency = %d MHz\n", cpu, p0freq);
+	printf("CPU %2d: effective frequency (ro) = %d MHz\n", cpu, freq_ro);
+	if (duration > 0)
+		printf("CPU %2d: effective frequency      = %d MHz\n", cpu, freq);
+}
+
 static void usage(char *argv0) {
 	fprintf(stderr, "Usage: %s [-c cpu] COMMAND\n", argv0);
-	fprintf(stderr, "where COMMAND := { status | change }\n");
+	fprintf(stderr, "where COMMAND := { status | frequency | change | def }\n");
 	exit(1);
 }
 
@@ -141,6 +168,8 @@ int main(int argc, char *argv[]) {
 	char *cmd = argv[optind];
 	if (strcmp(cmd, "status") == 0) {
 		print_pstate_info(cpu);
+	} else if (strcmp(cmd, "frequency") == 0) {
+		print_frequency_info(cpu, optind+1 < argc ? atoi(argv[optind+1]) : 0);
 	} else if (strcmp(cmd, "change") == 0) {
 		if (optind+1 >= argc) {
 change_usage:
