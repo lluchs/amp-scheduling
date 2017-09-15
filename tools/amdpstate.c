@@ -66,7 +66,7 @@ static void print_pstate_info(int cpu) {
 
 static void usage(char *argv0) {
 	fprintf(stderr, "Usage: %s [-c cpu] COMMAND\n", argv0);
-	fprintf(stderr, "where COMMAND := { status | set-limits }\n");
+	fprintf(stderr, "where COMMAND := { status | change }\n");
 	exit(1);
 }
 
@@ -91,7 +91,16 @@ int main(int argc, char *argv[]) {
 	char *cmd = argv[optind];
 	if (strcmp(cmd, "status") == 0) {
 		print_pstate_info(cpu);
-	}  else {
+	} else if (strcmp(cmd, "change") == 0) {
+		if (optind+1 >= argc) {
+change_usage:
+			fprintf(stderr, "Usage: %s change STATE\nwhere STATE between 0 and 7\n\n", argv[0]);
+			usage(argv[0]);
+		}
+		int state = atoi(argv[optind+1]);
+		if (state < 0 || state > 7) goto change_usage;
+		wrmsr_on_cpu(PStateCtl, cpu, (uint64_t) state);
+	} else {
 		usage(argv[0]);
 	}
 }
