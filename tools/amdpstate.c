@@ -68,27 +68,35 @@ static void print_pstate_info(int cpu) {
 	}
 }
 
+#define ALL_CPUS -1
+#define cpu_loop(i, sel) for ((i) = (sel) == ALL_CPUS ? 0 : (sel); ((sel) == ALL_CPUS && (i) < sysconf(_SC_NPROCESSORS_ONLN)) || (i) == (sel); (i)++)
+
 // See 2.1.4 Effective Frequency
-static void print_frequency_info(int cpu, int duration) {
+static void print_frequency_info(int which_cpu, int duration) {
 	uint64_t mperf, aperf, mperf_ro, aperf_ro;
 	int freq, freq_ro, p0freq;
+	int cpu;
 	if (duration > 0) {
 		// Reset APerf and MPerf and wait.
-		wrmsr_on_cpu(MPerf, cpu, 0);
-		wrmsr_on_cpu(APerf, cpu, 0);
+		cpu_loop(cpu, which_cpu) {
+			wrmsr_on_cpu(MPerf, cpu, 0);
+			wrmsr_on_cpu(APerf, cpu, 0);
+		}
 		usleep(duration * 1000);
 	}
-	mperf = rdmsr_on_cpu(MPerf, cpu);
-	aperf = rdmsr_on_cpu(APerf, cpu);
-	mperf_ro = rdmsr_on_cpu(MPerfReadOnly, cpu);
-	aperf_ro = rdmsr_on_cpu(APerfReadOnly, cpu);
-	p0freq = CoreCOF((union PStateDef) {.value = rdmsr_on_cpu(PStateDef, cpu)});
-	freq = p0freq * ((long double) aperf / mperf);
-	freq_ro = p0freq * ((long double) aperf_ro / mperf_ro);
-	printf("CPU %2d: P0 frequency = %d MHz\n", cpu, p0freq);
-	printf("CPU %2d: effective frequency (ro) = %d MHz\n", cpu, freq_ro);
-	if (duration > 0)
-		printf("CPU %2d: effective frequency      = %d MHz\n", cpu, freq);
+	cpu_loop(cpu, which_cpu) {
+		mperf = rdmsr_on_cpu(MPerf, cpu);
+		aperf = rdmsr_on_cpu(APerf, cpu);
+		mperf_ro = rdmsr_on_cpu(MPerfReadOnly, cpu);
+		aperf_ro = rdmsr_on_cpu(APerfReadOnly, cpu);
+		p0freq = CoreCOF((union PStateDef) {.value = rdmsr_on_cpu(PStateDef, cpu)});
+		freq = p0freq * ((long double) aperf / mperf);
+		freq_ro = p0freq * ((long double) aperf_ro / mperf_ro);
+		printf("CPU %2d: P0 frequency = %d MHz\n", cpu, p0freq);
+		printf("CPU %2d: effective frequency (ro) = %d MHz\n", cpu, freq_ro);
+		if (duration > 0)
+			printf("CPU %2d: effective frequency      = %d MHz\n", cpu, freq);
+	}
 }
 
 static void usage(char *argv0) {
@@ -154,7 +162,10 @@ int main(int argc, char *argv[]) {
 	while ((opt = getopt(argc, argv, "+c:")) != -1) {
 		switch (opt) {
 		case 'c':
-			cpu = atoi(optarg);
+			if (strcmp(optarg, "all") == 0)
+				cpu = ALL_CPUS;
+			else
+				cpu = atoi(optarg);
 			break;
 		default:
 			usage(argv[0]);
