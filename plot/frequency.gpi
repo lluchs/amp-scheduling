@@ -1,0 +1,14 @@
+# TODO: Colors repeat after 7 lines
+set palette rgb 33,13,10
+unset colorbox
+
+cmd(cpu) = sprintf('< awk ''/CPU *%d:/ && /effective frequency  / {print $6}'' %s', cpu, @data)
+cpu_title(cpu) = sprintf('CPU %d', cpu)
+
+plot for [cpu=0:11] cmd(cpu) with lines \
+	title cpu_title(cpu) \
+	linetype palette frac cpu / 11. \
+	dashtype cpu % 2 + 1
+
+pause 1
+reread

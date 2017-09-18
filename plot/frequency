@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+data=$(mktemp -t amdpstate-frequency.XXXX)
+echo $data
+
+sleep 2 && gnuplot -e "data='\"$data\"'" "$DIR/frequency.gpi" &
+
+while true; do
+	sudo "$DIR/../build/tools/amdpstate" -call frequency 1000 >> "$data"
+done
