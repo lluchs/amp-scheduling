@@ -3,8 +3,12 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 data=$(mktemp -t amdpstate-frequency.XXXX)
 echo $data
+maxcpu=$(awk '/^processor/{print $3}' /proc/cpuinfo | tail -n1)
 
-sleep 2 && gnuplot -e "data='\"$data\"'" "$DIR/frequency.gpi" &
+sleep 2 && \
+	gnuplot -e "data='\"$data\"'" \
+	        -e "maxcpu='$maxcpu'" \
+	        "$DIR/frequency.gpi" &
 
 while true; do
 	sudo "$DIR/../build/tools/amdpstate" -call frequency 1000 >> "$data"
