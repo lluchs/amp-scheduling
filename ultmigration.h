@@ -8,9 +8,15 @@
 extern "C" {
 #endif
 
+enum ult_thread_type {
+	ULT_FAST = 0,
+	ULT_SLOW,
+	ULT_TYPE_MAX
+};
+
 void ult_register_klt(void);
 void ult_unregister_klt(void);
-void ult_migrate(int phase);
+void ult_migrate(enum ult_thread_type);
 int ult_registered(void);
 
 #ifdef __cplusplus

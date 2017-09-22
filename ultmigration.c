@@ -3,8 +3,10 @@
 
 #include "ultmigration.h"
 
+#include <assert.h>
 #include <pthread.h>
 #include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sched.h>
 #include <semaphore.h>
@@ -29,7 +31,7 @@ static __thread struct current_thread_info *current;
 
 /* thread pool for ULT execution */
 
-#define THREAD_POOL_SIZE 4
+#define THREAD_POOL_SIZE 1
 
 #define STOP_THREAD ((void*)(uintptr_t)(-1))
 
@@ -40,7 +42,9 @@ struct thread_pool_info {
 	int cpu;
 } __attribute__((aligned(64)));
 
-static struct thread_pool_info pool[THREAD_POOL_SIZE];
+// We have ULT_TYPE_MAX types of threads. For each type, there is a pool of
+// THREAD_POOL_SIZE threads.
+static struct thread_pool_info pool[ULT_TYPE_MAX][THREAD_POOL_SIZE];
 
 static inline void __monitor(const void *address)
 {
@@ -101,18 +105,32 @@ void ult_set_pool_thread_affinity(struct thread_pool_info *pool_thread) {
 extern void *ult_pool_thread_entry(void *param);
 
 static void ult_initialize(void) {
-	int i;
+	int i, t;
+	char *cpu_list, *end;
 
 	/* analyze the processor topology */
-	/* TODO */
+	char *slow_cpu = getenv("SLOW_CPU");
+	char *fast_cpu = getenv("FAST_CPU");
+	assert(slow_cpu != NULL && fast_cpu != NULL && "SLOW_CPU or FAST_CPU environment variable not set");
 
 	/* create a thread pool */
-	for (i = 0; i < THREAD_POOL_SIZE; i++) {
-		pool[i].cpu = 8 + i * 2; /* TODO: derive from topology */
-		pthread_create(&pool[i].thread,
-		               NULL,
-		               ult_pool_thread_entry,
-		               &pool[i]);
+	for (t = 0; t < ULT_TYPE_MAX; t++) {
+		switch (t) {
+			case ULT_FAST: cpu_list = fast_cpu; break;
+			case ULT_SLOW: cpu_list = slow_cpu; break;
+		}
+		for (i = 0; i < THREAD_POOL_SIZE; i++) {
+			// Read cpu_list as list of comma-separated integers.
+			pool[t][i].cpu = strtol(cpu_list, &end, 10);
+			assert(end != cpu_list && "SLOW_CPU/FAST_CPU contained invalid data");
+			cpu_list = end;
+			if (*cpu_list == ',') cpu_list++;
+
+			pthread_create(&pool[t][i].thread,
+				       NULL,
+				       ult_pool_thread_entry,
+				       &pool[t][i]);
+		}
 	}
 }
 
@@ -121,16 +139,20 @@ static void ult_uninitialize(void) {
 	 * ult_unregister_klt, so we do not have to care about existing ready
 	 * queue contents */
 
-	int i;
+	int i, t;
 
 	/* send the threads a message and wait for them to stop */
-	for (i = 0; i < THREAD_POOL_SIZE; i++) {
-		__atomic_store_n(&pool[i].queue[0],
-		                 STOP_THREAD,
-		                 __ATOMIC_SEQ_CST);
+	for (t = 0; t < ULT_TYPE_MAX; t++) {
+		for (i = 0; i < THREAD_POOL_SIZE; i++) {
+			__atomic_store_n(&pool[t][i].queue[0],
+					 STOP_THREAD,
+					 __ATOMIC_SEQ_CST);
+		}
 	}
-	for (i = 0; i < THREAD_POOL_SIZE; i++) {
-		pthread_join(pool[i].thread, NULL);
+	for (t = 0; t < ULT_TYPE_MAX; t++) {
+		for (i = 0; i < THREAD_POOL_SIZE; i++) {
+			pthread_join(pool[t][i].thread, NULL);
+		}
 	}
 }
 
@@ -159,7 +181,7 @@ void ult_register_klt(void) {
 	/* migrate this user-level thread to the thread pool and let this
 	 * kernel-level thread block until ult_unregister_klt migrates the ULT
 	 * back */
-	ult_register_asm(current, &pool[0]);
+	ult_register_asm(current, &pool[0][0]);
 }
 
 void ult_wait_for_unregister(struct current_thread_info *thread) {
@@ -191,12 +213,14 @@ void ult_unregister_klt(void) {
 void ult_migrate_asm(struct current_thread_info *ult,
                      struct thread_pool_info *next);
 
-void ult_migrate(int phase) {
+void ult_migrate(enum ult_thread_type type) {
+	assert(type >= 0 && type < ULT_TYPE_MAX);
 	if (current == NULL) {
 		return;
 	}
 	/* TODO: determine suitable threads in the thread pool for the phase */
-	struct thread_pool_info *next = &pool[phase & (THREAD_POOL_SIZE - 1)];
+	// TODO: Use more than one thread?
+	struct thread_pool_info *next = &pool[type][0];
 	if (next == current->pool_thread) {
 		return;
 	}
