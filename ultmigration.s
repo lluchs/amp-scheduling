@@ -19,13 +19,13 @@ ult_pool_thread_entry:
 	mov %rsp, 64(%rdi)
 
 	push %rdi
-	call ult_set_pool_thread_affinity
+	call ult_set_pool_thread_affinity@PLT
 	pop %rdi
 
 pick_next_thread:
 	/* pick the next thread to execute */
 	push %rdi
-	call ult_pick_next_thread
+	call ult_pick_next_thread@PLT
 	pop %rdi
 
 	cmp $0xffffffffffffffff, %rax
@@ -146,7 +146,7 @@ ult_register_asm:
 
 	/* wait for the ULT to finish */
 	push %rdi
-	call ult_wait_for_unregister
+	call ult_wait_for_unregister@PLT
 	pop %rdi
 
 	/* restore the thread */
@@ -176,7 +176,7 @@ ult_unregister_asm:
 	mov 64(%rdx), %rsp
 
 	push %rdx
-	call ult_signal_unregister
+	call ult_signal_unregister@PLT
 	pop %rdi
 
 	jmp pick_next_thread
