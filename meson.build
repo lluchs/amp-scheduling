@@ -8,6 +8,10 @@ ultmigration = shared_library('ultmigration',
 	dependencies: thread_dep,
 	install: true)
 
+shared_library('ultmigration_dummy',
+	'ultmigration_dummy.c',
+	install: true)
+
 install_headers('ultmigration.h')
 
 subdir('test')
