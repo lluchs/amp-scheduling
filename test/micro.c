@@ -2,11 +2,15 @@
 #include <assert.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sched.h>
 #include <unistd.h>
 #include "ultmigration.h"
+#include "random.h"
 
 #define WORK 10000
+#define BUFSIZE (size_t) (500 << 20)
+#define PATTERN_LENGTH 100000
 
 static int lotsofwork() {
 	unsigned int foo1 = 2, foo2 = 3, foo3 = 4, foo4 = 5;
@@ -17,18 +21,35 @@ static int lotsofwork() {
 	return (foo1 + foo2 + foo3 + foo4) % 3;
 }
 
+static char *buf;
+static size_t *access_pattern;
+
 static int littlework() {
-	static const char buf[] = "foobar";
-	int fd = open("/dev/null", O_WRONLY);
-	for (int i = 0; i < 5000; i++) {
-		write(fd, buf, sizeof buf);
+	for (int i = 0; i < PATTERN_LENGTH; i++) {
+		buf[access_pattern[i]] = i;
 	}
-	close(fd);
-	return 1;
+	return buf[access_pattern[0]];
+}
+
+static void init_littlework() {
+	random_init();
+	buf = malloc(BUFSIZE);
+	access_pattern = malloc(PATTERN_LENGTH * sizeof(*access_pattern));
+	for (int i = 0; i < PATTERN_LENGTH; i++) {
+		access_pattern[i] = random_next() % BUFSIZE;
+	}
 }
 
 int main() {
+	init_littlework();
+
 	ult_register_klt();
+	ult_migrate(ULT_FAST);
+	fprintf(stderr, "fast CPU = %d\n", sched_getcpu());
+	ult_migrate(ULT_SLOW);
+	fprintf(stderr, "slow CPU = %d\n", sched_getcpu());
+	fprintf(stderr, "buffer size = %lu MiB\n", BUFSIZE >> 20);
+
 	int result = 0;
 	for (int i = 0; i < WORK; i++) {
 		ult_migrate(ULT_FAST);
