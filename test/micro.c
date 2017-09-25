@@ -14,11 +14,14 @@
 
 static int lotsofwork() {
 	unsigned int foo1 = 2, foo2 = 3, foo3 = 4, foo4 = 5;
+	float bar1 = 2, bar2 = 3, bar3 = 4, bar4 = 5;
 	for (int i = 0; i < 100000; i++) {
-		foo1 = foo1 * foo1; foo2 = foo2 * foo2; foo3 = foo3 * foo3; foo4 = foo4 * foo4;
-		foo1 = foo1 * foo1; foo2 = foo2 * foo2; foo3 = foo3 * foo3; foo4 = foo4 * foo4;
+		foo1 = foo1 * foo1; foo2 = foo2 + foo2; foo3 = foo3 * foo3; foo4 = foo4 + foo4;
+		bar1 = bar1 * bar1; bar2 = bar2 + bar2; bar3 = bar3 * bar3; bar4 = bar4 + bar4;
+		foo1 = foo1 * foo1; foo2 = foo2 + foo2; foo3 = foo3 * foo3; foo4 = foo4 + foo4;
+		bar1 = bar1 * bar1; bar2 = bar2 + bar2; bar3 = bar3 * bar3; bar4 = bar4 + bar4;
 	}
-	return (foo1 + foo2 + foo3 + foo4) % 3;
+	return (foo1 + foo2 + foo3 + foo4 + (unsigned) (bar1 + bar2 + bar3 + bar4)) % 3;
 }
 
 static char *buf;
