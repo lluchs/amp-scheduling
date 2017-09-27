@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sched.h>
 #include <unistd.h>
 #include "ultmigration.h"
@@ -85,16 +86,36 @@ static void init_pointer_chasing() {
 
 typedef int (*Fn)();
 
-int main() {
+static void usage(char **argv) {
+	fprintf(stderr, "Usage: %s MEMORY_BENCH\n", argv[0]);
+	fprintf(stderr, "where MEMORY_BENCH := { indirect_access | pointer_chasing }\n");
+	exit(1);
+}
+
+int main(int argc, char **argv) {
 	random_init();
-	//init_indirect_access(); Fn littlework = indirect_access;
-	init_pointer_chasing(); Fn littlework = pointer_chasing;
+
+	if (argc != 2) usage(argv);
+
+	Fn littlework;
+	char *memory_bench = argv[1];
+	if (strcmp("indirect_access", memory_bench) == 0) {
+		init_indirect_access();
+		littlework = indirect_access;
+	} else if (strcmp("pointer_chasing", memory_bench) == 0) {
+		init_pointer_chasing();
+		littlework = pointer_chasing;
+	} else {
+		fprintf(stderr, "Unknown MEMORY_BENCH %s\n\n", memory_bench);
+		usage(argv);
+	}
 
 	ult_register_klt();
 	ult_migrate(ULT_FAST);
 	fprintf(stderr, "fast CPU = %d\n", sched_getcpu());
 	ult_migrate(ULT_SLOW);
 	fprintf(stderr, "slow CPU = %d\n", sched_getcpu());
+	fprintf(stderr, "MEMORY_BENCH = %s\n", memory_bench);
 	fprintf(stderr, "buffer size = %lu MiB\n", BUFSIZE >> 20);
 
 	int result = 0;
