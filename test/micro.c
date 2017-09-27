@@ -22,7 +22,7 @@
 // pointer_chasing: Number of steps per iteration.
 #define POINTER_CHASE_STEPS 7000
 
-static int lotsofwork() {
+static int cpubench() {
 	unsigned int foo1 = 2, foo2 = 3, foo3 = 4, foo4 = 5;
 	float bar1 = 2, bar2 = 3, bar3 = 4, bar4 = 5;
 	for (int i = 0; i < CPU_ITERATIONS; i++) {
@@ -84,22 +84,27 @@ static void init_pointer_chasing() {
 	pointer_chasing_ptr = pointer_chasing_buf;
 }
 
+static int noop() { return 0; }
+
 typedef int (*Fn)();
 
 static void usage(char **argv) {
-	fprintf(stderr, "Usage: %s MEMORY_BENCH\n", argv[0]);
-	fprintf(stderr, "where MEMORY_BENCH := { indirect_access | pointer_chasing }\n");
+	fprintf(stderr, "Usage: %s MEMORY_BENCH CPU_BENCH\n", argv[0]);
+	fprintf(stderr, "where MEMORY_BENCH := { none | indirect_access | pointer_chasing }\n");
+	fprintf(stderr, "where CPU_BENCH := { none | some }\n");
 	exit(1);
 }
 
 int main(int argc, char **argv) {
 	random_init();
 
-	if (argc != 2) usage(argv);
+	if (argc != 3) usage(argv);
 
-	Fn littlework;
-	char *memory_bench = argv[1];
-	if (strcmp("indirect_access", memory_bench) == 0) {
+	Fn littlework, lotsofwork;
+	char *memory_bench = argv[1], *cpu_bench = argv[2];
+	if (strcmp("none", memory_bench) == 0) {
+		littlework = noop;
+	} else if (strcmp("indirect_access", memory_bench) == 0) {
 		init_indirect_access();
 		littlework = indirect_access;
 	} else if (strcmp("pointer_chasing", memory_bench) == 0) {
@@ -109,6 +114,14 @@ int main(int argc, char **argv) {
 		fprintf(stderr, "Unknown MEMORY_BENCH %s\n\n", memory_bench);
 		usage(argv);
 	}
+	if (strcmp("none", cpu_bench) == 0) {
+		lotsofwork = noop;
+	} else if (strcmp("some", cpu_bench) == 0) {
+		lotsofwork = cpubench;
+	} else {
+		fprintf(stderr, "Unknown CPU_BENCH %s\n\n", cpu_bench);
+		usage(argv);
+	}
 
 	ult_register_klt();
 	ult_migrate(ULT_FAST);
@@ -116,6 +129,7 @@ int main(int argc, char **argv) {
 	ult_migrate(ULT_SLOW);
 	fprintf(stderr, "slow CPU = %d\n", sched_getcpu());
 	fprintf(stderr, "MEMORY_BENCH = %s\n", memory_bench);
+	fprintf(stderr, "CPU_BENCH = %s\n", cpu_bench);
 	fprintf(stderr, "buffer size = %lu MiB\n", BUFSIZE >> 20);
 
 	int result = 0;
