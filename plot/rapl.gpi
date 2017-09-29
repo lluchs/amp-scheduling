@@ -1,0 +1,14 @@
+set term qt noraise
+# Prevent colors from repeating after 7 lines.
+set palette rgb 33,13,10
+unset colorbox
+
+cmd(core) = sprintf('< awk -v core=%d ''/^Package / && core == -1 {print $4} /^Core / && +$2 == core {print $6}'' %s', core, @data)
+core_title(core) = core == -1 ? "Package" : sprintf('Core %d', core)
+
+plot for [core=-1:@maxcore] cmd(core) with lines \
+	title core_title(core) \
+	linetype palette frac (core/2) * 2. / @maxcore
+
+pause 1
+reread

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+data=$(mktemp -t amdpstate-rapl.XXXX)
+echo $data
+# We need zero-based id, so subtract one.
+maxcore=$(awk '/^core id/{print $4 - 1}' /proc/cpuinfo | tail -n1)
+
+sleep 2 && \
+	gnuplot -e "data='\"$data\"'" \
+	        -e "maxcore='$maxcore'" \
+	        "$DIR/rapl.gpi" &
+
+sudo stdbuf -oL "$DIR/../build/tools/amdpstate" rapl 1000 > "$data"
