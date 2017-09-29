@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,7 +15,10 @@ static const uint32_t
 	MPerf          = 0x000000e7,
 	APerf          = 0x000000e8,
 	MPerfReadOnly  = 0xc00000e7,
-	APerfReadOnly  = 0xc00000e8;
+	APerfReadOnly  = 0xc00000e8,
+	RAPLPowerUnit  = 0xc0010299,
+	CoreEnergyStat = 0xc001029a,
+	PkgEnergyStat  = 0xc001029b;
 
 // Components of the PStateCurLim register.
 union PStateCurLim {
@@ -99,9 +103,40 @@ static void print_frequency_info(int which_cpu, int duration) {
 	}
 }
 
+// From CodeXL/Components/PowerProfiling/Backend/AMDTPowerProfileAPI/src/PowerProfile{Translate.cpp,Helper.h}
+#define ZEPPELIN_ENERGY_VAL 0x10
+static uint32_t rapl_get_energy_unit()
+{
+	uint64_t data = rdmsr_on_cpu(RAPLPowerUnit, 0);
+    return (uint8_t)((data & 0x1F00) >> 8) ? (uint8_t)((data & 0x1F00) >> 8) : ZEPPELIN_ENERGY_VAL;
+}
+
+static void print_rapl_info(int which_cpu, uint32_t duration) {
+	uint32_t pkg_energy, core_energy;
+	uint32_t last_pkg_energy = 0, last_core_energy[128] = {0};
+	double unit = pow(2, rapl_get_energy_unit());
+	int cpu, core;
+	for (;;) {
+		pkg_energy = rdmsr_on_cpu(PkgEnergyStat, which_cpu >= 0 ? which_cpu : 0);
+		if (last_pkg_energy) {
+			printf("Package Power = %f W\n", (pkg_energy - last_pkg_energy) / unit * 1000 / duration);
+		}
+		last_pkg_energy = pkg_energy;
+		cpu_loop(cpu, ALL_CPUS) {
+			if (cpu % 2) continue;
+			core = cpu / 2;
+			core_energy = rdmsr_on_cpu(CoreEnergyStat, cpu);
+			if (last_core_energy[core])
+				printf("Core %d: Core Power = %5f W\n", core, (core_energy - last_core_energy[core]) / unit * 1000 / duration);
+			last_core_energy[core] = core_energy;
+		}
+		usleep(duration * 1000);
+	}
+}
+
 static void usage(char *argv0) {
 	fprintf(stderr, "Usage: %s [-c cpu] COMMAND\n", argv0);
-	fprintf(stderr, "where COMMAND := { status | frequency | change | def }\n");
+	fprintf(stderr, "where COMMAND := { status | frequency | change | def | rapl }\n");
 	exit(1);
 }
 
@@ -192,6 +227,9 @@ change_usage:
 		wrmsr_on_cpu(PStateCtl, cpu, (uint64_t) state);
 	} else if (strcmp(cmd, "def") == 0) {
 		def_pstate(argc - optind, argv + optind);
+	} else if (strcmp(cmd, "rapl") == 0) {
+		uint32_t duration = optind+1 <= argc ? atoi(argv[optind+1]) : 1000;
+		print_rapl_info(cpu, duration);
 	} else {
 		usage(argv[0]);
 	}
