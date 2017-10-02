@@ -4,7 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 data=$(mktemp -t amdpstate-rapl.XXXX)
 echo $data
 # We need zero-based id, so subtract one.
-maxcore=$(awk '/^core id/{print $4 - 1}' /proc/cpuinfo | tail -n1)
+maxcore=$(awk '/^cpu cores/{print $4 - 1; exit}' /proc/cpuinfo)
 
 sleep 2 && \
 	gnuplot -e "data='\"$data\"'" \
