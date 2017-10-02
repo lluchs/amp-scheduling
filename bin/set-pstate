@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -eu
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+AMDPSTATE="sudo $DIR/../build/tools/amdpstate"
+
+$AMDPSTATE def 0 CpuFid=144 # 3600 MHz
+$AMDPSTATE def 1 CpuFid=128 # 3200 MHz
+$AMDPSTATE def 2 CpuFid=50  #  800 MHz

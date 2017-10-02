@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo wrmsr -a 0xc0010015 0xb000411
