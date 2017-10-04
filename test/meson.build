@@ -4,6 +4,6 @@ executable('simple', 'simple.c',
            include_directories: include)
 
 executable('micro', 'micro.c',
-           link_with: ultmigration,
+           link_with: [ultmigration, pmc],
            dependencies: thread_dep,
            include_directories: include)

@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include "ultmigration.h"
 #include "random.h"
+#include "pmc/pmc.h"
 
 // Multiplier for overall iterations.
 // Increasing this number makes core switches more frequent while keeping the
@@ -91,6 +92,37 @@ static void init_pointer_chasing() {
 
 static int noop() { return 0; }
 
+// L3 counter indices
+enum {
+	L3Ctr_Fast,
+	L3Ctr_Slow,
+};
+
+static void pmc_init(int fast_cpu, int slow_cpu) {
+	// Count cache misses for both cores/threads separately.
+	union pmc_l3_event event = {
+		.EventSel = L3Miss,
+		.UnitMask = L3MissUMask,
+		.Enable = 1,
+		.SliceMask = 0xf,
+	};
+	event.ThreadMask = pmc_cpu_to_thread_mask(fast_cpu);
+	pmc_select_l3_event(fast_cpu, L3Ctr_Fast, event);
+	event.ThreadMask = pmc_cpu_to_thread_mask(slow_cpu);
+	pmc_select_l3_event(slow_cpu, L3Ctr_Slow, event);
+	// Reset both counters.
+	pmc_write_l3_counter(fast_cpu, L3Ctr_Fast, 0);
+	pmc_write_l3_counter(slow_cpu, L3Ctr_Slow, 0);
+}
+
+// Read counter, doing saturating addition to detect overflows in the result.
+static inline void read_l3_counter(int ctr, uint64_t *var) {
+	uint64_t counter = pmc_read_l3_counter(ctr);
+	*var += counter;
+	if (*var < counter || counter & ((uint64_t)1 << 48)) *var = -1;
+	pmc_write_l3_counter(PMC_CURRENT_CPU, ctr, 0);
+}
+
 typedef int (*Fn)();
 
 static void usage(char **argv) {
@@ -130,20 +162,31 @@ int main(int argc, char **argv) {
 
 	ult_register_klt();
 	ult_migrate(ULT_FAST);
-	fprintf(stderr, "fast CPU = %d\n", sched_getcpu());
+	int fast_cpu = sched_getcpu();
+	fprintf(stderr, "fast CPU = %d\n", fast_cpu);
 	ult_migrate(ULT_SLOW);
-	fprintf(stderr, "slow CPU = %d\n", sched_getcpu());
+	int slow_cpu = sched_getcpu();
+	fprintf(stderr, "slow CPU = %d\n", slow_cpu);
 	fprintf(stderr, "MEMORY_BENCH = %s\n", memory_bench);
 	fprintf(stderr, "CPU_BENCH = %s\n", cpu_bench);
 	fprintf(stderr, "buffer size = %lu MiB\n", BUFSIZE >> 20);
+
+	pmc_init(fast_cpu, slow_cpu);
+	uint64_t cache_misses_fast = 0, cache_misses_slow = 0;
 
 	int result = 0;
 	for (int i = 0; i < WORK; i++) {
 		ult_migrate(ULT_FAST);
 		result += lotsofwork();
+		read_l3_counter(L3Ctr_Fast, &cache_misses_fast);
+
 		ult_migrate(ULT_SLOW);
 		result += littlework();
+		read_l3_counter(L3Ctr_Slow, &cache_misses_slow);
 	}
 	printf("done %d\n", result);
+
+	printf("L3 Cache Misses (Fast): %"PRIu64"%s\n", cache_misses_fast, cache_misses_fast == -1 ? " overflow!" : "");
+	printf("L3 Cache Misses (Slow): %"PRIu64"%s\n", cache_misses_slow, cache_misses_slow == -1 ? " overflow!" : "");
 	ult_unregister_klt();
 }

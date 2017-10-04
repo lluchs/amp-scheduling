@@ -14,5 +14,6 @@ shared_library('ultmigration_dummy',
 
 install_headers('ultmigration.h')
 
-subdir('test')
 subdir('tools')
+subdir('pmc')
+subdir('test')
