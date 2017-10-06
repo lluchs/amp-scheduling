@@ -14,7 +14,7 @@
  *
  * ----------------------------------------------------------------------- */
 
-
+#include <assert.h>
 #include <errno.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -26,25 +26,30 @@
 #include <dirent.h>
 #include <ctype.h>
 
+static int msr_fds[64];
+
 uint64_t rdmsr_on_cpu(uint32_t reg, int cpu)
 {
 	uint64_t data;
 	int fd;
 	char msr_file_name[64];
 
-	sprintf(msr_file_name, "/dev/cpu/%d/msr", cpu);
-	fd = open(msr_file_name, O_RDONLY);
-	if (fd < 0) {
-		if (errno == ENXIO) {
-			fprintf(stderr, "rdmsr: No CPU %d\n", cpu);
-			exit(2);
-		} else if (errno == EIO) {
-			fprintf(stderr, "rdmsr: CPU %d doesn't support MSRs\n",
-				cpu);
-			exit(3);
-		} else {
-			perror("rdmsr: open");
-			exit(127);
+	fd = msr_fds[cpu];
+	if (!fd) {
+		sprintf(msr_file_name, "/dev/cpu/%d/msr", cpu);
+		fd = open(msr_file_name, O_RDONLY);
+		if (fd < 0) {
+			if (errno == ENXIO) {
+				fprintf(stderr, "rdmsr: No CPU %d\n", cpu);
+				exit(2);
+			} else if (errno == EIO) {
+				fprintf(stderr, "rdmsr: CPU %d doesn't support MSRs\n",
+					cpu);
+				exit(3);
+			} else {
+				perror("rdmsr: open");
+				exit(127);
+			}
 		}
 	}
 
@@ -60,7 +65,8 @@ uint64_t rdmsr_on_cpu(uint32_t reg, int cpu)
 		}
 	}
 
-	close(fd);
+	if (!msr_fds[cpu])
+		close(fd);
 
 	return data;
 }
@@ -70,19 +76,22 @@ void wrmsr_on_cpu(uint32_t reg, int cpu, uint64_t data)
 	int fd;
 	char msr_file_name[64];
 
-	sprintf(msr_file_name, "/dev/cpu/%d/msr", cpu);
-	fd = open(msr_file_name, O_WRONLY);
-	if (fd < 0) {
-		if (errno == ENXIO) {
-			fprintf(stderr, "wrmsr: No CPU %d\n", cpu);
-			exit(2);
-		} else if (errno == EIO) {
-			fprintf(stderr, "wrmsr: CPU %d doesn't support MSRs\n",
-				cpu);
-			exit(3);
-		} else {
-			perror("wrmsr: open");
-			exit(127);
+	fd = msr_fds[cpu];
+	if (!fd) {
+		sprintf(msr_file_name, "/dev/cpu/%d/msr", cpu);
+		fd = open(msr_file_name, O_WRONLY);
+		if (fd < 0) {
+			if (errno == ENXIO) {
+				fprintf(stderr, "wrmsr: No CPU %d\n", cpu);
+				exit(2);
+			} else if (errno == EIO) {
+				fprintf(stderr, "wrmsr: CPU %d doesn't support MSRs\n",
+					cpu);
+				exit(3);
+			} else {
+				perror("wrmsr: open");
+				exit(127);
+			}
 		}
 	}
 
@@ -99,7 +108,8 @@ void wrmsr_on_cpu(uint32_t reg, int cpu, uint64_t data)
 		}
 	}
 
-	close(fd);
+	if (!msr_fds[cpu])
+		close(fd);
 
 	return;
 }
@@ -123,4 +133,48 @@ void wrmsr_on_all_cpus(uint32_t reg, uint64_t data)
 		free(namelist[dir_entries]);
 	}
 	free(namelist);
+}
+
+void init_dev_msr()
+{
+	struct dirent **namelist;
+	int dir_entries, cpu, fd;
+	char msr_file_name[64];
+
+	dir_entries = scandir("/dev/cpu", &namelist, dir_filter, 0);
+	while (dir_entries--) {
+		cpu = atoi(namelist[dir_entries]->d_name);
+		assert(cpu < sizeof(msr_fds) / sizeof(msr_fds[0]));
+
+		sprintf(msr_file_name, "/dev/cpu/%d/msr", cpu);
+		fd = open(msr_file_name, O_RDWR);
+		if (fd < 0) {
+			if (errno == ENXIO) {
+				fprintf(stderr, "msr: No CPU %d\n", cpu);
+				exit(2);
+			} else if (errno == EIO) {
+				fprintf(stderr, "msr: CPU %d doesn't support MSRs\n",
+					cpu);
+				exit(3);
+			} else {
+				perror("msr: open");
+				exit(127);
+			}
+		}
+		msr_fds[cpu] = fd;
+
+		free(namelist[dir_entries]);
+	}
+	free(namelist);
+}
+
+void deinit_dev_msr()
+{
+	int i; 
+	for (i = 0; i < sizeof(msr_fds) / sizeof(msr_fds[0]); i++) {
+		if (msr_fds[i]) {
+			close(msr_fds[i]);
+			msr_fds[i] = 0;
+		}
+	}
 }

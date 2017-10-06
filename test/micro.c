@@ -10,6 +10,7 @@
 #include "ultmigration.h"
 #include "random.h"
 #include "pmc/pmc.h"
+#include "tools/msrtools.h"
 
 // Multiplier for overall iterations.
 // Increasing this number makes core switches more frequent while keeping the
@@ -141,6 +142,7 @@ static void usage(char **argv) {
 
 int main(int argc, char **argv) {
 	random_init();
+	init_dev_msr();
 
 	if (argc != 3) usage(argv);
 
