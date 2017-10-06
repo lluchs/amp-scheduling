@@ -1,3 +1,4 @@
 #!/bin/bash
 
-sudo wrmsr -a 0xc0010015 0xb000411
+# Set bit 10 (MonMwaitUserEn) and bit 30 (IRPerfEn).
+sudo wrmsr -a 0xc0010015 0x4b000411
