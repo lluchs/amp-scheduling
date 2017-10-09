@@ -8,7 +8,7 @@ core_title(core) = core == -1 ? "Package" : sprintf('Core %d', core)
 
 plot for [core=-1:@maxcore] cmd(core) with lines \
 	title core_title(core) \
-	linetype palette frac (core/2) * 2. / @maxcore
+	linetype palette frac (core + 1.) / (@maxcore + 1)
 
 pause 1
 reread
