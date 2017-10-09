@@ -1,4 +1,4 @@
-project('async-scheduling', 'c', default_options: ['c_std=c11'])
+project('async-scheduling', 'c', default_options: ['c_std=gnu11'])
 
 thread_dep = dependency('threads')
 
