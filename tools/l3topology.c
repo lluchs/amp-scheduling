@@ -47,6 +47,15 @@ void reset_pmc(int cpu) {
 	}
 }
 
+void disable_pmc(int cpu) {
+	union pmc_l3_event pmc = {
+		.Enable = 0,
+	};
+	for (int ctr = 0; ctr < 6; ctr++) {
+		pmc_select_l3_event(cpu, ctr, pmc);
+	}
+}
+
 void set_affinity(int cpu) {
 	cpu_set_t cpus;
 	CPU_ZERO(&cpus);
@@ -118,6 +127,7 @@ int main() {
 		thread = t0 > t1 ? 0 : 1;
 		printf("CPU %2d: CCX %d CCX-Core %d L3-Core %d L3-Thread %d\n", cpu, aid.CCXID, aid.CoreAndThreadId, maxcore, thread);
 	}
+	disable_pmc(0); disable_pmc(cpu_count - 1);
 }
 
 // vim: fdm=marker
