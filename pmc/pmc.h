@@ -49,4 +49,7 @@ uint64_t pmc_read_l3_counter(uint8_t ctr);
 // CPU reports, especially when cores are disabled (4/6-core processors).
 uint8_t pmc_cpu_to_thread_mask(int cpu);
 
+// Prints the current configuration of all L3 counters.
+void pmc_print_l3_cfg(int cpu);
+
 #endif

@@ -4,6 +4,7 @@
 
 #include <assert.h>
 #include <unistd.h>
+#include <stdio.h>
 #include <sys/syscall.h>
 
 static const uint32_t
@@ -41,4 +42,14 @@ uint64_t pmc_read_l3_counter(uint8_t ctr) {
 uint8_t pmc_cpu_to_thread_mask(int cpu) {
 	union ApicId aid = apicid_on_cpu(cpu);
 	return 1 << aid.CoreAndThreadId;
+}
+
+void pmc_print_l3_cfg(int cpu) {
+	if (cpu == PMC_CURRENT_CPU) cpu = getcpu();
+	union pmc_l3_event event;
+	for (int ctr = 0; ctr < 6; ctr++) {
+		event.value = rdmsr_on_cpu(ChL3PmcCfg + ctr*2, cpu);
+		if (event.Enable)
+			printf("Counter %d: EventSel %x UnitMask %x SliceMask %x ThreadMask %x\n", ctr, event.EventSel, event.UnitMask, event.SliceMask, event.ThreadMask);
+	}
 }
