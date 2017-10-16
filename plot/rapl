@@ -6,6 +6,8 @@ echo $data
 # We need zero-based id, so subtract one.
 maxcore=$(awk '/^cpu cores/{print $4 - 1; exit}' /proc/cpuinfo)
 
+sudo true # Make sure sudo is unlocked before starting gnuplot.
+
 sleep 2 && \
 	gnuplot -e "data='\"$data\"'" \
 	        -e "maxcore='$maxcore'" \

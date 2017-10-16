@@ -5,6 +5,8 @@ data=$(mktemp -t amdpstate-frequency.XXXX)
 echo $data
 maxcpu=$(awk '/^processor/{print $3}' /proc/cpuinfo | tail -n1)
 
+sudo true # Make sure sudo is unlocked before starting gnuplot.
+
 sleep 2 && \
 	gnuplot -e "data='\"$data\"'" \
 	        -e "maxcpu='$maxcpu'" \
