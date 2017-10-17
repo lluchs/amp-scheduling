@@ -12,3 +12,8 @@ executable('micro_pmc', 'micro.c', 'micro_pmc.c',
            link_with: [ultmigration, pmc],
            dependencies: thread_dep,
            include_directories: include)
+
+executable('micro_swp', 'micro.c', 'micro_swp.c',
+           link_with: [ultmigration, pmc, swp],
+           dependencies: thread_dep,
+           include_directories: include)

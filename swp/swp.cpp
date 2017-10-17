@@ -32,7 +32,10 @@ static void print_sections() {
 	for (const auto& kv : sections) {
 		const auto& section = kv.first;
 		const auto& state = kv.second;
-		printf("%s -> %s instructions = %f, cache_misses = %f\n", section.first.c_str(), section.second.c_str(), state.instructions, state.cache_misses);
+		printf("%s -> %s miss rate = %f (instructions = %.0f, cache_misses = %.0f)\n",
+				section.first.c_str(), section.second.c_str(),
+				state.cache_misses / state.instructions,
+				state.instructions, state.cache_misses);
 	}
 }
 

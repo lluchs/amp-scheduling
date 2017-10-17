@@ -7,7 +7,9 @@
 extern "C" {
 #endif
 
-#define SWP_MARK swp_mark(__FILE__ ":" __LINE__)
+#define SWP_STRINGIZE(x) SWP_DO_STRINGIZE(x)
+#define SWP_DO_STRINGIZE(x) #x
+#define SWP_MARK swp_mark(__FILE__ ":" SWP_STRINGIZE(__LINE__))
 
 void swp_init();
 void swp_mark(const char *id);
