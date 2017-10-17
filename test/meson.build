@@ -7,3 +7,8 @@ executable('micro', 'micro.c',
            link_with: [ultmigration, pmc],
            dependencies: thread_dep,
            include_directories: include)
+
+executable('micro_pmc', 'micro.c', 'micro_pmc.c',
+           link_with: [ultmigration, pmc],
+           dependencies: thread_dep,
+           include_directories: include)
