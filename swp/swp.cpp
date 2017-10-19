@@ -1,4 +1,5 @@
 #include "swp.h"
+#include "swp_util.h"
 
 #include <likwid.h>
 
@@ -110,7 +111,7 @@ extern "C" void swp_mark(const char *id, const char *pos) {
 		exit(-1);
 	}
 
-	std::string section_end = pos ? std::move(std::string(id) + " [" + pos + "]") : id;
+	std::string section_end = swp::section_name(id, pos);
 	auto& state = sections[{section_start, section_end}];
 	state.calls++;
 	state.instructions += perfmon_getLastResult(group_id, static_cast<int>(Events::instructions), 0);
