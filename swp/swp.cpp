@@ -61,7 +61,7 @@ static void init_counters(int group_id) {
 }
 
 extern "C" void swp_init() {
-	section_start = "__start";
+	section_start = "swp_init";
 
 	// Initialize Likwid.
 	int err;
@@ -102,7 +102,7 @@ extern "C" void swp_init() {
 	init_counters(group_id);
 }
 
-extern "C" void swp_mark(const char *id) {
+extern "C" void swp_mark(const char *id, const char *pos) {
 	int err;
 	err = perfmon_stopCounters();
 	if (err < 0) {
@@ -110,7 +110,7 @@ extern "C" void swp_mark(const char *id) {
 		exit(-1);
 	}
 
-	std::string section_end = id;
+	std::string section_end = pos ? std::move(std::string(id) + " [" + pos + "]") : id;
 	auto& state = sections[{section_start, section_end}];
 	state.calls++;
 	state.instructions += perfmon_getLastResult(group_id, static_cast<int>(Events::instructions), 0);
@@ -121,7 +121,7 @@ extern "C" void swp_mark(const char *id) {
 }
 
 extern "C" void swp_deinit() {
-	swp_mark("__end");
+	swp_mark("swp_deinit", nullptr);
 
 	delete[] cpulist;
 	perfmon_finalize();
