@@ -1,0 +1,24 @@
+getGenericCommand [t_string.c:163] -> processCommand [server.c:2305]
+        calls = 86,109
+        miss rate = 0.026946 (l3miss = 13,091,248 / instr = 485,829,755)
+getGenericCommand [t_string.c:163] -> swp_deinit
+        calls = 1
+        miss rate = 0.073601 (l3miss = 566,473 / instr = 7,696,563)
+processCommand [server.c:2305] -> processCommand [server.c:2476]
+        calls = 94,822
+        miss rate = 0.010565 (l3miss = 2,572,008 / instr = 243,451,291)
+processCommand [server.c:2476] -> getGenericCommand [t_string.c:163]
+        calls = 86,110
+        miss rate = 0.011529 (l3miss = 2,338,860 / instr = 202,876,195)
+processCommand [server.c:2476] -> setGenericCommand [t_string.c:70]
+        calls = 8,712
+        miss rate = 0.011341 (l3miss = 239,425 / instr = 21,112,055)
+setGenericCommand [t_string.c:70] -> setGenericCommand [t_string.c:96]
+        calls = 8,712
+        miss rate = 0.007265 (l3miss = 245,305 / instr = 33,763,045)
+setGenericCommand [t_string.c:96] -> processCommand [server.c:2305]
+        calls = 8,712
+        miss rate = 0.028806 (l3miss = 1,287,331 / instr = 44,689,668)
+swp_init -> processCommand [server.c:2305]
+        calls = 1
+        miss rate = 0.102627 (l3miss = 621,002 / instr = 6,051,033)
