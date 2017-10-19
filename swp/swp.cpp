@@ -2,6 +2,7 @@
 
 #include <likwid.h>
 
+#include <inttypes.h>
 #include <sched.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +13,7 @@
 
 struct CtrState {
 	double instructions = 0, cache_misses = 0;
+	uint64_t calls = 0;
 };
 
 static std::map<std::pair<std::string, std::string>, CtrState> sections;
@@ -35,8 +37,9 @@ static void print_sections() {
 	for (const auto& kv : sections) {
 		const auto& section = kv.first;
 		const auto& state = kv.second;
-		printf("%s -> %s miss rate = %f (l3miss = %'.0f / instr = %'.0f)\n",
+		printf("%s -> %s\n\tcalls = %'" PRIu64 "\n\tmiss rate = %f (l3miss = %'.0f / instr = %'.0f)\n",
 				section.first.c_str(), section.second.c_str(),
+				state.calls,
 				state.cache_misses / state.instructions,
 				state.cache_misses, state.instructions);
 	}
@@ -109,6 +112,7 @@ extern "C" void swp_mark(const char *id) {
 
 	std::string section_end = id;
 	auto& state = sections[{section_start, section_end}];
+	state.calls++;
 	state.instructions += perfmon_getLastResult(group_id, static_cast<int>(Events::instructions), 0);
 	state.cache_misses += perfmon_getLastResult(group_id, static_cast<int>(Events::cache_misses), 0);
 	section_start = std::move(section_end);
