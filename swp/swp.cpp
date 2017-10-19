@@ -22,7 +22,7 @@ static int *cpulist;
 static int group_id;
 
 // Position in this list has to correspond to the Events enum.
-static const char *event_str_ryzen = "INST_RETIRED_ANY:FIXC0,L3_MISS:CPMC5";
+static const char *event_str_ryzen = "RETIRED_INSTRUCTIONS:PMC0,L3_MISS:CPMC5";
 static const char *event_str_skylake = "INSTR_RETIRED_ANY:FIXC0,MEM_LOAD_RETIRED_L3_MISS:PMC0";
 enum class Events : int {
 	instructions = 0,
