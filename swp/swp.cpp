@@ -22,7 +22,8 @@ static int *cpulist;
 static int group_id;
 
 // Position in this list has to correspond to the Events enum.
-static const char *event_str = "INST_RETIRED_ANY:FIXC0,L3_MISS:CPMC5";
+static const char *event_str_ryzen = "INST_RETIRED_ANY:FIXC0,L3_MISS:CPMC5";
+static const char *event_str_skylake = "INSTR_RETIRED_ANY:FIXC0,MEM_LOAD_RETIRED_L3_MISS:PMC0";
 enum class Events : int {
 	instructions = 0,
 	cache_misses,
@@ -50,8 +51,13 @@ extern "C" void swp_init() {
 		exit(-1);
 	}
 	CpuInfo_t info = get_cpuInfo();
-	if (info->isIntel || info->family != 0x17) {
-		fprintf(stderr, "swp: Only AMD Ryzen CPUs supported\n");
+	const char *event_str;
+	if (!info->isIntel && info->family == 0x17)
+		event_str = event_str_ryzen;
+	else if (info->isIntel && info->family == 6)
+		event_str = event_str_skylake;
+	else {
+		fprintf(stderr, "swp: Only AMD Ryzen or Intel Skylake CPUs supported\n");
 		exit(-1);
 	}
 	CpuTopology_t topo = get_cpuTopology();
