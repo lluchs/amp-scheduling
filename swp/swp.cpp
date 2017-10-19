@@ -40,6 +40,21 @@ static void print_sections() {
 	}
 }
 
+// Resets and starts counters.
+static void init_counters(int group_id) {
+	int err;
+	err = perfmon_setupCounters(group_id);
+	if (err < 0) {
+		fprintf(stderr, "swp: Failed to setup group %d for thread %d\n", group_id, -err - 1);
+		exit(-1);
+	}
+	err = perfmon_startCounters();
+	if (err < 0) {
+		fprintf(stderr, "swp: Failed to start counters for group %d for thread %d\n", group_id, -err - 1);
+		exit(-1);
+	}
+}
+
 extern "C" void swp_init() {
 	section_start = "__start";
 
@@ -79,16 +94,7 @@ extern "C" void swp_init() {
 		fprintf(stderr, "swp: Failed to add event string %s to LIKWID's performance monitoring module\n", event_str);
 		exit(-1);
 	}
-	err = perfmon_setupCounters(group_id);
-	if (err < 0) {
-		fprintf(stderr, "swp: Failed to setup group %d for thread %d\n", group_id, -err - 1);
-		exit(-1);
-	}
-	err = perfmon_startCounters();
-	if (err < 0) {
-		fprintf(stderr, "swp: Failed to start counters for group %d for thread %d\n", group_id, -err - 1);
-		exit(-1);
-	}
+	init_counters(group_id);
 }
 
 extern "C" void swp_mark(const char *id) {
@@ -101,15 +107,11 @@ extern "C" void swp_mark(const char *id) {
 
 	std::string section_end = id;
 	auto& state = sections[{section_start, section_end}];
-	state.instructions += perfmon_getResult(group_id, static_cast<int>(Events::instructions), 0);
-	state.cache_misses += perfmon_getResult(group_id, static_cast<int>(Events::cache_misses), 0);
+	state.instructions += perfmon_getLastResult(group_id, static_cast<int>(Events::instructions), 0);
+	state.cache_misses += perfmon_getLastResult(group_id, static_cast<int>(Events::cache_misses), 0);
 	section_start = std::move(section_end);
 
-	err = perfmon_startCounters();
-	if (err < 0) {
-		fprintf(stderr, "swp: Failed to start counters for group %d for thread %d\n", group_id, -err - 1);
-		exit(-1);
-	}
+	init_counters(group_id);
 }
 
 extern "C" void swp_deinit() {
