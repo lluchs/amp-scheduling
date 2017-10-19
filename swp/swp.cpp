@@ -30,13 +30,15 @@ enum class Events : int {
 };
 
 static void print_sections() {
+	// Needed to make thousands grouping work below.
+	setlocale(LC_ALL, "");
 	for (const auto& kv : sections) {
 		const auto& section = kv.first;
 		const auto& state = kv.second;
-		printf("%s -> %s miss rate = %f (instructions = %.0f, cache_misses = %.0f)\n",
+		printf("%s -> %s miss rate = %f (l3miss = %'.0f / instr = %'.0f)\n",
 				section.first.c_str(), section.second.c_str(),
 				state.cache_misses / state.instructions,
-				state.instructions, state.cache_misses);
+				state.cache_misses, state.instructions);
 	}
 }
 
