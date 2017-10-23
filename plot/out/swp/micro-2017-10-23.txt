@@ -1,0 +1,12 @@
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+        calls = 10,000
+        miss rate = 0.000102 (l3miss = 6,537,320 / instr = 64,021,726,804)
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+        calls = 9,999
+        miss rate = 0.450396 (l3miss = 135,787,065 / instr = 301,483,774)
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+        calls = 1
+        miss rate = 0.525278 (l3miss = 18,536 / instr = 35,288)
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+        calls = 1
+        miss rate = 0.399800 (l3miss = 1,999 / instr = 5,000)

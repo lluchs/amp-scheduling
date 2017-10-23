@@ -1,5 +1,5 @@
 DOT ?= dot
-AWK ?= awk
+AWK ?= awk -M
 
 swpgraph := ../../swpgraph.awk
 
