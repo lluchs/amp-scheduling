@@ -1,0 +1,24 @@
+getrangeCommand [t_string.c:259] -> processCommand [server.c:2305]
+        calls = 97,231
+        miss rate = 0.000942 (l3miss = 488,922 / instr = 518,973,436)
+getrangeCommand [t_string.c:259] -> swp_deinit
+        calls = 1
+        miss rate = 0.000866 (l3miss = 3,343 / instr = 3,861,336)
+processCommand [server.c:2305] -> processCommand [server.c:2476]
+        calls = 107,048
+        miss rate = 0.000877 (l3miss = 108,886 / instr = 124,173,202)
+processCommand [server.c:2476] -> getrangeCommand [t_string.c:259]
+        calls = 97,232
+        miss rate = 0.001158 (l3miss = 97,648 / instr = 84,300,705)
+processCommand [server.c:2476] -> setrangeCommand [t_string.c:196]
+        calls = 9,816
+        miss rate = 0.001154 (l3miss = 9,871 / instr = 8,552,574)
+setrangeCommand [t_string.c:196] -> setrangeCommand [t_string.c:250]
+        calls = 9,816
+        miss rate = 0.001048 (l3miss = 19,771 / instr = 18,870,145)
+setrangeCommand [t_string.c:250] -> processCommand [server.c:2305]
+        calls = 9,816
+        miss rate = 0.000957 (l3miss = 42,282 / instr = 44,184,643)
+swp_init -> processCommand [server.c:2305]
+        calls = 1
+        miss rate = 0.000069 (l3miss = 11,178 / instr = 161,932,888)
