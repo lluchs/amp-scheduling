@@ -13,4 +13,8 @@ swp_migrate = shared_library('swp_migrate',
 	link_with: [ultmigration],
 	install: true)
 
+swp_dummy = shared_library('swp_dummy',
+	'swp_dummy.cpp',
+	install: true)
+
 install_headers('swp.h')
