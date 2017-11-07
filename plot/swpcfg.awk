@@ -9,8 +9,12 @@
 /^\s+miss rate / {
 	miss_rate = $4;
 
-	node_miss_rate[start] += calls * miss_rate;
-	node_calls[start] += calls;
+	# A miss rate larger than 1 doesn't make sense and happens only due to
+	# noise on other cores connected to the same L3 cache.
+	if (miss_rate < 1) {
+		node_miss_rate[start] += calls * miss_rate;
+		node_calls[start] += calls;
+	}
 }
 
 END {
