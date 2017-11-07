@@ -1,0 +1,39 @@
+do_command [../sql/sql_parse.cc:943] -> mysql_execute_command [../sql/sql_parse.cc:2427]
+        calls = 107,146
+        miss rate = 0.002342 (l3miss = 10,021,451 / instr = 4,278,585,775)
+do_command [../sql/sql_parse.cc:943] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 1
+        miss rate = 2.338854 (l3miss = 7,061 / instr = 3,019)
+execute [../sql/sql_insert.cc:3086] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 22,012
+        miss rate = 0.005085 (l3miss = 11,429,265 / instr = 2,247,531,676)
+execute [../sql/sql_update.cc:3005] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 28,031
+        miss rate = 0.003672 (l3miss = 17,845,467 / instr = 4,859,258,476)
+execute_sqlcom_select [../sql/sql_parse.cc:5123] -> handle_query [../sql/sql_select.cc:102]
+        calls = 49,732
+        miss rate = 0.015024 (l3miss = 3,915,374 / instr = 260,602,707)
+handle_query [../sql/sql_select.cc:102] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 49,732
+        miss rate = 0.004746 (l3miss = 19,424,542 / instr = 4,092,953,844)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> execute [../sql/sql_insert.cc:3086]
+        calls = 22,012
+        miss rate = 0.021030 (l3miss = 1,418,989 / instr = 67,473,144)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> execute [../sql/sql_update.cc:3005]
+        calls = 28,031
+        miss rate = 0.021638 (l3miss = 1,797,628 / instr = 83,078,186)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> execute_sqlcom_select [../sql/sql_parse.cc:5123]
+        calls = 49,732
+        miss rate = 0.019851 (l3miss = 3,543,601 / instr = 178,508,010)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 7,371
+        miss rate = 0.034317 (l3miss = 7,204,422 / instr = 209,935,596)
+send_statement_status [../sql/sql_class.cc:4692] -> do_command [../sql/sql_parse.cc:943]
+        calls = 107,147
+        miss rate = 0.032189 (l3miss = 50,898,224 / instr = 1,581,211,231)
+send_statement_status [../sql/sql_class.cc:4692] -> swp_deinit
+        calls = 1
+        miss rate = 0.007877 (l3miss = 5,504,765 / instr = 698,848,218)
+swp_init -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 1
+        miss rate = 0.009118 (l3miss = 5,014,779 / instr = 549,966,963)

@@ -1,0 +1,123 @@
+do_command [../sql/sql_parse.cc:943] -> do_command [../sql/sql_parse.cc:943]
+        calls = 48
+        miss rate = 1919836964.493808 (l3miss = 1,688,849,860,273,771 / instr = 879,684)
+do_command [../sql/sql_parse.cc:943] -> execute [../sql/sql_insert.cc:3086]
+        calls = 119
+        miss rate = 492787666.747148 (l3miss = 3,377,699,720,554,972 / instr = 6,854,270)
+do_command [../sql/sql_parse.cc:943] -> get_command [../sql/protocol_classic.cc:972]
+        calls = 4,842
+        miss rate = 0.000000 (l3miss = 1,089,758 / instr = 1,970,325,086,801,992)
+do_command [../sql/sql_parse.cc:943] -> mysql_execute_command [../sql/sql_parse.cc:2427]
+        calls = 2,775,584
+        miss rate = 0.021341 (l3miss = 1,970,325,304,418,326 / instr = 92,323,930,810,329,520)
+do_command [../sql/sql_parse.cc:943] -> parse_packet [../sql/protocol_classic.cc:946]
+        calls = 43
+        miss rate = 881206488.994620 (l3miss = 1,125,899,906,858,646 / instr = 1,277,680)
+do_command [../sql/sql_parse.cc:943] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 849
+        miss rate = 10.999998 (l3miss = 3,096,224,744,752,349 / instr = 281,475,027,107,222)
+execute [../sql/sql_insert.cc:3086] -> do_command [../sql/sql_parse.cc:943]
+        calls = 144
+        miss rate = 393234578.854327 (l3miss = 4,503,599,627,417,840 / instr = 11,452,705)
+execute [../sql/sql_insert.cc:3086] -> execute [../sql/sql_insert.cc:3086]
+        calls = 253
+        miss rate = 764575515.737571 (l3miss = 7,318,349,394,602,088 / instr = 9,571,781)
+execute [../sql/sql_insert.cc:3086] -> get_command [../sql/protocol_classic.cc:972]
+        calls = 24,274
+        miss rate = 0.199999 (l3miss = 281,475,014,785,021 / instr = 1,407,383,389,341,387)
+execute [../sql/sql_insert.cc:3086] -> mysql_execute_command [../sql/sql_parse.cc:2427]
+        calls = 247
+        miss rate = 342770605.519269 (l3miss = 5,348,024,557,629,320 / instr = 15,602,343)
+execute [../sql/sql_insert.cc:3086] -> parse_packet [../sql/protocol_classic.cc:946]
+        calls = 104
+        miss rate = 1003980271.723582 (l3miss = 3,940,649,673,982,395 / instr = 3,925,027)
+execute [../sql/sql_insert.cc:3086] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 2,753,693
+        miss rate = 0.038991 (l3miss = 4,785,076,794,273,637 / instr = 122,723,461,331,865,680)
+execute_sqlcom_select [../sql/sql_parse.cc:5123] -> handle_query [../sql/sql_select.cc:102]
+        calls = 44
+        miss rate = 0.072706 (l3miss = 52,115 / instr = 716,791)
+get_command [../sql/protocol_classic.cc:972] -> do_command [../sql/sql_parse.cc:943]
+        calls = 31
+        miss rate = 29871057700.836040 (l3miss = 281,474,976,714,978 / instr = 9,423)
+get_command [../sql/protocol_classic.cc:972] -> execute [../sql/sql_insert.cc:3086]
+        calls = 69
+        miss rate = 962139855.018797 (l3miss = 281,474,976,725,604 / instr = 292,551)
+get_command [../sql/protocol_classic.cc:972] -> get_command [../sql/protocol_classic.cc:972]
+        calls = 793
+        miss rate = 0.000000 (l3miss = 233,800 / instr = 281,475,040,390,833)
+get_command [../sql/protocol_classic.cc:972] -> mysql_execute_command [../sql/sql_parse.cc:2427]
+        calls = 72
+        miss rate = 5454074676.337302 (l3miss = 9,851,624,184,897,276 / instr = 1,806,287)
+get_command [../sql/protocol_classic.cc:972] -> parse_packet [../sql/protocol_classic.cc:946]
+        calls = 2,779,953
+        miss rate = 0.007463 (l3miss = 281,475,321,631,837 / instr = 37,717,686,559,424,536)
+get_command [../sql/protocol_classic.cc:972] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 540
+        miss rate = 1309248186.736314 (l3miss = 15,199,648,743,009,524 / instr = 11,609,448)
+handle_query [../sql/sql_select.cc:102] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 44
+        miss rate = 0.009880 (l3miss = 849,761 / instr = 86,011,666)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> do_command [../sql/sql_parse.cc:943]
+        calls = 94
+        miss rate = 16346737984.528759 (l3miss = 9,288,674,231,472,808 / instr = 568,228)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> execute [../sql/sql_insert.cc:3086]
+        calls = 2,771,670
+        miss rate = 0.106977 (l3miss = 6,473,924,781,430,110 / instr = 60,517,154,008,602,432)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> execute_sqlcom_select [../sql/sql_parse.cc:5123]
+        calls = 44
+        miss rate = 0.135370 (l3miss = 26,881 / instr = 198,574)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> get_command [../sql/protocol_classic.cc:972]
+        calls = 5,844
+        miss rate = 2.666666 (l3miss = 2,251,799,814,998,357 / instr = 844,425,087,014,869)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> mysql_execute_command [../sql/sql_parse.cc:2427]
+        calls = 102
+        miss rate = 1132247854.448615 (l3miss = 4,503,599,627,410,597 / instr = 3,977,574)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> parse_packet [../sql/protocol_classic.cc:946]
+        calls = 83
+        miss rate = 648904989.895987 (l3miss = 5,066,549,580,834,435 / instr = 7,807,845)
+mysql_execute_command [../sql/sql_parse.cc:2427] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 3,641
+        miss rate = 6.666663 (l3miss = 5,629,499,560,083,818 / instr = 844,425,449,793,921)
+parse_packet [../sql/protocol_classic.cc:946] -> do_command [../sql/sql_parse.cc:943]
+        calls = 2,778,281
+        miss rate = 0.019231 (l3miss = 1,125,900,198,317,860 / instr = 58,546,825,841,027,304)
+parse_packet [../sql/protocol_classic.cc:946] -> execute [../sql/sql_insert.cc:3086]
+        calls = 60
+        miss rate = 3155144819.682256 (l3miss = 1,970,324,836,995,175 / instr = 624,480)
+parse_packet [../sql/protocol_classic.cc:946] -> get_command [../sql/protocol_classic.cc:972]
+        calls = 2,568
+        miss rate = 0.666667 (l3miss = 562,949,954,199,528 / instr = 844,425,042,406,941)
+parse_packet [../sql/protocol_classic.cc:946] -> mysql_execute_command [../sql/sql_parse.cc:2427]
+        calls = 70
+        miss rate = 1813658589.814234 (l3miss = 844,424,930,148,789 / instr = 465,592)
+parse_packet [../sql/protocol_classic.cc:946] -> parse_packet [../sql/protocol_classic.cc:946]
+        calls = 13
+        miss rate = 677237915.008033 (l3miss = 562,949,953,422,937 / instr = 831,244)
+parse_packet [../sql/protocol_classic.cc:946] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 483
+        miss rate = 210579100.437999 (l3miss = 3,096,224,744,377,166 / instr = 14,703,381)
+send_statement_status [../sql/sql_class.cc:4692] -> do_command [../sql/sql_parse.cc:943]
+        calls = 2,886
+        miss rate = 108.999983 (l3miss = 30,680,772,462,899,260 / instr = 281,475,020,287,973)
+send_statement_status [../sql/sql_class.cc:4692] -> execute [../sql/sql_insert.cc:3086]
+        calls = 6,544
+        miss rate = 135.999963 (l3miss = 38,280,596,834,886,552 / instr = 281,475,054,057,670)
+send_statement_status [../sql/sql_class.cc:4692] -> get_command [../sql/protocol_classic.cc:972]
+        calls = 2,743,139
+        miss rate = 1.032256 (l3miss = 27,021,598,920,325,776 / instr = 26,177,216,390,193,484)
+send_statement_status [../sql/sql_class.cc:4692] -> mysql_execute_command [../sql/sql_parse.cc:2427]
+        calls = 5,404
+        miss rate = 208.999889 (l3miss = 58,828,270,134,566,344 / instr = 281,475,126,631,715)
+send_statement_status [../sql/sql_class.cc:4692] -> parse_packet [../sql/protocol_classic.cc:946]
+        calls = 1,279
+        miss rate = 2041441514.304893 (l3miss = 44,473,046,320,672,296 / instr = 21,785,119)
+send_statement_status [../sql/sql_class.cc:4692] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 20,939
+        miss rate = 53126474.169615 (l3miss = 52,917,295,637,140,288 / instr = 996,062,631)
+send_statement_status [../sql/sql_class.cc:4692] -> swp_deinit
+        calls = 1
+        miss rate = 0.039266 (l3miss = 3,233,188,153 / instr = 82,340,471,748)
+swp_init -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 1
+        miss rate = 0.029111 (l3miss = 11,789,107 / instr = 404,972,271)
