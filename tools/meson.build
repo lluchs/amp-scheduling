@@ -6,3 +6,5 @@ executable('amdpstate', 'amdpstate.c', 'msrtools.c', 'amdccx.c',
 
 executable('l3topology', 'l3topology.c', 'msrtools.c', 'amdccx.c', '../pmc/pmc.c',
            dependencies: m_dep)
+
+executable('cpudmalatency', 'cpudmalatency.c')
