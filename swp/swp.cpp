@@ -13,7 +13,7 @@
 #include <utility>
 
 struct CtrState {
-	double instructions = 0, cache_misses = 0;
+	double instructions = 0, cycles = 0, l2stat = 0, l3misses = 0;
 	uint64_t calls = 0;
 };
 
@@ -25,11 +25,13 @@ static int *cpulist;
 static int group_id;
 
 // Position in this list has to correspond to the Events enum.
-static const char *event_str_ryzen = "RETIRED_INSTRUCTIONS:PMC0,L3_MISS:CPMC5";
-static const char *event_str_skylake = "INSTR_RETIRED_ANY:FIXC0,MEM_LOAD_RETIRED_L3_MISS:PMC0";
+static const char *event_str_ryzen = "RETIRED_INSTRUCTIONS:PMC0,CPU_CLOCKS_UNHALTED:PMC1,L2_LATENCY_CYCLES_WAIT_ON_FILLS:PMC2,L3_MISS:CPMC5";
+static const char *event_str_skylake = "INSTR_RETIRED_ANY:FIXC0,CPU_CLK_UNHALTED_CORE:FIXC1,MEM_LOAD_RETIRED_L2_MISS:PMC0,MEM_LOAD_RETIRED_L3_MISS:PMC1";
 enum class Events : int {
 	instructions = 0,
-	cache_misses,
+	cycles,
+	l2stat, // Ryzen: waiting latency (in 4 cycles), Skylake: misses
+	l3misses,
 };
 
 static void print_sections() {
@@ -38,11 +40,13 @@ static void print_sections() {
 	for (const auto& kv : sections) {
 		const auto& section = kv.first;
 		const auto& state = kv.second;
-		printf("%s -> %s\n\tcalls = %'" PRIu64 "\n\tmiss rate = %f (l3miss = %'.0f / instr = %'.0f)\n",
+		printf("%s -> %s\n\tcalls = %'" PRIu64 "\n\tmiss rate = %f (l3miss = %'.0f / instr = %'.0f)\n\tCPI = %f\n\tL2 rate = %f\n",
 				section.first.c_str(), section.second.c_str(),
 				state.calls,
-				state.cache_misses / state.instructions,
-				state.cache_misses, state.instructions);
+				state.l3misses / state.instructions,
+				state.l3misses, state.instructions,
+				state.cycles / state.instructions,
+				state.l2stat / state.instructions);
 	}
 }
 
@@ -104,18 +108,23 @@ extern "C" void swp_init() {
 }
 
 extern "C" void swp_mark(const char *id, const char *pos) {
+	if (section_start.empty()) return;
+
 	int err;
 	err = perfmon_stopCounters();
 	if (err < 0) {
-		fprintf(stderr, "swp: Failed to stop counters for group %d for thread %d\n", group_id, -err - 1);
-		exit(-1);
+		// This happens if swp_init() wasn't called on the same thread.
+		fprintf(stderr, "swp_mark: Failed to stop counters for group %d for thread %d\n", group_id, -err - 1);
+		return;
 	}
 
 	std::string section_end = swp::section_name(id, pos);
 	auto& state = sections[{section_start, section_end}];
 	state.calls++;
 	state.instructions += perfmon_getLastResult(group_id, static_cast<int>(Events::instructions), 0);
-	state.cache_misses += perfmon_getLastResult(group_id, static_cast<int>(Events::cache_misses), 0);
+	state.cycles += perfmon_getLastResult(group_id, static_cast<int>(Events::cycles), 0);
+	state.l2stat += perfmon_getLastResult(group_id, static_cast<int>(Events::l2stat), 0);
+	state.l3misses += perfmon_getLastResult(group_id, static_cast<int>(Events::l3misses), 0);
 	section_start = std::move(section_end);
 
 	init_counters(group_id);
