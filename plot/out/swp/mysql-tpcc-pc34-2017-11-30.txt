@@ -1,0 +1,65 @@
+do_command [../sql/sql_parse.cc:943] -> mysql_execute_command [../sql/sql_parse.cc:2427]
+        calls = 108,895
+        miss rate = 0.000127 (l3miss = 532,131 / instr = 4,179,521,294)
+        CPI = 1.193386
+        L2 rate = 0.007719
+do_command [../sql/sql_parse.cc:943] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 1
+        miss rate = 0.003264 (l3miss = 5 / instr = 1,532)
+        CPI = 5.633159
+        L2 rate = 0.024151
+execute [../sql/sql_insert.cc:3086] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 22,389
+        miss rate = 0.001208 (l3miss = 2,673,488 / instr = 2,212,485,028)
+        CPI = 1.365281
+        L2 rate = 0.009156
+execute [../sql/sql_update.cc:3005] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 28,585
+        miss rate = 0.000569 (l3miss = 2,679,677 / instr = 4,712,795,617)
+        CPI = 1.274181
+        L2 rate = 0.008810
+execute_sqlcom_select [../sql/sql_parse.cc:5123] -> handle_query [../sql/sql_select.cc:102]
+        calls = 50,423
+        miss rate = 0.000801 (l3miss = 151,602 / instr = 189,299,437)
+        CPI = 4.144462
+        L2 rate = 0.029950
+handle_query [../sql/sql_select.cc:102] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 50,423
+        miss rate = 0.000463 (l3miss = 1,871,873 / instr = 4,043,429,897)
+        CPI = 1.553985
+        L2 rate = 0.007025
+mysql_execute_command [../sql/sql_parse.cc:2427] -> execute [../sql/sql_insert.cc:3086]
+        calls = 22,389
+        miss rate = 0.000675 (l3miss = 24,719 / instr = 36,608,168)
+        CPI = 4.809166
+        L2 rate = 0.028661
+mysql_execute_command [../sql/sql_parse.cc:2427] -> execute [../sql/sql_update.cc:3005]
+        calls = 28,585
+        miss rate = 0.000704 (l3miss = 29,824 / instr = 42,352,692)
+        CPI = 5.388447
+        L2 rate = 0.029955
+mysql_execute_command [../sql/sql_parse.cc:2427] -> execute_sqlcom_select [../sql/sql_parse.cc:5123]
+        calls = 50,423
+        miss rate = 0.000547 (l3miss = 58,116 / instr = 106,325,138)
+        CPI = 4.873936
+        L2 rate = 0.032837
+mysql_execute_command [../sql/sql_parse.cc:2427] -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 7,498
+        miss rate = 0.000839 (l3miss = 167,087 / instr = 199,255,245)
+        CPI = 2.373122
+        L2 rate = 0.012755
+send_statement_status [../sql/sql_class.cc:4692] -> do_command [../sql/sql_parse.cc:943]
+        calls = 108,896
+        miss rate = 0.000198 (l3miss = 415,334 / instr = 2,100,553,959)
+        CPI = 1.819413
+        L2 rate = 0.010378
+send_statement_status [../sql/sql_class.cc:4692] -> swp_deinit
+        calls = 1
+        miss rate = 0.000082 (l3miss = 43,602 / instr = 530,834,635)
+        CPI = 0.733320
+        L2 rate = 0.001816
+swp_init -> send_statement_status [../sql/sql_class.cc:4692]
+        calls = 1
+        miss rate = 0.000074 (l3miss = 168,374 / instr = 2,283,028,696)
+        CPI = 0.725737
+        L2 rate = 0.003507
