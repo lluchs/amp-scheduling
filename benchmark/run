@@ -84,7 +84,7 @@ run_micro() {
 					cmd=($membench $cpubench $memratio_opt $cpuratio_opt)
 					log $(date -Ins) start: "$@" $cmd
 					time env "$@" $cmd &>> $bd/log
-					log $(date -Ins) end: $cmd
+					log $(date -Ins) end: "$@" $cmd
 				done
 			done
 		done
