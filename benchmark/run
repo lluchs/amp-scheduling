@@ -1,0 +1,114 @@
+#!/bin/zsh
+
+set -eu
+
+# Configuration
+
+# CPUs used for ultmigration
+export FAST_CPU=0 SLOW_CPU=2
+# CPU used for power monitoring.
+OTHER_CPU=11
+
+# Command for reading the power meter.
+powermeter() {
+	taskset -c $OTHER_CPU ssh i30pc34 sudo '~/src/ut71dmm/ut71dmm'
+}
+
+# test/micro parameters
+MEMORY_BENCH=(indirect_access pointer_chasing)
+CPU_BENCH=(some)
+MEMORY_RATIO=(1 0.8 0.6)
+CPU_RATIO=(1 0.8 0.6)
+
+# Path to build directory
+BUILD=../build
+
+# End configuration
+
+cd ${0:A:h}
+
+benchname=${1?benchmark name not set}
+bd=results/$benchname
+if [[ -e "$bd" ]]; then
+	echo "Benchmark $benchname already exists"
+	exit 2
+fi
+mkdir $bd
+
+# On exit, kill all background jobs.
+zshexit TRAPINT() {
+	kill -SIGHUP 0
+}
+
+log() {
+	echo $@ >> $bd/log
+}
+
+# Print log file output to allow following progress.
+taskset -c $OTHER_CPU tail -f $bd/log &
+
+log Benchmark configuration
+log FAST_CPU=$FAST_CPU SLOW_CPU=$SLOW_CPU
+log OTHER_CPU=$OTHER_CPU
+log MEMORY_BENCH $MEMORY_BENCH
+log CPU_BENCH $CPU_BENCH
+log MEMORY_RATIO $MEMORY_RATIO
+log CPU_RATIO $CPU_RATIO
+log
+log $(date -Ins) Benchmark start
+
+# Add timestamp to input. Simple reimplementation of ts from moreutils.
+ts() {
+	taskset -c $OTHER_CPU awk '{print strftime("%FT%T%z"), $0; fflush()}'
+}
+
+# Start monitoring power.
+powermeter |& ts > $bd/powermeter &
+sudo taskset -c $OTHER_CPU stdbuf -oL $BUILD/tools/amdpstate rapl 1000 |& ts > $bd/rapl &
+
+# Run test/micro with all parameter variations.
+run_micro() {
+	for membench in $MEMORY_BENCH; do
+		for cpubench in $CPU_BENCH; do
+			for memratio in $MEMORY_RATIO; do
+				memratio_opt=
+				if [[ $memratio != 1 ]]; then
+					memratio_opt=--memory-ratio=$memratio
+				fi
+				for cpuratio in $CPU_RATIO; do
+					cpuratio_opt=
+					if [[ $cpuratio != 1 ]]; then
+						cpuratio_opt=--cpu-ratio=$cpuratio
+					fi
+
+					cmd=($membench $cpubench $memratio_opt $cpuratio_opt)
+					log $(date -Ins) start: "$@" $cmd
+					time env "$@" $cmd &>> $bd/log
+					log $(date -Ins) end: $cmd
+				done
+			done
+		done
+	done
+}
+
+log $(date -Ins) start fast/slow ultmigration
+run_micro $BUILD/test/micro
+log $(date -Ins) end fast/slow ultmigration
+
+log $(date -Ins) start only fast baseline
+run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro
+log $(date -Ins) end only fast baseline
+
+log $(date -Ins) start only slow baseline
+run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro
+log $(date -Ins) end only slow baseline
+
+log $(date -Ins) start swp on fast
+run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro_swp
+log $(date -Ins) end swp on fast
+
+log $(date -Ins) start swp on slow
+run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro_swp
+log $(date -Ins) end swp on slow
+
+log $(date -Ins) Benchmark end
