@@ -1,0 +1,58 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	OFS = "\t";
+	print "type", "time_start", "time_end", "memory_bench", "cpu_bench", "memory_ratio", "cpu_ratio", \
+			 "swp_cpu_instr", "swp_cpu_cpi", "swp_cpu_l2", "swp_cpu_l3", \
+			 "swp_mem_instr", "swp_mem_cpi", "swp_mem_l2", "swp_mem_l3";
+}
+
+/start fast\/slow ultmigration/ { type = "fast/slow ultmigration" }
+/start only fast baseline/ { type = "only fast baseline" }
+/start only slow baseline/ { type = "only slow baseline" }
+/start swp on fast/ { type = "swp on fast" }
+/start swp on slow/ { type = "swp on slow" }
+
+/start:/ { time_start = $1 }
+/end:/ {
+	time_end = $1;
+	print type, time_start, time_end, memory_bench, cpu_bench, memory_ratio, cpu_ratio, \
+			 swp_cpu_instr, swp_cpu_cpi, swp_cpu_l2, swp_cpu_l3, \
+			 swp_mem_instr, swp_mem_cpi, swp_mem_l2, swp_mem_l3;
+}
+
+/^MEMORY_BENCH = / {
+	memory_bench = $3;
+	if ($4 == "@")
+		memory_ratio = $5;
+	else
+		memory_ratio = 1;
+}
+/^CPU_BENCH = / {
+	cpu_bench = $3
+	if ($4 == "@")
+		cpu_ratio = $5;
+	else
+		cpu_ratio = 1;
+}
+
+# Parse SWP output.
+# TODO: Make this nicer
+$0 == "run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]" {
+	getline; getline;
+	swp_cpu_l3 = $4;
+	swp_cpu_instr = $11; gsub("[,)]", "", swp_cpu_instr);
+	getline;
+	swp_cpu_cpi = $3;
+	getline;
+	swp_cpu_l2 = $4;
+}
+$0 == "run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]" {
+	getline; getline;
+	swp_mem_l3 = $4;
+	swp_mem_instr = $11; gsub("[,)]", "", swp_mem_instr);
+	getline;
+	swp_mem_cpi = $3;
+	getline;
+	swp_mem_l2 = $4;
+}

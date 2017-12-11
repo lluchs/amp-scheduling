@@ -1,0 +1,8 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	OFS = "\t";
+	print "Time", "Power";
+}
+
+/Power/ { print $1, $8 / 10 }

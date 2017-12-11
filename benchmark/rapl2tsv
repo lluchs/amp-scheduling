@@ -1,0 +1,25 @@
+#!/usr/bin/awk -f
+
+function print_row() {
+	print time, pkg, c0, c1, c2, c3, c4, c5;
+}
+
+BEGIN {
+	OFS = "\t";
+	print "Time", "Package", "Core0", "Core1", "Core2", "Core3", "Core4", "Core5";
+}
+
+END { print_row() }
+
+time != $1 {
+	if (time) print_row();
+	time = $1;
+}
+
+/Package Power/ { pkg = $5 }
+/Core 0:/ { c0 = $7 }
+/Core 1:/ { c1 = $7 }
+/Core 2:/ { c2 = $7 }
+/Core 3:/ { c3 = $7 }
+/Core 4:/ { c4 = $7 }
+/Core 5:/ { c5 = $7 }
