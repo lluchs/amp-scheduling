@@ -225,7 +225,7 @@ int main(int argc, char **argv) {
 		fprintf(stderr, " @ %f\n", mixed_little_ratio);
 	else
 		putc('\n', stderr);
-	fprintf(stderr, "CPU_BENCH = %s\n", cpu_bench);
+	fprintf(stderr, "CPU_BENCH = %s", cpu_bench);
 	if (have_mixed_lots)
 		fprintf(stderr, " @ %f\n", mixed_lots_ratio);
 	else
