@@ -55,6 +55,13 @@ log CPU_BENCH $CPU_BENCH
 log MEMORY_RATIO $MEMORY_RATIO
 log CPU_RATIO $CPU_RATIO
 log
+
+log Setting P-states...
+../bin/set-pstate
+../bin/make-asym 0
+sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
+log
+
 log $(date -Ins) Benchmark start
 
 # Add timestamp to input. Simple reimplementation of ts from moreutils.
