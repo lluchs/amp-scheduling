@@ -13,7 +13,6 @@ fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 0
 2017-12-11T12:23:20,509977624+01:00 end: indirect_access some
@@ -21,8 +20,7 @@ done 0
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done -1734839296
 2017-12-11T12:23:42,579325761+01:00 end: indirect_access some --cpu-ratio=0.8
@@ -30,8 +28,7 @@ done -1734839296
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done 345160704
 2017-12-11T12:24:06,104510941+01:00 end: indirect_access some --cpu-ratio=0.6
@@ -40,7 +37,6 @@ fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.800000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 1600000000
 2017-12-11T12:24:37,585937678+01:00 end: indirect_access some --memory-ratio=0.8
@@ -48,8 +44,7 @@ done 1600000000
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.800000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 1600000000
 2017-12-11T12:25:10,096618851+01:00 end: indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
@@ -57,8 +52,7 @@ done 1600000000
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.800000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done -1894967296
 2017-12-11T12:25:43,656372903+01:00 end: indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
@@ -67,7 +61,6 @@ fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.600000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 733330000
 2017-12-11T12:26:18,187356101+01:00 end: indirect_access some --memory-ratio=0.6
@@ -75,8 +68,7 @@ done 733330000
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.600000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 733330000
 2017-12-11T12:26:53,893748832+01:00 end: indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
@@ -84,8 +76,7 @@ done 733330000
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.600000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done 1533330000
 2017-12-11T12:27:30,587953120+01:00 end: indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
@@ -94,7 +85,6 @@ fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done -1880568240
 2017-12-11T12:27:50,103590827+01:00 end: pointer_chasing some
@@ -102,8 +92,7 @@ done -1880568240
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 1346109144
 2017-12-11T12:28:10,213126126+01:00 end: pointer_chasing some --cpu-ratio=0.8
@@ -111,8 +100,7 @@ done 1346109144
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done -1143413264
 2017-12-11T12:28:30,662289755+01:00 end: pointer_chasing some --cpu-ratio=0.6
@@ -121,7 +109,6 @@ fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.800000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done -286808672
 2017-12-11T12:28:47,025861307+01:00 end: pointer_chasing some --memory-ratio=0.8
@@ -129,8 +116,7 @@ done -286808672
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.800000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done -1158355784
 2017-12-11T12:29:06,252199981+01:00 end: pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
@@ -138,8 +124,7 @@ done -1158355784
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.800000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done -834643720
 2017-12-11T12:29:26,319527197+01:00 end: pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
@@ -148,7 +133,6 @@ fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.600000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 1044233376
 2017-12-11T12:29:46,592670855+01:00 end: pointer_chasing some --memory-ratio=0.6
@@ -156,8 +140,7 @@ done 1044233376
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.600000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 2074919088
 2017-12-11T12:30:07,708321916+01:00 end: pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
@@ -165,8 +148,7 @@ done 2074919088
 fast CPU = 0, core = 0
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.600000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done -210911560
 2017-12-11T12:30:29,203982274+01:00 end: pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
@@ -177,7 +159,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 0
 2017-12-11T12:30:43,051247141+01:00 end: indirect_access some
@@ -185,8 +166,7 @@ done 0
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done -1734839296
 2017-12-11T12:30:57,768745510+01:00 end: indirect_access some --cpu-ratio=0.8
@@ -194,8 +174,7 @@ done -1734839296
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done 345160704
 2017-12-11T12:31:13,595229578+01:00 end: indirect_access some --cpu-ratio=0.6
@@ -204,7 +183,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.800000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 1600000000
 2017-12-11T12:31:33,179739799+01:00 end: indirect_access some --memory-ratio=0.8
@@ -212,8 +190,7 @@ done 1600000000
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.800000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 1600000000
 2017-12-11T12:31:53,821947566+01:00 end: indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
@@ -221,8 +198,7 @@ done 1600000000
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.800000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done -1894967296
 2017-12-11T12:32:15,324554985+01:00 end: indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
@@ -231,7 +207,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.600000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 733330000
 2017-12-11T12:32:34,766773229+01:00 end: indirect_access some --memory-ratio=0.6
@@ -239,8 +214,7 @@ done 733330000
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.600000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 733330000
 2017-12-11T12:32:55,092615398+01:00 end: indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
@@ -248,8 +222,7 @@ done 733330000
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.600000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done 1533330000
 2017-12-11T12:33:16,395031324+01:00 end: indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
@@ -258,7 +231,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done -2142804488
 2017-12-11T12:33:33,317120766+01:00 end: pointer_chasing some
@@ -266,8 +238,7 @@ done -2142804488
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 37530888
 2017-12-11T12:33:50,779968067+01:00 end: pointer_chasing some --cpu-ratio=0.8
@@ -275,8 +246,7 @@ done 37530888
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done 1648985528
 2017-12-11T12:34:08,834615459+01:00 end: pointer_chasing some --cpu-ratio=0.6
@@ -285,7 +255,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.800000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done -646435000
 2017-12-11T12:34:24,572917649+01:00 end: pointer_chasing some --memory-ratio=0.8
@@ -293,8 +262,7 @@ done -646435000
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.800000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done -482347160
 2017-12-11T12:34:40,851614268+01:00 end: pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
@@ -302,8 +270,7 @@ done -482347160
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.800000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done -2142317432
 2017-12-11T12:34:57,709880567+01:00 end: pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
@@ -312,7 +279,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.600000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 1927958040
 2017-12-11T12:35:13,010208182+01:00 end: pointer_chasing some --memory-ratio=0.6
@@ -320,8 +286,7 @@ done 1927958040
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.600000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 174405864
 2017-12-11T12:35:28,848824677+01:00 end: pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
@@ -329,8 +294,7 @@ done 174405864
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.600000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done 1716243408
 2017-12-11T12:35:45,272795410+01:00 end: pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
@@ -341,7 +305,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 0
 2017-12-11T12:36:16,829289727+01:00 end: indirect_access some
@@ -349,8 +312,7 @@ done 0
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done -1734839296
 2017-12-11T12:36:49,599116286+01:00 end: indirect_access some --cpu-ratio=0.8
@@ -358,8 +320,7 @@ done -1734839296
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done 345160704
 2017-12-11T12:37:23,173369750+01:00 end: indirect_access some --cpu-ratio=0.6
@@ -368,7 +329,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.800000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 1600000000
 2017-12-11T12:38:04,662813070+01:00 end: indirect_access some --memory-ratio=0.8
@@ -376,8 +336,7 @@ done 1600000000
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.800000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 1600000000
 2017-12-11T12:38:47,380359431+01:00 end: indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
@@ -385,8 +344,7 @@ done 1600000000
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.800000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done -1894967296
 2017-12-11T12:39:31,427843679+01:00 end: indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
@@ -395,7 +353,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.600000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done 733330000
 2017-12-11T12:40:16,169160270+01:00 end: indirect_access some --memory-ratio=0.6
@@ -403,8 +360,7 @@ done 733330000
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.600000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 733330000
 2017-12-11T12:41:02,077310298+01:00 end: indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
@@ -412,8 +368,7 @@ done 733330000
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.600000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done 1533330000
 2017-12-11T12:41:49,416257532+01:00 end: indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
@@ -422,7 +377,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done -249895096
 2017-12-11T12:42:18,694205691+01:00 end: pointer_chasing some
@@ -430,8 +384,7 @@ done -249895096
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 503663904
 2017-12-11T12:42:46,818608295+01:00 end: pointer_chasing some --cpu-ratio=0.8
@@ -439,8 +392,7 @@ done 503663904
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done 1243830152
 2017-12-11T12:43:13,702181818+01:00 end: pointer_chasing some --cpu-ratio=0.6
@@ -449,7 +401,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.800000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done -875694632
 2017-12-11T12:43:42,352446560+01:00 end: pointer_chasing some --memory-ratio=0.8
@@ -457,8 +408,7 @@ done -875694632
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.800000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done -849776304
 2017-12-11T12:44:09,837894265+01:00 end: pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
@@ -466,8 +416,7 @@ done -849776304
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.800000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done -1535302096
 2017-12-11T12:44:36,116410112+01:00 end: pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
@@ -476,7 +425,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.600000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 done -1733789136
 2017-12-11T12:45:06,425549178+01:00 end: pointer_chasing some --memory-ratio=0.6
@@ -484,8 +432,7 @@ done -1733789136
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.600000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 done 1054870544
 2017-12-11T12:45:35,550572939+01:00 end: pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
@@ -493,8 +440,7 @@ done 1054870544
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.600000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 done -637666048
 2017-12-11T12:46:03,489659714+01:00 end: pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
@@ -505,7 +451,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593267503
 done 0
@@ -534,8 +479,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593260330
 done -1734839296
@@ -564,8 +508,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593260546
 done 345160704
@@ -595,7 +538,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.800000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593261950
 done 1600000000
@@ -624,8 +566,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.800000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593261338
 done 1600000000
@@ -654,8 +595,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.800000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593263269
 done -1894967296
@@ -685,7 +625,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.600000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593261212
 done 733330000
@@ -714,8 +653,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.600000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593259732
 done 733330000
@@ -744,8 +682,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = indirect_access @ 0.600000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593256987
 done 1533330000
@@ -775,7 +712,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593260960
 done 1404534464
@@ -804,8 +740,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593260861
 done 2099199080
@@ -834,8 +769,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593264173
 done 1021337416
@@ -865,7 +799,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.800000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593260965
 done -10636240
@@ -894,8 +827,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.800000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593264942
 done -748586720
@@ -924,8 +856,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.800000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593270108
 done 752341360
@@ -955,7 +886,6 @@ fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.600000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593265132
 done -1709892528
@@ -984,8 +914,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.600000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593261775
 done -18558384
@@ -1014,8 +943,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 0, core = 0
 slow CPU = 0, core = 0
 MEMORY_BENCH = pointer_chasing @ 0.600000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593272277
 done 1793785496
@@ -1047,7 +975,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593261941
 done 0
@@ -1076,8 +1003,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593267359
 done -1734839296
@@ -1106,8 +1032,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593270670
 done 345160704
@@ -1137,7 +1062,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.800000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593262085
 done 1600000000
@@ -1166,8 +1090,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.800000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593259259
 done 1600000000
@@ -1196,8 +1119,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.800000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593259592
 done -1894967296
@@ -1227,7 +1149,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.600000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593261860
 done 733330000
@@ -1256,8 +1177,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.600000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593265149
 done 733330000
@@ -1286,8 +1206,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = indirect_access @ 0.600000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593259273
 done 1533330000
@@ -1317,7 +1236,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593264861
 done -2039842768
@@ -1346,8 +1264,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593260402
 done -227030696
@@ -1376,8 +1293,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593262368
 done 207690704
@@ -1407,7 +1323,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.800000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593258877
 done 1983434760
@@ -1436,8 +1351,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.800000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593266355
 done -1534801360
@@ -1466,8 +1380,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.800000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593268033
 done -1582482712
@@ -1497,7 +1410,6 @@ fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.600000
 CPU_BENCH = some
-
 buffer size = 100 MiB
 cpu clock = 3593267543
 done 1846150912
@@ -1526,8 +1438,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.600000
-CPU_BENCH = some
- @ 0.800000
+CPU_BENCH = some @ 0.800000
 buffer size = 100 MiB
 cpu clock = 3593262351
 done -1451144456
@@ -1556,8 +1467,7 @@ swp_init -> run_benchmark [../test/micro_swp.c:13]
 fast CPU = 2, core = 1
 slow CPU = 2, core = 1
 MEMORY_BENCH = pointer_chasing @ 0.600000
-CPU_BENCH = some
- @ 0.600000
+CPU_BENCH = some @ 0.600000
 buffer size = 100 MiB
 cpu clock = 3593271813
 done -719918832
