@@ -85,6 +85,12 @@ run_micro() {
 					log $(date -Ins) start: "$@" $cmd
 					time env "$@" $cmd &>> $bd/log
 					log $(date -Ins) end: "$@" $cmd
+
+					# Power meter measurements are a bit delayed and need
+					# smoothing. Sleep a bit to make sure that power usage from
+					# one benchmark doesn't bleed into the next.
+					log sleeping...
+					sleep 5
 				done
 			done
 		done
