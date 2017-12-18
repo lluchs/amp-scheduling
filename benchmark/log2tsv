@@ -3,6 +3,7 @@
 BEGIN {
 	OFS = "\t";
 	print "type", "time_start", "time_end", "memory_bench", "cpu_bench", "memory_ratio", "cpu_ratio", \
+			 "cpufid", \
 			 "swp_cpu_instr", "swp_cpu_cpi", "swp_cpu_l2", "swp_cpu_l3", \
 			 "swp_mem_instr", "swp_mem_cpi", "swp_mem_l2", "swp_mem_l3";
 }
@@ -10,6 +11,8 @@ BEGIN {
 /start fast\/slow ultmigration/ { type = "fast/slow ultmigration" }
 /start only fast baseline/ { type = "only fast baseline" }
 /start only slow baseline/ { type = "only slow baseline" }
+/start CpuFid / { type = "CpuFid"; cpufid = $4 }
+/end CpuFid / { cpufid = "" }
 /start swp on fast/ { type = "swp on fast" }
 /start swp on slow/ { type = "swp on slow" }
 
@@ -17,6 +20,7 @@ BEGIN {
 /end:/ {
 	time_end = $1;
 	print type, time_start, time_end, memory_bench, cpu_bench, memory_ratio, cpu_ratio, \
+			 cpufid, \
 			 swp_cpu_instr, swp_cpu_cpi, swp_cpu_l2, swp_cpu_l3, \
 			 swp_mem_instr, swp_mem_cpi, swp_mem_l2, swp_mem_l3;
 }

@@ -19,6 +19,10 @@ power_log <- sqldf("select tlog.*, avg(power) power from tlog
 		   left join powermeter on datetime(time, 'unixepoch') > datetime(time_start, 'unixepoch', '+1 second') and time < time_end
 		   group by time_start, time_end") %>% as.tibble()
 
+# Powermeter readings outside of benchmark execution.
+idle_power <- sqldf("select * from powermeter where time not in (select time from powermeter, tlog where time > time_start and time < time_end)") %>% as.tibble()
+avg_idle_power <- as.double(idle_power %>% summarize(mean(power)))
+
 ggplot(data = tlog, mapping = aes(x = type, y = duration, shape = memory_bench)) +
 	geom_jitter(aes(color = memory_ratio, fill = cpu_ratio), stroke = 1.5, size = 2) +
 	scale_shape_manual(values = c(21, 22)) +
@@ -32,16 +36,18 @@ ggplot() +
 	geom_vline(aes(xintercept = time_start), tlog, color = "green") +
 	geom_vline(aes(xintercept = time_end), tlog, color = "red")
 
-ggsave("powermeter.png", width = 100, height = 20, units = "cm", limitsize = FALSE)
+ggsave("powermeter.png", width = 150, height = 20, units = "cm", limitsize = FALSE)
 
 swp <- power_log %>% filter(str_detect(type, "swp"))
 non_swp <- power_log %>% filter(!str_detect(type, "swp"))
 
 # Graph to compare power behavior between fast/slow/fast+slow.
-ggplot(data = non_swp) +
-	geom_line(aes(x = duration, y = power, color = memory_bench)) +
-	geom_point(aes(x = duration, y = power, shape = type)) +
-	scale_shape_manual(values = c(1:3)) +
+ggplot(data = non_swp %>% mutate(power = power - avg_idle_power)) +
+	geom_line(aes(x = duration, y = power, color = memory_bench), data = function(d) d %>% filter(!str_detect(type, "ultmigration"))) +
+	geom_point(aes(x = duration, y = power, shape = type, fill = factor(cpufid))) +
+	scale_shape_manual(values = c(21, 2:5)) +
+	scale_fill_brewer(name = "CpuFid", na.translate = FALSE) +
+	guides(fill = guide_legend(override.aes = list(shape = 21))) +
 	facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
 
 ggsave("fastslow-power.png", width = 20, height = 20, units = "cm")

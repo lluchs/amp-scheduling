@@ -20,6 +20,10 @@ CPU_BENCH=(some)
 MEMORY_RATIO=(1 0.8 0.6)
 CPU_RATIO=(1 0.8 0.6)
 
+# Extra single frequency ids as comparison.
+# Note: default "slow" is 50, "fast" is 144
+CPU_FIDS=(69 88 106 125)
+
 # Path to build directory
 BUILD=../build
 
@@ -115,6 +119,21 @@ log $(date -Ins) end only fast baseline
 log $(date -Ins) start only slow baseline
 run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro
 log $(date -Ins) end only slow baseline
+
+# Set the third core to the middle p-state. (zsh arrays are indexed from 1)
+frequencies=("${=$(< /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies)}")
+echo "${frequencies[2]}" | sudo tee /sys/devices/system/cpu/cpu{4,5}/cpufreq/scaling_setspeed > /dev/null
+
+for fid in $CPU_FIDS; do
+	sudo $BUILD/tools/amdpstate def 1 CpuFid=$fid
+	sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
+	log $(date -Ins) start CpuFid $fid
+	run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c 4 $BUILD/test/micro
+	log $(date -Ins) end CpuFid $fid
+done
+
+# Reset frequency settings.
+../bin/make-asym 0
 
 log $(date -Ins) start swp on fast
 run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro_swp
