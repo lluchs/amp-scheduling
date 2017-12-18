@@ -50,18 +50,15 @@ swp_fast <- swp %>% filter(str_detect(type, "fast"))
 swp_slow <- swp %>% filter(str_detect(type, "slow"))
 swp_combined <- inner_join(swp_fast, swp_slow, by = c("memory_bench", "cpu_ratio", "memory_ratio"), suffix = c(".fast", ".slow"))
 swp_cpi <- swp_combined %>%
-	gather(swp_cpu_cpi.fast, swp_mem_cpi.fast, key = "ft", value = "fast_cpi") %>%
-	gather(swp_cpu_cpi.slow, swp_mem_cpi.slow, key = "st", value = "slow_cpi") %>%
-	mutate(ft = substr(ft, 5, 7), st = substr(st, 5, 7)) %>%
-	filter(ft == st)
-g <- ggplot(data = swp_cpi) +
-	geom_point(aes(x = slow_cpi, y = fast_cpi, shape = ft, color = memory_bench), size = 2) +
-	geom_abline(intercept = 0, slope = 1) +
+	mutate(mem = swp_mem_cpi.fast / swp_mem_cpi.slow,
+	       cpu = swp_cpu_cpi.fast / swp_cpu_cpi.slow) %>%
+	gather(mem, cpu, key = "cpi_type", value = "cpi_ratio")
+ggplot(data = swp_cpi) +
+	geom_hline(yintercept = 1) +
+	geom_point(aes(x = cpi_type, y = cpi_ratio, color = memory_bench), size = 2) +
 	facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
 
-ggsave("cpi.png", plot = g, width = 20, height = 20, units = "cm")
-ggsave("cpi_log.png", width = 20, height = 20, units = "cm",
-       plot = g + scale_x_log10() + scale_y_log10())
+ggsave("cpi.png", width = 20, height = 20, units = "cm")
 
 ggplot(data = swp, mapping = aes(x = swp_cpu_l3, y = swp_mem_l3, color = memory_bench, shape = type)) +
 	geom_point() +
