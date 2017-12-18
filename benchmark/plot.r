@@ -13,11 +13,17 @@ tlog <- log %>%
 	       duration = as.numeric(time_end - time_start))
 
 powermeter <- read_tsv("powermeter.tsv")
+rapl <- read_tsv("rapl.tsv")
 # Join powermeter data via time ranges. Ignore the first second as the power
 # meter takes a bit of time to react.
 power_log <- sqldf("select tlog.*, avg(power) power from tlog
 		   left join powermeter on datetime(time, 'unixepoch') > datetime(time_start, 'unixepoch', '+1 second') and time < time_end
 		   group by time_start, time_end") %>% as.tibble()
+
+rapl_log <- sqldf("select tlog.*, avg(package) package, avg(core0) core0, avg(core1) core1, avg(core2) core2
+		  from tlog
+		  left join rapl on time > time_start and time < time_end
+		  group by time_start, time_end") %>% as.tibble()
 
 # Powermeter readings outside of benchmark execution.
 idle_power <- sqldf("select * from powermeter where time not in (select time from powermeter, tlog where time > time_start and time < time_end)") %>% as.tibble()
@@ -39,18 +45,21 @@ ggplot() +
 ggsave("powermeter.png", width = 150, height = 20, units = "cm", limitsize = FALSE)
 
 swp <- power_log %>% filter(str_detect(type, "swp"))
-non_swp <- power_log %>% filter(!str_detect(type, "swp"))
 
 # Graph to compare power behavior between fast/slow/fast+slow.
-ggplot(data = non_swp %>% mutate(power = power - avg_idle_power)) +
-	geom_line(aes(x = duration, y = power, color = memory_bench), data = function(d) d %>% filter(!str_detect(type, "ultmigration"))) +
-	geom_point(aes(x = duration, y = power, shape = type, fill = factor(cpufid))) +
-	scale_shape_manual(values = c(21, 2:5)) +
-	scale_fill_brewer(name = "CpuFid", na.translate = FALSE) +
-	guides(fill = guide_legend(override.aes = list(shape = 21))) +
-	facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
+powergraph <- function(data)
+	ggplot(data = data) +
+		geom_line(aes(x = duration, y = power, color = memory_bench), data = function(d) d %>% filter(!str_detect(type, "ultmigration"))) +
+		geom_point(aes(x = duration, y = power, shape = type, fill = factor(cpufid))) +
+		scale_shape_manual(values = c(21, 2:5)) +
+		scale_fill_brewer(name = "CpuFid", na.translate = FALSE) +
+		guides(fill = guide_legend(override.aes = list(shape = 21))) +
+		facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
 
+powergraph(power_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = power - avg_idle_power))
 ggsave("fastslow-power.png", width = 20, height = 20, units = "cm")
+powergraph(rapl_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = core0+core1+core2))
+ggsave("fastslow-rapl.png", width = 20, height = 20, units = "cm")
 
 swp_fast <- swp %>% filter(str_detect(type, "fast"))
 swp_slow <- swp %>% filter(str_detect(type, "slow"))
