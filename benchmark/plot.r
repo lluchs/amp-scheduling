@@ -48,9 +48,10 @@ swp <- power_log %>% filter(str_detect(type, "swp"))
 
 # Graph to compare power behavior between fast/slow/fast+slow.
 powergraph <- function(data)
-	ggplot(data = data) +
-		geom_line(aes(x = duration, y = power, color = memory_bench), data = function(d) d %>% filter(!str_detect(type, "ultmigration"))) +
-		geom_point(aes(x = duration, y = power, shape = type, fill = factor(cpufid))) +
+	ggplot(data, aes(x = duration, y = power)) +
+		geom_line(aes(color = memory_bench), data = function(d) d %>% filter(!str_detect(type, "ultmigration"))) +
+		geom_point(aes(shape = type, color = memory_bench), stroke = 1.3, data = function(d) d %>% filter(str_detect(type, "ultmigration")), show.legend = FALSE) +
+		geom_point(aes(shape = type, fill = factor(cpufid))) +
 		scale_shape_manual(values = c(21, 2:5)) +
 		scale_fill_brewer(name = "CpuFid", na.translate = FALSE) +
 		guides(fill = guide_legend(override.aes = list(shape = 21))) +
