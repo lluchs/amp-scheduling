@@ -76,15 +76,18 @@ ggplot(data = swp_cpi) +
 
 ggsave("cpi.png", width = 20, height = 20, units = "cm")
 
-ggplot(data = swp, mapping = aes(x = swp_cpu_l3, y = swp_mem_l3, color = memory_bench, shape = type)) +
-	geom_point() +
-	geom_line(aes(group = memory_bench)) +
+swp_l3 <- swp %>%
+	gather(swp_mem_l3, swp_cpu_l3, key = "l3_type", value = "l3")
+ggplot(data = swp_l3) +
+	geom_point(aes(x = l3_type, y = l3, color = memory_bench, shape = type)) +
 	facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
 
 ggsave("l3.png", width = 20, height = 20, units = "cm")
 
-ggplot(data = swp) +
-	geom_point(aes(x = swp_cpu_l2, y = swp_mem_l2, color = memory_bench)) +
+swp_l2 <- swp %>%
+	gather(swp_mem_l2, swp_cpu_l2, key = "l2_type", value = "l2")
+ggplot(data = swp_l2) +
+	geom_point(aes(x = l2_type, y = l2, color = memory_bench, shape = type)) +
 	facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
 
 ggsave("l2.png", width = 20, height = 20, units = "cm")
