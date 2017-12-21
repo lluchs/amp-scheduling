@@ -12,6 +12,8 @@ tlog <- log %>%
 	       time_end = parse_datetime(stringr::str_replace(time_end, ",", ".")),
 	       duration = as.numeric(time_end - time_start))
 
+freq <- read_tsv("freq.tsv")
+
 powermeter <- read_tsv("powermeter.tsv")
 rapl <- read_tsv("rapl.tsv")
 # Join powermeter data via time ranges. Ignore the first second as the power
@@ -85,9 +87,17 @@ ggplot(data = swp_l3) +
 ggsave("l3.png", width = 20, height = 20, units = "cm")
 
 swp_l2 <- swp %>%
-	gather(swp_mem_l2, swp_cpu_l2, key = "l2_type", value = "l2")
+	gather(swp_mem_l2, swp_cpu_l2, key = "l2_type", value = "l2") %>%
+	left_join(freq, by = "cpufid") %>%
+	mutate(freq =  ifelse(str_detect(type, "fast"), core0, core1),
+	       instr = ifelse(l2_type == "swp_cpu_l2", swp_cpu_instr, swp_mem_instr)) %>%
+	# The performance counter used here counts "Total cycles spent waiting
+	# for L2 fills to complete from L3 or memory, divided by four." per
+	# instruction - convert that to a ratio of the full run time.
+	mutate(l2_time = 4 * l2 / (freq * 1e6) * instr / duration * 100)
 ggplot(data = swp_l2) +
-	geom_point(aes(x = l2_type, y = l2, color = memory_bench, shape = type)) +
+	geom_point(aes(x = l2_type, y = l2_time, color = memory_bench, shape = type)) +
+	ylab("L2 waiting time ratio (%)") +
 	facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
 
 ggsave("l2.png", width = 20, height = 20, units = "cm")

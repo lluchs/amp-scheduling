@@ -1,0 +1,21 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	OFS = "\t";
+	print "cpufid", "core0", "core1", "core2", "core3", "core4", "core5"
+}
+
+/effective frequency \s* =/ {
+	frequency[$2] = $6
+}
+
+function f(cpu) {
+	return (frequency[cpu ":"] + frequency[cpu+1 ":"]) / 2
+}
+
+function prow(cpufid) {
+	print cpufid, f(0), f(2), f(4), f(6), f(8), f(10)
+}
+
+/Benchmark start/ { prow("") }
+/start CpuFid/ { prow($4) }
