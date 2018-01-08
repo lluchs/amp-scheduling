@@ -17,6 +17,9 @@ static int klt_count = 0;
 static int initialized = 0;
 pthread_mutex_t init_mutex = PTHREAD_MUTEX_INITIALIZER;
 
+// Bits 7:4 specify the C-State.
+static const uint32_t MWAIT_CSTATE = 0x00;
+
 
 struct thread_pool_info;
 
@@ -53,11 +56,11 @@ static inline void __monitor(const void *address)
 	               :: "a" (address), "c" (0), "d"(0));
 }
 
-static inline void __mwait(const void *address)
+static inline void __mwait(uint32_t cstate)
 {
 	/* "mwait %eax, %ecx;" */
 	__asm volatile(".byte 0x0f, 0x01, 0xc9;"
-	               :: "a" (address), "c" (0));
+	               :: "a" (cstate), "c" (0));
 }
 
 struct current_thread_info *ult_pick_next_thread(struct thread_pool_info *pool_thread) {
@@ -90,7 +93,7 @@ mwait_retry:
 				goto mwait_retry;
 			}
 		}
-		__mwait(pool_thread->queue);
+		__mwait(MWAIT_CSTATE);
 		/* try again */
 	}
 }
