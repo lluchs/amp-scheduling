@@ -5,6 +5,9 @@ library(sqldf)
 
 pdf(NULL) # prevent Rplot.pdf files
 
+# Increase font size in plots for presentation.
+#theme_update(text = element_text(size = 20))
+
 log <- read_tsv("log.tsv")
 # parse_datetime can't handle , as ISO8601 separator
 tlog <- log %>%
@@ -70,20 +73,33 @@ swp_combined <- inner_join(swp_fast, swp_slow, by = c("memory_bench", "cpu_ratio
 swp_cpi <- swp_combined %>%
 	mutate(mem = swp_mem_cpi.fast / swp_mem_cpi.slow,
 	       cpu = swp_cpu_cpi.fast / swp_cpu_cpi.slow) %>%
-	gather(mem, cpu, key = "cpi_type", value = "cpi_ratio")
+	gather(mem, cpu, key = "cpi_type", value = "cpi_ratio") %>%
+	filter(cpu_ratio == memory_ratio) %>%
+	mutate(mixed = cpu_ratio)
 ggplot(data = swp_cpi) +
 	geom_hline(yintercept = 1) +
-	geom_point(aes(x = cpi_type, y = cpi_ratio, color = memory_bench), size = 2) +
-	facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
+	geom_col(aes(x = cpi_type, y = cpi_ratio, fill = memory_bench), size = 2, position = "dodge") +
+	xlab("section") +
+	ylab("CPI ratio") +
+	coord_cartesian(ylim = c(1, 2.1)) +
+	scale_y_continuous(expand = c(0, 0)) +
+	facet_grid(. ~ mixed, labeller = label_both)
 
 ggsave("cpi.png", width = 20, height = 20, units = "cm")
 
 swp_l3 <- swp %>%
-	gather(swp_mem_l3, swp_cpu_l3, key = "l3_type", value = "l3")
-ggplot(data = swp_l3) +
-	geom_point(aes(x = l3_type, y = l3, color = memory_bench, shape = type)) +
-	facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
+	gather(swp_mem_l3, swp_cpu_l3, key = "l3_type", value = "l3") %>%
+	filter(cpu_ratio == memory_ratio) %>%
+	mutate(mixed = cpu_ratio)
+swp_l3_graph <- function(data)
+	ggplot(data) +
+		geom_col(aes(x = l3_type, y = l3, fill = memory_bench), position = "dodge") +
+		xlab("section") +
+		ylab("L3 cache miss ratio") +
+		#scale_y_continuous(expand = c(0, 0)) +
+		facet_grid(mixed ~ ., labeller = label_both, scales = "free")
 
+swp_l3_graph(swp_l3 %>% filter(str_detect(type, "fast")))
 ggsave("l3.png", width = 20, height = 20, units = "cm")
 
 swp_l2 <- swp %>%
