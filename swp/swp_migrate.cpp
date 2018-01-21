@@ -33,6 +33,7 @@ extern "C" void swp_init() {
 	// Read marks from the configuration file.
 	FILE *f = fopen(getenv("SWP_CFG"), "r");
 	if (f == nullptr) {
+		fprintf(stderr, "SWP_CFG=%s\n", getenv("SWP_CFG"));
 		perror("couldn't open $SWP_CFG");
 		exit(-1);
 	}
