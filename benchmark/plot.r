@@ -15,7 +15,17 @@ tlog <- log %>%
 	       time_end = parse_datetime(stringr::str_replace(time_end, ",", ".")),
 	       duration = as.numeric(time_end - time_start))
 
-freq <- read_tsv("freq.tsv")
+freq <- read_tsv("freq.tsv", col_types =
+	 cols(
+	      cpufid = col_integer(),
+	      core0 = col_double(),
+	      core1 = col_double(),
+	      core2 = col_double(),
+	      core3 = col_double(),
+	      core4 = col_double(),
+	      core5 = col_double()
+	      )
+	 )
 
 powermeter <- read_tsv("powermeter.tsv")
 rapl <- read_tsv("rapl.tsv")
@@ -34,6 +44,12 @@ rapl_log <- sqldf("select tlog.*, avg(package) package, avg(core0) core0, avg(co
 idle_power <- sqldf("select * from powermeter where time not in (select time from powermeter, tlog where time > time_start and time < time_end)") %>% as.tibble()
 avg_idle_power <- as.double(idle_power %>% summarize(mean(power)))
 
+# Scale used in multiple graphs.
+mk_memory_bench_scale <- function(sc)
+	sc(name = "Memory Work", labels = c(pointer_chasing = "Pointer Chasing", indirect_access = "Indirect Access"))
+# Labeller for "mixed" facets.
+mixed_labeller <- function(title) as_labeller(function(x) paste0(title, ": ", -100 * as.double(x), "%"))
+
 ggplot(data = tlog, mapping = aes(x = type, y = duration, shape = memory_bench)) +
 	geom_jitter(aes(color = memory_ratio, fill = cpu_ratio), stroke = 1.5, size = 2) +
 	scale_shape_manual(values = c(21, 22)) +
@@ -49,24 +65,35 @@ ggplot() +
 
 ggsave("powermeter.png", width = 150, height = 20, units = "cm", limitsize = FALSE)
 
-swp <- power_log %>% filter(str_detect(type, "swp"))
-
 # Graph to compare power behavior between fast/slow/fast+slow.
 powergraph <- function(data)
-	ggplot(data, aes(x = duration, y = power)) +
-		geom_line(aes(color = memory_bench), data = function(d) d %>% filter(!str_detect(type, "ultmigration"))) +
-		geom_point(aes(shape = type, color = memory_bench), stroke = 1.3, data = function(d) d %>% filter(str_detect(type, "ultmigration")), show.legend = FALSE) +
-		geom_point(aes(shape = type, fill = factor(cpufid))) +
-		scale_shape_manual(values = c(21, 2:5)) +
-		scale_fill_brewer(name = "CpuFid", na.translate = FALSE) +
-		guides(fill = guide_legend(override.aes = list(shape = 21))) +
-		facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
+	ggplot(data %>%
+		       left_join(freq  %>% rename_at(paste0("core", c(0:5)), funs(paste0("freq.", .))), by = "cpufid") %>%
+		       mutate(freq = case_when(
+				type == "only fast baseline" ~ freq.core0,
+				type == "only slow baseline" ~ freq.core1,
+				type == "CpuFid" ~ freq.core2
+		              ),
+			      type = ifelse(str_detect(type, "ultmigration"), "migration", "constant frequency"),
+			      cpu_ratio = -cpu_ratio, memory_ratio = -memory_ratio),
+	       aes(x = duration, y = power)) +
+		geom_line(aes(color = memory_bench), data = function(d) d %>% filter(!str_detect(type, "migration"))) +
+		geom_point(aes(shape = type, color = memory_bench), stroke = 1.3, data = function(d) d %>% filter(str_detect(type, "migration")), show.legend = FALSE) +
+		geom_point(aes(shape = type, fill = factor(freq))) +
+		scale_shape_manual(values = c(21, 2, 21, 21)) +
+		scale_fill_brewer(name = "Frequency (MHz)", na.translate = FALSE) +
+		mk_memory_bench_scale(scale_color_discrete) +
+		guides(fill = guide_legend(override.aes = list(shape = 21)),
+		       shape = guide_legend(title = NULL)) +
+		ylab("Power (W)") + xlab("Duration (s)") +
+		facet_grid(cpu_ratio ~ memory_ratio, labeller = labeller(cpu_ratio = mixed_labeller("CPU"), memory_ratio = mixed_labeller("Memory")))
 
 powergraph(power_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = power - avg_idle_power))
-ggsave("fastslow-power.png", width = 20, height = 20, units = "cm")
+ggsave("fastslow-power.png", width = 25, height = 20, units = "cm")
 powergraph(rapl_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = core0+core1+core2))
-ggsave("fastslow-rapl.png", width = 20, height = 20, units = "cm")
+ggsave("fastslow-rapl.png", width = 25, height = 20, units = "cm")
 
+swp <- power_log %>% filter(str_detect(type, "swp"))
 swp_fast <- swp %>% filter(str_detect(type, "fast"))
 swp_slow <- swp %>% filter(str_detect(type, "slow"))
 swp_combined <- inner_join(swp_fast, swp_slow, by = c("memory_bench", "cpu_ratio", "memory_ratio"), suffix = c(".fast", ".slow"))
@@ -75,29 +102,33 @@ swp_cpi <- swp_combined %>%
 	       cpu = swp_cpu_cpi.fast / swp_cpu_cpi.slow) %>%
 	gather(mem, cpu, key = "cpi_type", value = "cpi_ratio") %>%
 	filter(cpu_ratio == memory_ratio) %>%
-	mutate(mixed = cpu_ratio)
+	mutate(mixed = -cpu_ratio)
 ggplot(data = swp_cpi) +
 	geom_hline(yintercept = 1) +
 	geom_col(aes(x = cpi_type, y = cpi_ratio, fill = memory_bench), size = 2, position = "dodge") +
 	xlab("section") +
 	ylab("CPI ratio") +
 	coord_cartesian(ylim = c(1, 2.1)) +
+	scale_x_discrete(labels = c(cpu = "CPU", mem = "Memory")) +
 	scale_y_continuous(expand = c(0, 0)) +
-	facet_grid(. ~ mixed, labeller = label_both)
+	mk_memory_bench_scale(scale_fill_discrete) +
+	facet_grid(mixed ~ ., labeller = mixed_labeller("CPU/Mem"))
 
 ggsave("cpi.png", width = 20, height = 20, units = "cm")
 
 swp_l3 <- swp %>%
 	gather(swp_mem_l3, swp_cpu_l3, key = "l3_type", value = "l3") %>%
 	filter(cpu_ratio == memory_ratio) %>%
-	mutate(mixed = cpu_ratio)
+	mutate(mixed = -cpu_ratio)
 swp_l3_graph <- function(data)
 	ggplot(data) +
 		geom_col(aes(x = l3_type, y = l3, fill = memory_bench), position = "dodge") +
 		xlab("section") +
-		ylab("L3 cache miss ratio") +
+		ylab("L3 cache misses per instruction") +
+		scale_x_discrete(labels = c(swp_cpu_l3 = "CPU", swp_mem_l3 = "Memory")) +
 		#scale_y_continuous(expand = c(0, 0)) +
-		facet_grid(mixed ~ ., labeller = label_both, scales = "free")
+		mk_memory_bench_scale(scale_fill_discrete) +
+		facet_grid(mixed ~ ., labeller = mixed_labeller("CPU/Mem"), scales = "free")
 
 swp_l3_graph(swp_l3 %>% filter(str_detect(type, "fast")))
 ggsave("l3.png", width = 20, height = 20, units = "cm")
@@ -114,6 +145,7 @@ swp_l2 <- swp %>%
 ggplot(data = swp_l2) +
 	geom_point(aes(x = l2_type, y = l2_time, color = memory_bench, shape = type)) +
 	ylab("L2 waiting time ratio (%)") +
+	mk_memory_bench_scale(scale_color_discrete) +
 	facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
 
 ggsave("l2.png", width = 20, height = 20, units = "cm")
