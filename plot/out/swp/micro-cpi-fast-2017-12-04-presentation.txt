@@ -1,0 +1,20 @@
+CPU Work -> Memory Work
+        calls = 10,000
+        miss rate = 0.000036 (l3miss = 2,320,085 / instr = 64,038,378,780)
+        CPI = 0.379032
+        L2 rate = 0.000090
+Memory Work -> CPU Work
+        calls = 9,999
+        miss rate = 0.417425 (l3miss = 132,799,744 / instr = 318,140,215)
+        CPI = 114.392862
+        L2 rate = 26.735073
+Memory Work -> swp_deinit
+        calls = 1
+        miss rate = 0.524092 (l3miss = 19,491 / instr = 37,190)
+        CPI = 99.701694
+        L2 rate = 23.332616
+swp_init -> CPU Work
+        calls = 1
+        miss rate = 0.050365 (l3miss = 345 / instr = 6,850)
+        CPI = 5.178394
+        L2 rate = 0.539854

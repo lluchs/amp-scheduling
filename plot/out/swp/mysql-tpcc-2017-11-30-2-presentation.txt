@@ -1,0 +1,55 @@
+do_command -> mysql_execute_command
+        calls = 62,742
+        miss rate = 0.003649 (l3miss = 9,610,536 / instr = 2,633,631,539)
+        CPI = 1.713944
+        L2 rate = 0.182842
+do_command -> send_statement_status
+        calls = 1
+        miss rate = 0.842899 (l3miss = 4,362 / instr = 5,175)
+        CPI = 8.878261
+        L2 rate = 0.779324
+execute [insert] -> send_statement_status
+        calls = 12,683
+        miss rate = 0.004393 (l3miss = 10,561,670 / instr = 2,403,955,511)
+        CPI = 1.172613
+        L2 rate = 0.150232
+execute [update] -> send_statement_status
+        calls = 16,530
+        miss rate = 0.004121 (l3miss = 11,848,396 / instr = 2,874,953,715)
+        CPI = 1.481282
+        L2 rate = 0.198939
+execute_sqlcom_select -> handle_query
+        calls = 29,086
+        miss rate = 0.018912 (l3miss = 4,115,527 / instr = 217,617,014)
+        CPI = 5.151496
+        L2 rate = 0.411987
+handle_query -> send_statement_status
+        calls = 29,086
+        miss rate = 0.005928 (l3miss = 14,800,419 / instr = 2,496,538,060)
+        CPI = 1.934196
+        L2 rate = 0.258739
+mysql_execute_command -> execute [insert]
+        calls = 12,683
+        miss rate = 0.023227 (l3miss = 1,551,029 / instr = 66,775,690)
+        CPI = 5.598001
+        L2 rate = 0.282901
+mysql_execute_command -> execute [update]
+        calls = 16,530
+        miss rate = 0.020313 (l3miss = 1,720,059 / instr = 84,676,027)
+        CPI = 5.740129
+        L2 rate = 0.279282
+mysql_execute_command -> execute_sqlcom_select
+        calls = 29,086
+        miss rate = 0.021351 (l3miss = 3,571,613 / instr = 167,280,152)
+        CPI = 5.723458
+        L2 rate = 0.366398
+mysql_execute_command -> send_statement_status
+        calls = 4,443
+        miss rate = 0.038721 (l3miss = 5,476,529 / instr = 141,434,228)
+        CPI = 2.836814
+        L2 rate = 0.389876
+send_statement_status -> do_command
+        calls = 62,743
+        miss rate = 0.027210 (l3miss = 44,050,334 / instr = 1,618,891,275)
+        CPI = 2.401345
+        L2 rate = 0.238328
