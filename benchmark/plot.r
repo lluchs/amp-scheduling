@@ -133,6 +133,24 @@ swp_l3_graph <- function(data)
 swp_l3_graph(swp_l3 %>% filter(str_detect(type, "fast")))
 ggsave("l3.png", width = 20, height = 20, units = "cm")
 
+swp_l3_total <- swp_l3 %>%
+	filter(str_detect(type, "fast"), l3_type == "swp_mem_l3") %>%
+	mutate(l3_total = l3 * swp_mem_instr)
+
+ggplot(swp_l3_total) +
+	geom_col(aes(x = factor(mixed), y = l3_total, fill = memory_bench), position = "dodge") +
+	xlab("CPU/Mem ratio") +
+	ylab("L3 cache misses") +
+	mk_memory_bench_scale(scale_fill_discrete)
+ggsave("l3-mem-total.png", width = 20, height = 20, units = "cm")
+
+ggplot(swp_l3_total) +
+	geom_col(aes(x = factor(mixed), y = swp_mem_instr, fill = memory_bench), position = "dodge") +
+	xlab("CPU/Mem ratio") +
+	ylab("instructions") +
+	mk_memory_bench_scale(scale_fill_discrete)
+ggsave("l3-mem-instr.png", width = 20, height = 20, units = "cm")
+
 swp_l2 <- swp %>%
 	gather(swp_mem_l2, swp_cpu_l2, key = "l2_type", value = "l2") %>%
 	left_join(freq, by = "cpufid") %>%
