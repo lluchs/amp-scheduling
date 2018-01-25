@@ -10,6 +10,10 @@ ultmigration = shared_library('ultmigration',
 	dependencies: thread_dep,
 	install: true)
 
+shared_library('ultmigration_pstate',
+	'ultmigration_pstate.c',
+	install: true)
+
 shared_library('ultmigration_dummy',
 	'ultmigration_dummy.c',
 	install: true)
