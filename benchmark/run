@@ -61,8 +61,16 @@ log CPU_RATIO $CPU_RATIO
 log
 
 log Setting P-states...
-../bin/set-pstate
-../bin/make-asym 0
+# The voltage levels are fixed for the three P-states on our platform. Skip the
+# first P-state as the middle voltage is sufficient for the base clock.
+sudo $BUILD/tools/amdpstate def 1 CpuFid=144 # 3600 MHz
+sudo $BUILD/tools/amdpstate def 2 CpuFid=50  #  800 MHz
+
+# Set the first core to the middle p-state, rest to the last. (zsh arrays are indexed from 1)
+frequencies=("${=$(< /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies)}")
+echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_setspeed > /dev/null
+echo "${frequencies[2]}" | sudo tee /sys/devices/system/cpu/cpu{0,1}/cpufreq/scaling_setspeed > /dev/null
+
 sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
 log
 
@@ -120,21 +128,16 @@ log $(date -Ins) start only slow baseline
 run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro
 log $(date -Ins) end only slow baseline
 
-# Set the third core to the middle p-state, rest to the last. (zsh arrays are indexed from 1)
-frequencies=("${=$(< /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies)}")
-echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_setspeed > /dev/null
-echo "${frequencies[2]}" | sudo tee /sys/devices/system/cpu/cpu{4,5}/cpufreq/scaling_setspeed > /dev/null
-
 for fid in $CPU_FIDS; do
 	sudo $BUILD/tools/amdpstate def 1 CpuFid=$fid
 	sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
 	log $(date -Ins) start CpuFid $fid
-	run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c 4 $BUILD/test/micro
+	run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c 0 $BUILD/test/micro
 	log $(date -Ins) end CpuFid $fid
 done
 
 # Reset frequency settings.
-../bin/make-asym 0
+sudo $BUILD/tools/amdpstate def 1 CpuFid=144
 
 log $(date -Ins) start swp on fast
 run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro_swp
