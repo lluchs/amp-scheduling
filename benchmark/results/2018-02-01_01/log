@@ -1,0 +1,2388 @@
+Benchmark configuration
+FAST_CPU=0 SLOW_CPU=2
+OTHER_CPU=11
+MEMORY_BENCH indirect_access pointer_chasing
+CPU_BENCH some
+MEMORY_RATIO 1 0.8 0.6
+CPU_RATIO 1 0.8 0.6
+
+Setting P-states...
+CPU  0: P0 frequency = 3600 MHz
+CPU  0: effective frequency (ro) = 3584 MHz
+CPU  0: effective frequency      = 3599 MHz
+CPU  1: P0 frequency = 3600 MHz
+CPU  1: effective frequency (ro) = 3586 MHz
+CPU  1: effective frequency      = 3598 MHz
+CPU  2: P0 frequency = 3600 MHz
+CPU  2: effective frequency (ro) = 2252 MHz
+CPU  2: effective frequency      = 1439 MHz
+CPU  3: P0 frequency = 3600 MHz
+CPU  3: effective frequency (ro) = 2359 MHz
+CPU  3: effective frequency      = 1439 MHz
+CPU  4: P0 frequency = 3600 MHz
+CPU  4: effective frequency (ro) = 2408 MHz
+CPU  4: effective frequency      = 1440 MHz
+CPU  5: P0 frequency = 3600 MHz
+CPU  5: effective frequency (ro) = 2418 MHz
+CPU  5: effective frequency      = 1438 MHz
+CPU  6: P0 frequency = 3600 MHz
+CPU  6: effective frequency (ro) = 1720 MHz
+CPU  6: effective frequency      = 833 MHz
+CPU  7: P0 frequency = 3600 MHz
+CPU  7: effective frequency (ro) = 1810 MHz
+CPU  7: effective frequency      = 810 MHz
+CPU  8: P0 frequency = 3600 MHz
+CPU  8: effective frequency (ro) = 1416 MHz
+CPU  8: effective frequency      = 833 MHz
+CPU  9: P0 frequency = 3600 MHz
+CPU  9: effective frequency (ro) = 1317 MHz
+CPU  9: effective frequency      = 836 MHz
+CPU 10: P0 frequency = 3600 MHz
+CPU 10: effective frequency (ro) = 1424 MHz
+CPU 10: effective frequency      = 832 MHz
+CPU 11: P0 frequency = 3600 MHz
+CPU 11: effective frequency (ro) = 1331 MHz
+CPU 11: effective frequency      = 821 MHz
+
+2018-02-01T11:01:22,314707473+01:00 Benchmark start
+2018-02-01T11:01:22,320551654+01:00 start fast/slow ultmigration
+2018-02-01T11:01:22,322984875+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-01T11:01:43,473604643+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-01T11:01:48,477481629+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-01T11:02:10,808150867+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:02:15,812468076+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-01T11:02:39,189114996+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:02:44,193549197+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:03:15,656043775+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:03:20,660636622+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:03:53,293160993+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:03:58,297644733+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-01T11:04:31,923832097+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:04:36,928059162+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:05:11,655628662+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:05:16,660407613+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:05:52,377774130+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:05:57,381151218+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-01T11:06:34,005258037+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:06:39,009932848+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done -581158088
+2018-02-01T11:06:58,369792850+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-01T11:07:03,374628404+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -538887704
+2018-02-01T11:07:23,369313888+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:07:28,374141933+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 2087825664
+2018-02-01T11:07:48,869269302+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:07:53,872520470+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -533337136
+2018-02-01T11:08:12,510968444+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:08:17,514240273+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1142476840
+2018-02-01T11:08:36,640168731+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:08:41,644086688+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -287937048
+2018-02-01T11:09:01,780345756+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:09:06,784805009+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 313078480
+2018-02-01T11:09:26,921793457+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:09:31,926764976+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1829558392
+2018-02-01T11:09:52,804175172+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:09:57,808932062+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -654629112
+2018-02-01T11:10:19,323517004+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:10:24,328317988+01:00 end fast/slow ultmigration
+2018-02-01T11:10:24,330673905+01:00 start only fast baseline
+2018-02-01T11:10:24,333347265+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-01T11:10:38,290518685+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some
+sleeping...
+2018-02-01T11:10:43,295134086+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-01T11:10:57,796291459+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:11:02,800908101+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-01T11:11:18,708079301+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:11:23,712273277+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:11:43,333980069+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:11:48,338273725+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:12:09,018237998+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:12:14,022786463+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-01T11:12:35,575164830+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:12:40,580160165+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:13:00,079315224+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:13:05,083808934+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:13:25,490701987+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:13:30,494977412+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-01T11:13:52,087465420+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:13:57,091368305+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done -504787896
+2018-02-01T11:14:14,035581809+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-01T11:14:19,040252334+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1530568680
+2018-02-01T11:14:36,271126001+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:14:41,275681714+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -503583528
+2018-02-01T11:14:59,330476468+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:15:04,335065650+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1551832904
+2018-02-01T11:15:20,090489215+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:15:25,095120261+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1483074600
+2018-02-01T11:15:41,382580588+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:15:46,387217920+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 496303712
+2018-02-01T11:16:03,234668844+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:16:08,238842432+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1943809808
+2018-02-01T11:16:23,532332903+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:16:28,537201688+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 667286960
+2018-02-01T11:16:44,370196530+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:16:49,374425335+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1507182128
+2018-02-01T11:17:05,789623813+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:17:10,794052488+01:00 end only fast baseline
+2018-02-01T11:17:10,796589494+01:00 start only slow baseline
+2018-02-01T11:17:10,798503574+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-01T11:17:42,493273772+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some
+sleeping...
+2018-02-01T11:17:47,497782400+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-01T11:18:20,019596686+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:18:25,024452097+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-01T11:18:59,109069620+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:19:04,112609140+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:19:45,697045623+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:19:50,701704059+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:20:33,467153099+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:20:38,471625558+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-01T11:21:22,442056015+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:21:27,446283461+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:22:12,112229484+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:22:17,116847884+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:23:02,954517757+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:23:07,958966434+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-01T11:23:55,238252631+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:24:00,242318485+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done 828944984
+2018-02-01T11:24:29,519839962+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-01T11:24:34,523623266+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1822753536
+2018-02-01T11:25:02,613292043+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:25:07,617582884+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1409503688
+2018-02-01T11:25:34,613106996+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:25:39,617906711+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1662138952
+2018-02-01T11:26:08,330822920+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:26:13,334818200+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 870153400
+2018-02-01T11:26:40,845015079+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:26:45,848943395+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 784703296
+2018-02-01T11:27:12,223719057+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:27:17,227323909+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1297232704
+2018-02-01T11:27:47,533222233+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:27:52,536983689+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -2022078608
+2018-02-01T11:28:21,697995870+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:28:26,701407860+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -2048834752
+2018-02-01T11:28:54,666837154+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:28:59,671355982+01:00 end only slow baseline
+CPU  0: P0 frequency = 3600 MHz
+CPU  0: effective frequency (ro) = 3584 MHz
+CPU  0: effective frequency      = 1714 MHz
+CPU  1: P0 frequency = 3600 MHz
+CPU  1: effective frequency (ro) = 3586 MHz
+CPU  1: effective frequency      = 1714 MHz
+CPU  2: P0 frequency = 3600 MHz
+CPU  2: effective frequency (ro) = 2240 MHz
+CPU  2: effective frequency      = 799 MHz
+CPU  3: P0 frequency = 3600 MHz
+CPU  3: effective frequency (ro) = 2359 MHz
+CPU  3: effective frequency      = 799 MHz
+CPU  4: P0 frequency = 3600 MHz
+CPU  4: effective frequency (ro) = 2408 MHz
+CPU  4: effective frequency      = 799 MHz
+CPU  5: P0 frequency = 3600 MHz
+CPU  5: effective frequency (ro) = 2418 MHz
+CPU  5: effective frequency      = 799 MHz
+CPU  6: P0 frequency = 3600 MHz
+CPU  6: effective frequency (ro) = 1719 MHz
+CPU  6: effective frequency      = 833 MHz
+CPU  7: P0 frequency = 3600 MHz
+CPU  7: effective frequency (ro) = 1809 MHz
+CPU  7: effective frequency      = 833 MHz
+CPU  8: P0 frequency = 3600 MHz
+CPU  8: effective frequency (ro) = 1416 MHz
+CPU  8: effective frequency      = 831 MHz
+CPU  9: P0 frequency = 3600 MHz
+CPU  9: effective frequency (ro) = 1317 MHz
+CPU  9: effective frequency      = 833 MHz
+CPU 10: P0 frequency = 3600 MHz
+CPU 10: effective frequency (ro) = 1423 MHz
+CPU 10: effective frequency      = 832 MHz
+CPU 11: P0 frequency = 3600 MHz
+CPU 11: effective frequency (ro) = 1331 MHz
+CPU 11: effective frequency      = 833 MHz
+2018-02-01T11:29:00,762684113+01:00 start CpuFid 69
+2018-02-01T11:29:00,765884209+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-01T11:29:27,903172081+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some
+sleeping...
+2018-02-01T11:29:32,908695010+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-01T11:30:01,951715036+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:30:06,956684479+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-01T11:30:36,231232891+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:30:41,236810492+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:31:17,377205719+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:31:22,382451429+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:31:59,792659992+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:32:04,797896814+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-01T11:32:44,090106438+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:32:49,095108610+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:33:27,813493685+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:33:32,819051640+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:34:12,952420374+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:34:17,957768138+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-01T11:34:59,716467701+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:35:04,721759511+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1146966584
+2018-02-01T11:35:31,520035864+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-01T11:35:36,525381481+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1832902320
+2018-02-01T11:36:02,779241316+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:36:07,784658931+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1005676792
+2018-02-01T11:36:33,527515189+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:36:38,533131581+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 939909168
+2018-02-01T11:37:04,414825261+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:37:09,420422247+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1088322736
+2018-02-01T11:37:34,763607086+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:37:39,769206567+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 325337640
+2018-02-01T11:38:04,541007916+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:38:09,545949546+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -3986416
+2018-02-01T11:38:36,318072834+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:38:41,323197856+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -228399456
+2018-02-01T11:39:07,547051538+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:39:12,552742315+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1276166752
+2018-02-01T11:39:38,195651546+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:39:43,201588227+01:00 end CpuFid 69
+CPU  0: P0 frequency = 3600 MHz
+CPU  0: effective frequency (ro) = 3561 MHz
+CPU  0: effective frequency      = 2197 MHz
+CPU  1: P0 frequency = 3600 MHz
+CPU  1: effective frequency (ro) = 3586 MHz
+CPU  1: effective frequency      = 2197 MHz
+CPU  2: P0 frequency = 3600 MHz
+CPU  2: effective frequency (ro) = 2240 MHz
+CPU  2: effective frequency      = 938 MHz
+CPU  3: P0 frequency = 3600 MHz
+CPU  3: effective frequency (ro) = 2359 MHz
+CPU  3: effective frequency      = 823 MHz
+CPU  4: P0 frequency = 3600 MHz
+CPU  4: effective frequency (ro) = 2408 MHz
+CPU  4: effective frequency      = 944 MHz
+CPU  5: P0 frequency = 3600 MHz
+CPU  5: effective frequency (ro) = 2418 MHz
+CPU  5: effective frequency      = 944 MHz
+CPU  6: P0 frequency = 3600 MHz
+CPU  6: effective frequency (ro) = 1719 MHz
+CPU  6: effective frequency      = 833 MHz
+CPU  7: P0 frequency = 3600 MHz
+CPU  7: effective frequency (ro) = 1809 MHz
+CPU  7: effective frequency      = 832 MHz
+CPU  8: P0 frequency = 3600 MHz
+CPU  8: effective frequency (ro) = 1415 MHz
+CPU  8: effective frequency      = 833 MHz
+CPU  9: P0 frequency = 3600 MHz
+CPU  9: effective frequency (ro) = 1317 MHz
+CPU  9: effective frequency      = 833 MHz
+CPU 10: P0 frequency = 3600 MHz
+CPU 10: effective frequency (ro) = 1423 MHz
+CPU 10: effective frequency      = 833 MHz
+CPU 11: P0 frequency = 3600 MHz
+CPU 11: effective frequency (ro) = 1331 MHz
+CPU 11: effective frequency      = 833 MHz
+2018-02-01T11:39:44,307658128+01:00 start CpuFid 88
+2018-02-01T11:39:44,310661255+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-01T11:40:05,440205679+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some
+sleeping...
+2018-02-01T11:40:10,445233453+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-01T11:40:33,406332994+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:40:38,411154207+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-01T11:41:02,589524043+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:41:07,593316229+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:41:36,116035201+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:41:41,121524657+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:42:11,074866270+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:42:16,079976111+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-01T11:42:47,154836154+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:42:52,159238572+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:43:22,805251109+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:43:27,810482740+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:43:59,613227856+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:44:04,618623847+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-01T11:44:37,763946110+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:44:42,769170636+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done 580488280
+2018-02-01T11:45:05,412828336+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-01T11:45:10,418084584+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1997033896
+2018-02-01T11:45:33,011698893+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:45:38,016711285+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -887943576
+2018-02-01T11:46:00,513464124+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:46:05,518984942+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -512746888
+2018-02-01T11:46:27,123562006+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:46:32,128978466+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -661650720
+2018-02-01T11:46:53,642285863+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:46:58,647234887+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -816805760
+2018-02-01T11:47:20,142376297+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:47:25,146859218+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1511032968
+2018-02-01T11:47:47,092691965+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:47:52,097186468+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1288807504
+2018-02-01T11:48:13,934046040+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:48:18,938010271+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1792377296
+2018-02-01T11:48:40,735179323+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:48:45,739846970+01:00 end CpuFid 88
+CPU  0: P0 frequency = 3600 MHz
+CPU  0: effective frequency (ro) = 3547 MHz
+CPU  0: effective frequency      = 2636 MHz
+CPU  1: P0 frequency = 3600 MHz
+CPU  1: effective frequency (ro) = 3586 MHz
+CPU  1: effective frequency      = 2632 MHz
+CPU  2: P0 frequency = 3600 MHz
+CPU  2: effective frequency (ro) = 2240 MHz
+CPU  2: effective frequency      = 1015 MHz
+CPU  3: P0 frequency = 3600 MHz
+CPU  3: effective frequency (ro) = 2359 MHz
+CPU  3: effective frequency      = 1016 MHz
+CPU  4: P0 frequency = 3600 MHz
+CPU  4: effective frequency (ro) = 2408 MHz
+CPU  4: effective frequency      = 1015 MHz
+CPU  5: P0 frequency = 3600 MHz
+CPU  5: effective frequency (ro) = 2418 MHz
+CPU  5: effective frequency      = 1015 MHz
+CPU  6: P0 frequency = 3600 MHz
+CPU  6: effective frequency (ro) = 1718 MHz
+CPU  6: effective frequency      = 831 MHz
+CPU  7: P0 frequency = 3600 MHz
+CPU  7: effective frequency (ro) = 1808 MHz
+CPU  7: effective frequency      = 832 MHz
+CPU  8: P0 frequency = 3600 MHz
+CPU  8: effective frequency (ro) = 1415 MHz
+CPU  8: effective frequency      = 833 MHz
+CPU  9: P0 frequency = 3600 MHz
+CPU  9: effective frequency (ro) = 1317 MHz
+CPU  9: effective frequency      = 833 MHz
+CPU 10: P0 frequency = 3600 MHz
+CPU 10: effective frequency (ro) = 1423 MHz
+CPU 10: effective frequency      = 832 MHz
+CPU 11: P0 frequency = 3600 MHz
+CPU 11: effective frequency (ro) = 1331 MHz
+CPU 11: effective frequency      = 832 MHz
+2018-02-01T11:48:46,839941054+01:00 start CpuFid 106
+2018-02-01T11:48:46,842857388+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-01T11:49:04,943748817+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some
+sleeping...
+2018-02-01T11:49:09,948946929+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-01T11:49:29,518007198+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:49:34,522754679+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-01T11:49:55,397313572+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:50:00,402646996+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:50:24,649366743+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:50:29,653709562+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:50:55,066554991+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:51:00,071444160+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-01T11:51:26,568076783+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:51:31,573300761+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:51:57,291054504+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:52:02,296251171+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:52:29,131193254+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:52:34,135742512+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-01T11:53:02,348336163+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:53:07,353555627+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done 397438416
+2018-02-01T11:53:27,545756881+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-01T11:53:32,550875357+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -2107713784
+2018-02-01T11:53:52,917983293+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:53:57,922753714+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1229650072
+2018-02-01T11:54:18,485627210+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:54:23,490396558+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 528448776
+2018-02-01T11:54:42,578746120+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:54:47,583466142+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -661749248
+2018-02-01T11:55:06,864920479+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:55:11,870036544+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1801652648
+2018-02-01T11:55:31,360311437+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:55:36,365394357+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 469458528
+2018-02-01T11:55:55,487627288+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:56:00,492718371+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 725992784
+2018-02-01T11:56:19,763085484+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:56:24,767826532+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1195603976
+2018-02-01T11:56:44,294364097+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:56:49,299672671+01:00 end CpuFid 106
+CPU  0: P0 frequency = 3600 MHz
+CPU  0: effective frequency (ro) = 3540 MHz
+CPU  0: effective frequency      = 3118 MHz
+CPU  1: P0 frequency = 3600 MHz
+CPU  1: effective frequency (ro) = 3586 MHz
+CPU  1: effective frequency      = 3075 MHz
+CPU  2: P0 frequency = 3600 MHz
+CPU  2: effective frequency (ro) = 2240 MHz
+CPU  2: effective frequency      = 1245 MHz
+CPU  3: P0 frequency = 3600 MHz
+CPU  3: effective frequency (ro) = 2359 MHz
+CPU  3: effective frequency      = 1249 MHz
+CPU  4: P0 frequency = 3600 MHz
+CPU  4: effective frequency (ro) = 2408 MHz
+CPU  4: effective frequency      = 1247 MHz
+CPU  5: P0 frequency = 3600 MHz
+CPU  5: effective frequency (ro) = 2418 MHz
+CPU  5: effective frequency      = 1249 MHz
+CPU  6: P0 frequency = 3600 MHz
+CPU  6: effective frequency (ro) = 1718 MHz
+CPU  6: effective frequency      = 833 MHz
+CPU  7: P0 frequency = 3600 MHz
+CPU  7: effective frequency (ro) = 1808 MHz
+CPU  7: effective frequency      = 833 MHz
+CPU  8: P0 frequency = 3600 MHz
+CPU  8: effective frequency (ro) = 1415 MHz
+CPU  8: effective frequency      = 832 MHz
+CPU  9: P0 frequency = 3600 MHz
+CPU  9: effective frequency (ro) = 1317 MHz
+CPU  9: effective frequency      = 833 MHz
+CPU 10: P0 frequency = 3600 MHz
+CPU 10: effective frequency (ro) = 1423 MHz
+CPU 10: effective frequency      = 833 MHz
+CPU 11: P0 frequency = 3600 MHz
+CPU 11: effective frequency (ro) = 1331 MHz
+CPU 11: effective frequency      = 833 MHz
+2018-02-01T11:56:50,387157988+01:00 start CpuFid 125
+2018-02-01T11:56:50,390078421+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-01T11:57:06,144571719+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some
+sleeping...
+2018-02-01T11:57:11,149028885+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-01T11:57:27,853089255+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:57:32,857801829+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-01T11:57:50,231187947+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:57:55,235758332+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:58:16,700119813+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-01T11:58:21,703890562+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-01T11:58:44,262054643+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T11:58:49,266614432+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-01T11:59:12,870527676+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T11:59:17,874470809+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-01T11:59:39,918722111+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-01T11:59:44,923450039+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-01T12:00:07,835711621+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:00:12,840747715+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-01T12:00:36,981360267+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:00:41,985979275+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1590555888
+2018-02-01T12:01:00,318535451+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-01T12:01:05,323434721+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -217246568
+2018-02-01T12:01:24,024976718+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:01:29,029040086+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -2131173016
+2018-02-01T12:01:48,150061553+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:01:53,154364631+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1538815320
+2018-02-01T12:02:10,306853495+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-01T12:02:15,311477584+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1603352536
+2018-02-01T12:02:32,858235172+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:02:37,863086427+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 52010552
+2018-02-01T12:02:55,882408163+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:03:00,886740858+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 309503440
+2018-02-01T12:03:17,788873697+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-01T12:03:22,793078951+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1317676904
+2018-02-01T12:03:40,083579321+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:03:45,088426503+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1922846920
+2018-02-01T12:04:02,812367928+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:04:07,817095024+01:00 end CpuFid 125
+2018-02-01T12:04:07,866822713+01:00 start swp on fast
+2018-02-01T12:04:07,869342886+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000095 (l3miss = 6,493,246 / instr = 68,038,416,323)
+	CPI = 0.356737
+	L2 rate = 0.000133
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.026499 (l3miss = 398,466,269 / instr = 15,036,779,676)
+	CPI = 1.678088
+	L2 rate = 0.415827
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.027317 (l3miss = 41,207 / instr = 1,508,467)
+	CPI = 1.714563
+	L2 rate = 0.424797
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.227036 (l3miss = 1,567 / instr = 6,902)
+	CPI = 4.806868
+	L2 rate = 0.514199
+2018-02-01T12:04:26,671455103+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some
+sleeping...
+2018-02-01T12:04:31,675470894+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.003381 (l3miss = 230,713,236 / instr = 68,238,560,582)
+	CPI = 0.396990
+	L2 rate = 0.098005
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.031680 (l3miss = 476,361,986 / instr = 15,036,765,690)
+	CPI = 1.723774
+	L2 rate = 0.427357
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.032856 (l3miss = 49,566 / instr = 1,508,582)
+	CPI = 1.750840
+	L2 rate = 0.434043
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.463199 (l3miss = 3,197 / instr = 6,902)
+	CPI = 5.791220
+	L2 rate = 0.681107
+2018-02-01T12:04:51,435215198+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:04:56,439464685+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.004585 (l3miss = 313,821,373 / instr = 68,438,569,855)
+	CPI = 0.454811
+	L2 rate = 0.112037
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.032491 (l3miss = 488,553,051 / instr = 15,036,757,803)
+	CPI = 1.718122
+	L2 rate = 0.426052
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.035646 (l3miss = 53,775 / instr = 1,508,565)
+	CPI = 1.728043
+	L2 rate = 0.428554
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.055491 (l3miss = 383 / instr = 6,902)
+	CPI = 5.240510
+	L2 rate = 0.522167
+2018-02-01T12:05:17,488903991+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:05:22,493296989+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000103 (l3miss = 7,037,892 / instr = 68,038,416,441)
+	CPI = 0.357436
+	L2 rate = 0.000171
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.008238 (l3miss = 567,068,124 / instr = 68,831,705,862)
+	CPI = 0.697977
+	L2 rate = 0.172188
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.008657 (l3miss = 59,633 / instr = 6,888,608)
+	CPI = 0.722129
+	L2 rate = 0.178092
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.031730 (l3miss = 219 / instr = 6,902)
+	CPI = 5.365401
+	L2 rate = 0.516807
+2018-02-01T12:05:47,687797437+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-01T12:05:52,692857004+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.003367 (l3miss = 229,760,011 / instr = 68,238,561,217)
+	CPI = 0.399934
+	L2 rate = 0.098064
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.008711 (l3miss = 599,611,851 / instr = 68,831,693,128)
+	CPI = 0.700023
+	L2 rate = 0.172853
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.008868 (l3miss = 61,089 / instr = 6,888,608)
+	CPI = 0.704134
+	L2 rate = 0.173940
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.033758 (l3miss = 233 / instr = 6,902)
+	CPI = 4.723414
+	L2 rate = 0.345697
+2018-02-01T12:06:18,744463322+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:06:23,748701973+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.004776 (l3miss = 326,842,381 / instr = 68,438,569,372)
+	CPI = 0.455715
+	L2 rate = 0.112149
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.008178 (l3miss = 562,881,023 / instr = 68,831,686,684)
+	CPI = 0.689025
+	L2 rate = 0.170120
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.008416 (l3miss = 57,978 / instr = 6,888,613)
+	CPI = 0.698098
+	L2 rate = 0.172420
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.130977 (l3miss = 904 / instr = 6,902)
+	CPI = 5.259635
+	L2 rate = 0.504926
+2018-02-01T12:06:50,612518497+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:06:55,616441510+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000099 (l3miss = 6,765,109 / instr = 68,038,416,637)
+	CPI = 0.356617
+	L2 rate = 0.000130
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.007056 (l3miss = 533,148,022 / instr = 75,564,022,507)
+	CPI = 0.619645
+	L2 rate = 0.152959
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.007298 (l3miss = 55,186 / instr = 7,561,896)
+	CPI = 0.622102
+	L2 rate = 0.153588
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.092002 (l3miss = 635 / instr = 6,902)
+	CPI = 4.514489
+	L2 rate = 0.343813
+2018-02-01T12:07:20,399943263+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-01T12:07:25,404505578+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.003651 (l3miss = 249,151,913 / instr = 68,238,560,411)
+	CPI = 0.402703
+	L2 rate = 0.099127
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.007590 (l3miss = 573,496,405 / instr = 75,564,007,346)
+	CPI = 0.627377
+	L2 rate = 0.154809
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.007701 (l3miss = 58,234 / instr = 7,561,895)
+	CPI = 0.632469
+	L2 rate = 0.156064
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.048537 (l3miss = 335 / instr = 6,902)
+	CPI = 4.461171
+	L2 rate = 0.291220
+2018-02-01T12:07:51,393056637+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:07:56,397230575+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.004812 (l3miss = 329,321,517 / instr = 68,438,569,553)
+	CPI = 0.458387
+	L2 rate = 0.112720
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.007087 (l3miss = 535,514,605 / instr = 75,564,003,013)
+	CPI = 0.617939
+	L2 rate = 0.152494
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.008236 (l3miss = 62,277 / instr = 7,561,907)
+	CPI = 0.621455
+	L2 rate = 0.153374
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.040423 (l3miss = 279 / instr = 6,902)
+	CPI = 4.595624
+	L2 rate = 0.318458
+2018-02-01T12:08:23,142899725+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:08:28,147068385+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done 923002280
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000040 (l3miss = 2,729,879 / instr = 68,038,417,230)
+	CPI = 0.356605
+	L2 rate = 0.000097
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.418587 (l3miss = 133,169,299 / instr = 318,140,149)
+	CPI = 114.776700
+	L2 rate = 26.827736
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.423093 (l3miss = 15,467 / instr = 36,557)
+	CPI = 101.332494
+	L2 rate = 23.693410
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.174877 (l3miss = 1,207 / instr = 6,902)
+	CPI = 5.237178
+	L2 rate = 0.586786
+2018-02-01T12:08:50,193345050+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some
+sleeping...
+2018-02-01T12:08:55,197164467+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 2091659000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000013 (l3miss = 700,003 / instr = 55,215,745,715)
+	CPI = 0.369807
+	L2 rate = 0.004469
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.001669 (l3miss = 530,872 / instr = 318,131,777)
+	CPI = 20.991469
+	L2 rate = 3.252289
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.059996 (l3miss = 2,194 / instr = 36,569)
+	CPI = 19.459652
+	L2 rate = 3.115262
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.050855 (l3miss = 351 / instr = 6,902)
+	CPI = 5.381918
+	L2 rate = 0.505506
+2018-02-01T12:09:07,694847552+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:09:12,699603400+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -792038408
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.001313 (l3miss = 55,642,180 / instr = 42,370,308,178)
+	CPI = 0.676684
+	L2 rate = 0.085616
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.421085 (l3miss = 133,964,094 / instr = 318,140,066)
+	CPI = 114.715081
+	L2 rate = 26.783801
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.420054 (l3miss = 15,358 / instr = 36,562)
+	CPI = 99.393387
+	L2 rate = 23.213993
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.043611 (l3miss = 301 / instr = 6,902)
+	CPI = 5.370907
+	L2 rate = 0.651550
+2018-02-01T12:09:36,023259736+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:09:41,026922075+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -418943072
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000056 (l3miss = 3,824,589 / instr = 68,038,415,797)
+	CPI = 0.356801
+	L2 rate = 0.000099
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.006534 (l3miss = 109,120,969 / instr = 16,701,330,302)
+	CPI = 1.936882
+	L2 rate = 0.422202
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.007761 (l3miss = 13,000 / instr = 1,675,045)
+	CPI = 1.964564
+	L2 rate = 0.427371
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.071718 (l3miss = 495 / instr = 6,902)
+	CPI = 5.492466
+	L2 rate = 0.546943
+2018-02-01T12:10:01,953007071+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-01T12:10:06,955642612+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1577847584
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000519 (l3miss = 28,682,218 / instr = 55,215,749,319)
+	CPI = 0.477689
+	L2 rate = 0.032668
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.006466 (l3miss = 107,988,724 / instr = 16,701,331,213)
+	CPI = 1.924835
+	L2 rate = 0.419476
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.007891 (l3miss = 13,218 / instr = 1,675,052)
+	CPI = 1.947627
+	L2 rate = 0.425560
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.431551 (l3miss = 2,979 / instr = 6,903)
+	CPI = 7.863682
+	L2 rate = 0.668260
+2018-02-01T12:10:28,324639717+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:10:33,329390872+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1960899520
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.001308 (l3miss = 55,438,043 / instr = 42,370,308,638)
+	CPI = 0.676385
+	L2 rate = 0.085542
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.006500 (l3miss = 108,553,338 / instr = 16,701,331,115)
+	CPI = 1.926162
+	L2 rate = 0.419765
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.007682 (l3miss = 12,868 / instr = 1,675,057)
+	CPI = 1.931138
+	L2 rate = 0.421411
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.056071 (l3miss = 387 / instr = 6,902)
+	CPI = 5.309620
+	L2 rate = 0.552449
+2018-02-01T12:10:55,422419177+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:11:00,426709036+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1315679288
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000035 (l3miss = 2,403,562 / instr = 68,038,416,433)
+	CPI = 0.356439
+	L2 rate = 0.000103
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.002746 (l3miss = 81,044,557 / instr = 29,512,608,710)
+	CPI = 1.039022
+	L2 rate = 0.179610
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.003562 (l3miss = 10,529 / instr = 2,956,307)
+	CPI = 1.054073
+	L2 rate = 0.183160
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.045059 (l3miss = 311 / instr = 6,902)
+	CPI = 5.335845
+	L2 rate = 0.551145
+2018-02-01T12:11:20,772778060+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-01T12:11:25,777810600+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 139705632
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000549 (l3miss = 30,289,649 / instr = 55,215,746,312)
+	CPI = 0.477575
+	L2 rate = 0.032670
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.002746 (l3miss = 81,034,059 / instr = 29,512,608,230)
+	CPI = 1.036782
+	L2 rate = 0.178926
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.003503 (l3miss = 10,357 / instr = 2,956,296)
+	CPI = 1.054346
+	L2 rate = 0.183379
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.052738 (l3miss = 364 / instr = 6,902)
+	CPI = 5.501739
+	L2 rate = 0.546218
+2018-02-01T12:11:46,728742279+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:11:51,732771068+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 426055720
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.001314 (l3miss = 55,661,611 / instr = 42,370,309,068)
+	CPI = 0.676277
+	L2 rate = 0.085543
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.002735 (l3miss = 80,716,790 / instr = 29,512,609,678)
+	CPI = 1.034254
+	L2 rate = 0.178558
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.003471 (l3miss = 10,260 / instr = 2,956,296)
+	CPI = 1.048130
+	L2 rate = 0.182512
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.044625 (l3miss = 308 / instr = 6,902)
+	CPI = 5.471602
+	L2 rate = 0.617792
+2018-02-01T12:12:13,263201855+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:12:18,267552644+01:00 end swp on fast
+2018-02-01T12:12:18,270147899+01:00 start swp on slow
+2018-02-01T12:12:18,272869169+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000087 (l3miss = 5,925,634 / instr = 68,038,426,968)
+	CPI = 0.356343
+	L2 rate = 0.000094
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.040755 (l3miss = 612,828,817 / instr = 15,036,787,781)
+	CPI = 1.390972
+	L2 rate = 0.344221
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.041339 (l3miss = 62,359 / instr = 1,508,467)
+	CPI = 1.401632
+	L2 rate = 0.346937
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.046653 (l3miss = 322 / instr = 6,902)
+	CPI = 4.585627
+	L2 rate = 0.293248
+2018-02-01T12:13:00,015976745+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some
+sleeping...
+2018-02-01T12:13:05,020454562+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.004152 (l3miss = 283,294,558 / instr = 68,238,571,967)
+	CPI = 0.380592
+	L2 rate = 0.091104
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.044376 (l3miss = 667,266,967 / instr = 15,036,773,748)
+	CPI = 1.390537
+	L2 rate = 0.343881
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.045266 (l3miss = 68,287 / instr = 1,508,584)
+	CPI = 1.401778
+	L2 rate = 0.346501
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.044045 (l3miss = 304 / instr = 6,902)
+	CPI = 4.495509
+	L2 rate = 0.265865
+2018-02-01T12:13:48,100896214+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:13:53,105330560+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.007517 (l3miss = 514,463,476 / instr = 68,438,579,671)
+	CPI = 0.406454
+	L2 rate = 0.100013
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.045848 (l3miss = 689,400,034 / instr = 15,036,767,374)
+	CPI = 1.392941
+	L2 rate = 0.344678
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.047194 (l3miss = 71,196 / instr = 1,508,567)
+	CPI = 1.404963
+	L2 rate = 0.347497
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.038395 (l3miss = 265 / instr = 6,902)
+	CPI = 4.235729
+	L2 rate = 0.212402
+2018-02-01T12:14:37,437462782+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:14:42,441447302+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000082 (l3miss = 5,599,117 / instr = 68,038,427,007)
+	CPI = 0.356459
+	L2 rate = 0.000092
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.012540 (l3miss = 863,178,780 / instr = 68,831,718,146)
+	CPI = 0.519988
+	L2 rate = 0.127843
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.012996 (l3miss = 89,523 / instr = 6,888,609)
+	CPI = 0.523622
+	L2 rate = 0.128720
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.570994 (l3miss = 3,941 / instr = 6,902)
+	CPI = 4.472182
+	L2 rate = 0.422486
+2018-02-01T12:15:34,652617419+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-01T12:15:39,657266357+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.004466 (l3miss = 304,720,681 / instr = 68,238,572,182)
+	CPI = 0.382835
+	L2 rate = 0.090230
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.012958 (l3miss = 891,891,619 / instr = 68,831,704,349)
+	CPI = 0.523862
+	L2 rate = 0.128641
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.013373 (l3miss = 92,123 / instr = 6,888,609)
+	CPI = 0.526684
+	L2 rate = 0.129325
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.073457 (l3miss = 507 / instr = 6,902)
+	CPI = 4.630107
+	L2 rate = 0.334541
+2018-02-01T12:16:33,348438776+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:16:38,353171920+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.008201 (l3miss = 561,269,255 / instr = 68,438,580,019)
+	CPI = 0.411892
+	L2 rate = 0.101080
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.013030 (l3miss = 896,847,745 / instr = 68,831,698,173)
+	CPI = 0.527110
+	L2 rate = 0.129407
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.013251 (l3miss = 91,282 / instr = 6,888,615)
+	CPI = 0.529836
+	L2 rate = 0.129982
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.054187 (l3miss = 374 / instr = 6,902)
+	CPI = 4.470298
+	L2 rate = 0.323819
+2018-02-01T12:17:33,746335996+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:17:38,750617755+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000084 (l3miss = 5,710,304 / instr = 68,038,426,903)
+	CPI = 0.356722
+	L2 rate = 0.000126
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.012436 (l3miss = 939,686,835 / instr = 75,564,038,220)
+	CPI = 0.538421
+	L2 rate = 0.132746
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.012714 (l3miss = 96,144 / instr = 7,561,897)
+	CPI = 0.541698
+	L2 rate = 0.133573
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.046943 (l3miss = 324 / instr = 6,902)
+	CPI = 4.911765
+	L2 rate = 0.381629
+2018-02-01T12:18:34,396884443+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-01T12:18:39,401406531+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.005052 (l3miss = 344,736,876 / instr = 68,238,572,404)
+	CPI = 0.384397
+	L2 rate = 0.092606
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.012722 (l3miss = 961,360,397 / instr = 75,564,024,010)
+	CPI = 0.538089
+	L2 rate = 0.132688
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.012966 (l3miss = 98,051 / instr = 7,561,896)
+	CPI = 0.540673
+	L2 rate = 0.133413
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.030281 (l3miss = 209 / instr = 6,902)
+	CPI = 4.457549
+	L2 rate = 0.306868
+2018-02-01T12:19:36,367609043+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:19:41,372092141+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.008447 (l3miss = 578,108,658 / instr = 68,438,579,909)
+	CPI = 0.411155
+	L2 rate = 0.100977
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.012520 (l3miss = 946,047,860 / instr = 75,564,017,811)
+	CPI = 0.534913
+	L2 rate = 0.131895
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.012786 (l3miss = 96,686 / instr = 7,561,908)
+	CPI = 0.537064
+	L2 rate = 0.132437
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.072008 (l3miss = 497 / instr = 6,902)
+	CPI = 4.572733
+	L2 rate = 0.358881
+2018-02-01T12:20:39,518542163+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:20:44,521858358+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1555920504
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000035 (l3miss = 2,409,116 / instr = 68,038,426,876)
+	CPI = 0.356495
+	L2 rate = 0.000055
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.417650 (l3miss = 132,872,281 / instr = 318,142,505)
+	CPI = 56.593405
+	L2 rate = 12.104791
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.428528 (l3miss = 15,673 / instr = 36,574)
+	CPI = 49.819517
+	L2 rate = 10.673648
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.064030 (l3miss = 442 / instr = 6,903)
+	CPI = 5.060843
+	L2 rate = 0.425612
+2018-02-01T12:21:24,540456908+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some
+sleeping...
+2018-02-01T12:21:29,544948242+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 215022480
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000523 (l3miss = 28,850,696 / instr = 55,215,755,884)
+	CPI = 0.411084
+	L2 rate = 0.015071
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.417055 (l3miss = 132,682,855 / instr = 318,142,442)
+	CPI = 56.489637
+	L2 rate = 12.100310
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.424980 (l3miss = 15,536 / instr = 36,557)
+	CPI = 49.818886
+	L2 rate = 10.675247
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.045349 (l3miss = 313 / instr = 6,902)
+	CPI = 4.907273
+	L2 rate = 0.352796
+2018-02-01T12:22:08,550927608+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:22:13,555435175+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1414821648
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.001306 (l3miss = 55,343,185 / instr = 42,370,314,668)
+	CPI = 0.496865
+	L2 rate = 0.038516
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.417287 (l3miss = 132,756,725 / instr = 318,142,510)
+	CPI = 56.425112
+	L2 rate = 12.067088
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.419087 (l3miss = 15,326 / instr = 36,570)
+	CPI = 49.539267
+	L2 rate = 10.609489
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.149812 (l3miss = 1,034 / instr = 6,902)
+	CPI = 4.619241
+	L2 rate = 0.355839
+2018-02-01T12:22:51,368566552+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:22:56,372741204+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 472134872
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000035 (l3miss = 2,377,214 / instr = 68,038,426,858)
+	CPI = 0.356445
+	L2 rate = 0.000089
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.006518 (l3miss = 108,855,503 / instr = 16,701,333,487)
+	CPI = 1.025285
+	L2 rate = 0.190970
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.008407 (l3miss = 14,082 / instr = 1,675,040)
+	CPI = 1.035752
+	L2 rate = 0.193424
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.056360 (l3miss = 389 / instr = 6,902)
+	CPI = 4.674442
+	L2 rate = 0.360185
+2018-02-01T12:23:35,834198404+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-01T12:23:40,838399912+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1641341104
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000521 (l3miss = 28,785,559 / instr = 55,215,755,851)
+	CPI = 0.410915
+	L2 rate = 0.014992
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.006513 (l3miss = 108,771,350 / instr = 16,701,333,450)
+	CPI = 1.026148
+	L2 rate = 0.190615
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.007883 (l3miss = 13,205 / instr = 1,675,053)
+	CPI = 1.044051
+	L2 rate = 0.194854
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.089394 (l3miss = 617 / instr = 6,902)
+	CPI = 4.437120
+	L2 rate = 0.290351
+2018-02-01T12:24:19,147478243+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:24:24,151984643+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -865840344
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.001305 (l3miss = 55,294,426 / instr = 42,370,314,644)
+	CPI = 0.497686
+	L2 rate = 0.038567
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.006513 (l3miss = 108,771,577 / instr = 16,701,333,358)
+	CPI = 1.021016
+	L2 rate = 0.190468
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.007961 (l3miss = 13,335 / instr = 1,675,046)
+	CPI = 1.031748
+	L2 rate = 0.192934
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.097943 (l3miss = 676 / instr = 6,902)
+	CPI = 4.615619
+	L2 rate = 0.347870
+2018-02-01T12:25:01,319298678+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:25:06,323041249+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -826437752
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000033 (l3miss = 2,275,299 / instr = 68,038,426,737)
+	CPI = 0.356373
+	L2 rate = 0.000075
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.002750 (l3miss = 81,163,952 / instr = 29,512,613,586)
+	CPI = 0.656990
+	L2 rate = 0.082083
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.003586 (l3miss = 10,602 / instr = 2,956,301)
+	CPI = 0.663591
+	L2 rate = 0.083743
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.171979 (l3miss = 1,187 / instr = 6,902)
+	CPI = 4.585917
+	L2 rate = 0.347146
+2018-02-01T12:25:47,271658293+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-01T12:25:52,274130146+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1315269368
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.000520 (l3miss = 28,726,967 / instr = 55,215,755,761)
+	CPI = 0.410650
+	L2 rate = 0.015083
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.002746 (l3miss = 81,041,645 / instr = 29,512,613,649)
+	CPI = 0.656366
+	L2 rate = 0.082076
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.003555 (l3miss = 10,509 / instr = 2,956,309)
+	CPI = 0.665548
+	L2 rate = 0.084364
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.147493 (l3miss = 1,018 / instr = 6,902)
+	CPI = 4.392495
+	L2 rate = 0.342075
+2018-02-01T12:26:32,189838418+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-01T12:26:37,194440436+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 203426512
+run_benchmark [../test/micro_swp.c:13] -> run_benchmark [../test/micro_swp.c:17]
+	calls = 10,000
+	miss rate = 0.001301 (l3miss = 55,128,535 / instr = 42,370,314,673)
+	CPI = 0.498146
+	L2 rate = 0.038571
+run_benchmark [../test/micro_swp.c:17] -> run_benchmark [../test/micro_swp.c:13]
+	calls = 9,999
+	miss rate = 0.002742 (l3miss = 80,928,521 / instr = 29,512,613,769)
+	CPI = 0.657999
+	L2 rate = 0.081965
+run_benchmark [../test/micro_swp.c:17] -> swp_deinit
+	calls = 1
+	miss rate = 0.003534 (l3miss = 10,448 / instr = 2,956,296)
+	CPI = 0.665030
+	L2 rate = 0.083731
+swp_init -> run_benchmark [../test/micro_swp.c:13]
+	calls = 1
+	miss rate = 0.057085 (l3miss = 394 / instr = 6,902)
+	CPI = 4.343813
+	L2 rate = 0.365836
+2018-02-01T12:27:16,026680700+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro_swp pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-01T12:27:21,030371994+01:00 end swp on slow
+2018-02-01T12:27:21,032904231+01:00 Benchmark end
