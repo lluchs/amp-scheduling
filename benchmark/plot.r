@@ -5,8 +5,24 @@ library(sqldf)
 
 pdf(NULL) # prevent Rplot.pdf files
 
+# Usage: plot.r <graph name> <output format>
+args <- commandArgs(trailingOnly = TRUE)
+graphtobuild <- ifelse(length(args) > 0, args[1], "all")
+format <- ifelse(length(args) > 1, args[2], "png")
+# The default pdf device does not embed fonts and produces horrible kerning.
+if (format == "pdf") { device <- cairo_pdf } else { device <- NULL }
+
+# outname returns the output file name or FALSE, depending on command line
+# options (above).
+outname <- function(graphname)
+	ifelse(graphname == graphtobuild || graphtobuild == "all",
+	       paste0(graphname, ".", format),
+	       FALSE)
+
 # Increase font size in plots for presentation.
-#theme_update(text = element_text(size = 20))
+if ((font_size <- Sys.getenv("FONT_SIZE")) != "") {
+	theme_update(text = element_text(size = as.integer(font_size)))
+}
 
 log <- read_tsv("log.tsv")
 # parse_datetime can't handle , as ISO8601 separator
@@ -50,20 +66,24 @@ mk_memory_bench_scale <- function(sc)
 # Labeller for "mixed" facets.
 mixed_labeller <- function(title) as_labeller(function(x) paste0(title, ": ", -100 * as.double(x), "%"))
 
-ggplot(data = tlog, mapping = aes(x = type, y = duration, shape = memory_bench)) +
-	geom_jitter(aes(color = memory_ratio, fill = cpu_ratio), stroke = 1.5, size = 2) +
-	scale_shape_manual(values = c(21, 22)) +
-	scale_color_gradient(low = "red", high = "orange")
+if ((file <- outname("duration")) != FALSE) {
+	ggplot(data = tlog, mapping = aes(x = type, y = duration, shape = memory_bench)) +
+		geom_jitter(aes(color = memory_ratio, fill = cpu_ratio), stroke = 1.5, size = 2) +
+		scale_shape_manual(values = c(21, 22)) +
+		scale_color_gradient(low = "red", high = "orange")
 
-ggsave("duration.png", width = 20, height = 20, units = "cm")
+	ggsave(file, width = 20, height = 20, units = "cm", device = device)
+}
 
-# Graph to check power meter behavior: does it reset properly between runs?
-ggplot() +
-	geom_line(aes(x = time, y = power), powermeter) +
-	geom_vline(aes(xintercept = time_start), tlog, color = "green") +
-	geom_vline(aes(xintercept = time_end), tlog, color = "red")
+if ((file <- outname("powermeter")) != FALSE) {
+	# Graph to check power meter behavior: does it reset properly between runs?
+	ggplot() +
+		geom_line(aes(x = time, y = power), powermeter) +
+		geom_vline(aes(xintercept = time_start), tlog, color = "green") +
+		geom_vline(aes(xintercept = time_end), tlog, color = "red")
 
-ggsave("powermeter.png", width = 150, height = 20, units = "cm", limitsize = FALSE)
+	ggsave(file, width = 150, height = 20, units = "cm", limitsize = FALSE, device = device)
+}
 
 # Graph to compare power behavior between fast/slow/fast+slow.
 powergraph <- function(data)
@@ -88,10 +108,14 @@ powergraph <- function(data)
 		ylab("Power (W)") + xlab("Duration (s)") +
 		facet_grid(cpu_ratio ~ memory_ratio, labeller = labeller(cpu_ratio = mixed_labeller("CPU"), memory_ratio = mixed_labeller("Memory")))
 
-powergraph(power_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = power - avg_idle_power))
-ggsave("fastslow-power.png", width = 25, height = 20, units = "cm")
-powergraph(rapl_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = core0+core1+core2))
-ggsave("fastslow-rapl.png", width = 25, height = 20, units = "cm")
+if ((file <- outname("fastslow-power")) != FALSE) {
+	powergraph(power_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = power - avg_idle_power))
+	ggsave(file, width = 25, height = 20, units = "cm", device = device)
+}
+if ((file <- outname("fastslow-rapl")) != FALSE) {
+	powergraph(rapl_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = core0+core1+core2))
+	ggsave(file, width = 25, height = 20, units = "cm", device = device)
+}
 
 swp <- power_log %>% filter(str_detect(type, "swp"))
 swp_fast <- swp %>% filter(str_detect(type, "fast"))
@@ -103,18 +127,21 @@ swp_cpi <- swp_combined %>%
 	gather(mem, cpu, key = "cpi_type", value = "cpi_ratio") %>%
 	filter(cpu_ratio == memory_ratio) %>%
 	mutate(mixed = -cpu_ratio)
-ggplot(data = swp_cpi) +
-	geom_hline(yintercept = 1) +
-	geom_col(aes(x = cpi_type, y = cpi_ratio, fill = memory_bench), size = 2, position = "dodge") +
-	xlab("section") +
-	ylab("CPI ratio") +
-	coord_cartesian(ylim = c(1, 2.1)) +
-	scale_x_discrete(labels = c(cpu = "CPU", mem = "Memory")) +
-	scale_y_continuous(expand = c(0, 0)) +
-	mk_memory_bench_scale(scale_fill_discrete) +
-	facet_grid(mixed ~ ., labeller = mixed_labeller("CPU/Mem"))
 
-ggsave("cpi.png", width = 20, height = 20, units = "cm")
+if ((file <- outname("cpi")) != FALSE) {
+	ggplot(data = swp_cpi) +
+		geom_hline(yintercept = 1) +
+		geom_col(aes(x = cpi_type, y = cpi_ratio, fill = memory_bench), size = 2, position = "dodge") +
+		xlab("section") +
+		ylab("CPI ratio") +
+		coord_cartesian(ylim = c(1, 2.1)) +
+		scale_x_discrete(labels = c(cpu = "CPU", mem = "Memory")) +
+		scale_y_continuous(expand = c(0, 0)) +
+		mk_memory_bench_scale(scale_fill_discrete) +
+		facet_grid(mixed ~ ., labeller = mixed_labeller("CPU/Mem"))
+
+	ggsave(file, width = 20, height = 20, units = "cm", device = device)
+}
 
 swp_l3 <- swp %>%
 	gather(swp_mem_l3, swp_cpu_l3, key = "l3_type", value = "l3") %>%
@@ -130,26 +157,32 @@ swp_l3_graph <- function(data)
 		mk_memory_bench_scale(scale_fill_discrete) +
 		facet_grid(mixed ~ ., labeller = mixed_labeller("CPU/Mem"), scales = "free")
 
-swp_l3_graph(swp_l3 %>% filter(str_detect(type, "fast")))
-ggsave("l3.png", width = 20, height = 20, units = "cm")
+if ((file <- outname("l3")) != FALSE) {
+	swp_l3_graph(swp_l3 %>% filter(str_detect(type, "fast")))
+	ggsave(file, width = 20, height = 20, units = "cm", device = device)
+}
 
 swp_l3_total <- swp_l3 %>%
 	filter(str_detect(type, "fast"), l3_type == "swp_mem_l3") %>%
 	mutate(l3_total = l3 * swp_mem_instr)
 
-ggplot(swp_l3_total) +
-	geom_col(aes(x = factor(mixed), y = l3_total, fill = memory_bench), position = "dodge") +
-	xlab("CPU/Mem ratio") +
-	ylab("L3 cache misses") +
-	mk_memory_bench_scale(scale_fill_discrete)
-ggsave("l3-mem-total.png", width = 20, height = 20, units = "cm")
+if ((file <- outname("l3-mem-total")) != FALSE) {
+	ggplot(swp_l3_total) +
+		geom_col(aes(x = factor(mixed), y = l3_total, fill = memory_bench), position = "dodge") +
+		xlab("CPU/Mem ratio") +
+		ylab("L3 cache misses") +
+		mk_memory_bench_scale(scale_fill_discrete)
+	ggsave(file, width = 20, height = 20, units = "cm", device = device)
+}
 
-ggplot(swp_l3_total) +
-	geom_col(aes(x = factor(mixed), y = swp_mem_instr, fill = memory_bench), position = "dodge") +
-	xlab("CPU/Mem ratio") +
-	ylab("instructions") +
-	mk_memory_bench_scale(scale_fill_discrete)
-ggsave("l3-mem-instr.png", width = 20, height = 20, units = "cm")
+if ((file <- outname("l3-mem-instr")) != FALSE) {
+	ggplot(swp_l3_total) +
+		geom_col(aes(x = factor(mixed), y = swp_mem_instr, fill = memory_bench), position = "dodge") +
+		xlab("CPU/Mem ratio") +
+		ylab("instructions") +
+		mk_memory_bench_scale(scale_fill_discrete)
+	ggsave(file, width = 20, height = 20, units = "cm", device = device)
+}
 
 swp_l2 <- swp %>%
 	gather(swp_mem_l2, swp_cpu_l2, key = "l2_type", value = "l2") %>%
@@ -160,10 +193,13 @@ swp_l2 <- swp %>%
 	# for L2 fills to complete from L3 or memory, divided by four." per
 	# instruction - convert that to a ratio of the full run time.
 	mutate(l2_time = 4 * l2 / (freq * 1e6) * instr / duration * 100)
-ggplot(data = swp_l2) +
-	geom_point(aes(x = l2_type, y = l2_time, color = memory_bench, shape = type)) +
-	ylab("L2 waiting time ratio (%)") +
-	mk_memory_bench_scale(scale_color_discrete) +
-	facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
 
-ggsave("l2.png", width = 20, height = 20, units = "cm")
+if ((file <- outname("l2")) != FALSE) {
+	ggplot(data = swp_l2) +
+		geom_point(aes(x = l2_type, y = l2_time, color = memory_bench, shape = type)) +
+		ylab("L2 waiting time ratio (%)") +
+		mk_memory_bench_scale(scale_color_discrete) +
+		facet_grid(cpu_ratio ~ memory_ratio, labeller = label_both)
+
+	ggsave(file, width = 20, height = 20, units = "cm", device = device)
+}

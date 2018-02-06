@@ -24,6 +24,6 @@ analysis/$(b)/rapl.tsv: results/$(b)/rapl rapl2tsv
 	$(AWK) -f rapl2tsv $< > $@
 
 plot: tsv
-	cd analysis/$(b) && ../../plot.r
+	cd analysis/$(b) && ../../plot.r $(plotargs)
 
 .PHONY: tsv plot
