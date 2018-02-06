@@ -20,4 +20,7 @@ all: $(graphs)
 %.png: %.dot
 	$(DOT) $(DOTOPTS) -Tpng $< -o $@
 
+%.pdf: %.dot
+	$(DOT) $(DOTOPTS) -Tpdf $< -o $@
+
 .PHONY: all
