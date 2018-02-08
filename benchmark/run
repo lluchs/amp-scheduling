@@ -66,6 +66,7 @@ log Setting P-states...
 sudo $BUILD/tools/amdpstate def 1 CpuFid=144 # 3600 MHz
 sudo $BUILD/tools/amdpstate def 2 CpuFid=50  #  800 MHz
 
+echo userspace | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_governor > /dev/null
 # Set the first core to the middle p-state, rest to the last. (zsh arrays are indexed from 1)
 frequencies=("${=$(< /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies)}")
 echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_setspeed > /dev/null
