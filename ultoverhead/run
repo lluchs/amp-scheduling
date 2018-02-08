@@ -138,12 +138,13 @@ for i in $(seq 10); do
 done
 log $(date -Ins) end ultoverhead asym
 
+# Different memory/cpu ratios don't make sense when running with --only-cpu/memory
 log $(date -Ins) start only fast cpu
-run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro --only-cpu
+MEMORY_RATIO=(1) run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro --only-cpu
 log $(date -Ins) end only fast cpu
 
 log $(date -Ins) start only slow memory
-run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro --only-memory
+CPU_RATIO=(1) run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro --only-memory
 log $(date -Ins) end only slow memory
 
 
