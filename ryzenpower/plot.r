@@ -61,3 +61,19 @@ if ((file <- outname("powermeter")) != FALSE) {
 
 	ggsave(file, width = 150, height = 20, units = "cm", limitsize = FALSE, device = device)
 }
+
+if ((file <- outname("pstate-power")) != FALSE) {
+	ggplot(power_log %>% filter(!is.na(pstate))) +
+		geom_col(aes(x = factor(pstate), y = power)) +
+		facet_wrap(~type)
+
+	ggsave(file, width = 20, height = 20, units = "cm", device = device)
+}
+
+if ((file <- outname("pstate-vcore")) != FALSE) {
+	ggplot(power_log %>% filter(!is.na(pstate))) +
+		geom_col(aes(x = factor(pstate), y = vcore)) +
+		facet_wrap(~type)
+
+	ggsave(file, width = 20, height = 20, units = "cm", device = device)
+}
