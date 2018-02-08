@@ -3,6 +3,11 @@ executable('simple', 'simple.c',
            dependencies: thread_dep,
            include_directories: include)
 
+executable('ultoverhead', 'ultoverhead.c',
+           link_with: ultmigration,
+           dependencies: thread_dep,
+           include_directories: include)
+
 executable('ult_idle', 'ult_idle.c',
            link_with: ultmigration,
            dependencies: thread_dep,
