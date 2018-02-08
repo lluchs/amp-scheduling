@@ -134,6 +134,8 @@ static void usage(char **argv) {
 	fprintf(stderr, "\nOptions:\n");
 	fprintf(stderr, "\t--memory-ratio=<n ϵ [0, 1]>: interleave MEMORY_BENCH with CPU_BENCH\n");
 	fprintf(stderr, "\t--cpu-ratio=<n ϵ [0, 1]>:    interleave CPU_BENCH with MEMORY_BENCH\n");
+	fprintf(stderr, "\t--only-cpu:                  only run CPU_BENCH\n");
+	fprintf(stderr, "\t--only-memory:               only run MEMORY_BENCH\n");
 	exit(1);
 }
 
@@ -158,11 +160,14 @@ int main(int argc, char **argv) {
 
 	// Option parsing.
 	bool have_mixed_lots = false, have_mixed_little = false;
+	Fn littlework = NULL, lotsofwork = NULL;
 	while (1) {
 		int option_index = 0;
 		static struct option long_options[] = {
 			{"cpu-ratio",     required_argument,  0,  'c'},
 			{"memory-ratio",  required_argument,  0,  'm'},
+			{"only-cpu",      no_argument,        0,  'C'},
+			{"only-memory",   no_argument,        0,  'M'},
 			{0,               0,                  0,  0}
 		};
 		int c = getopt_long(argc, argv, "h", long_options, &option_index);
@@ -176,24 +181,29 @@ int main(int argc, char **argv) {
 			mixed_little_ratio = strtof(optarg, NULL);
 			have_mixed_little = true;
 			break;
+		case 'C':
+			littlework = noop;
+			break;
+		case 'M':
+			lotsofwork = noop;
+			break;
 		default:
 			usage(argv);
 		}
 	}
 	if (argc-optind != 2) usage(argv);
 
-	Fn littlework, lotsofwork;
 	char *memory_bench = argv[optind], *cpu_bench = argv[optind+1];
 	if (strcmp("none", memory_bench) == 0) {
 		littlework = mixed_little_fn = noop;
 	} else if (strcmp("indirect_access", memory_bench) == 0) {
 		init_indirect_access();
-		littlework = indirect_access;
+		if (!littlework) littlework = indirect_access;
 		mixed_little_fn = do_indirect_access;
 		mixed_little_steps = PATTERN_LENGTH;
 	} else if (strcmp("pointer_chasing", memory_bench) == 0) {
 		init_pointer_chasing();
-		littlework = pointer_chasing;
+		if (!littlework) littlework = pointer_chasing;
 		mixed_little_fn = do_pointer_chasing;
 		mixed_little_steps = POINTER_CHASE_STEPS;
 	} else {
@@ -203,7 +213,7 @@ int main(int argc, char **argv) {
 	if (strcmp("none", cpu_bench) == 0) {
 		lotsofwork = mixed_lots_fn = noop;
 	} else if (strcmp("some", cpu_bench) == 0) {
-		lotsofwork = cpubench;
+		if (!lotsofwork) lotsofwork = cpubench;
 		mixed_lots_fn = do_cpubench;
 		mixed_lots_steps = CPU_ITERATIONS;
 	} else {
@@ -222,14 +232,16 @@ int main(int argc, char **argv) {
 	fprintf(stderr, "slow CPU = %d, core = %d\n", slow_cpu, getcore());
 	fprintf(stderr, "MEMORY_BENCH = %s", memory_bench);
 	if (have_mixed_little)
-		fprintf(stderr, " @ %f\n", mixed_little_ratio);
-	else
-		putc('\n', stderr);
+		fprintf(stderr, " @ %f", mixed_little_ratio);
+	if (lotsofwork == noop)
+		fputs(" (only)", stderr);
+	putc('\n', stderr);
 	fprintf(stderr, "CPU_BENCH = %s", cpu_bench);
 	if (have_mixed_lots)
-		fprintf(stderr, " @ %f\n", mixed_lots_ratio);
-	else
-		putc('\n', stderr);
+		fprintf(stderr, " @ %f", mixed_lots_ratio);
+	if (littlework == noop)
+		fputs(" (only)", stderr);
+	putc('\n', stderr);
 	fprintf(stderr, "buffer size = %lu MiB\n", BUFSIZE >> 20);
 
 	run_benchmark(littlework, lotsofwork);
