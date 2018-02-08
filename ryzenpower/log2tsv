@@ -1,0 +1,20 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	OFS = "\t";
+	print "type", "time_start", "time_end", \
+			 "pstate", "cpuvid";
+}
+
+/start / {
+	time_start = $1;
+	type = $3 " " $4;
+	pstate = $4 ~ /pstate/ ? $5 : "";
+	cpuvid = $4 ~ /cpuvid/ ? $5 : "";
+}
+
+/end / {
+	time_end = $1;
+	print type, time_start, time_end, \
+		  pstate, cpuvid;
+}
