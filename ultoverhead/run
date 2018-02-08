@@ -1,0 +1,169 @@
+#!/bin/zsh
+
+set -eu
+
+# Configuration
+
+# CPUs used for ultmigration
+export FAST_CPU=0 SLOW_CPU=2
+OCCX_CPU=6
+# CPU used for power monitoring.
+OTHER_CPU=11
+
+# Command for reading the power meter.
+powermeter() {
+	taskset -c $OTHER_CPU ssh i30pc34 sudo '~/src/ut71dmm/ut71dmm'
+}
+
+# test/micro parameters
+MEMORY_BENCH=(indirect_access pointer_chasing)
+CPU_BENCH=(some)
+MEMORY_RATIO=(1 0.8 0.6)
+CPU_RATIO=(1 0.8 0.6)
+
+# Path to build directory
+BUILD=../build
+
+# End configuration
+
+cd ${0:A:h}
+
+benchname=${1?benchmark name not set}
+bd=results/$benchname
+if [[ -e "$bd" ]]; then
+	echo "Benchmark $benchname already exists"
+	exit 2
+fi
+mkdir $bd
+
+# On exit, kill all background jobs.
+zshexit TRAPINT() {
+	kill -SIGHUP 0
+}
+
+log() {
+	echo $@ >> $bd/log
+}
+
+# Print log file output to allow following progress.
+taskset -c $OTHER_CPU tail -f $bd/log &
+
+log Benchmark configuration
+log FAST_CPU=$FAST_CPU SLOW_CPU=$SLOW_CPU
+log OCCX_CPU=$OCCX_CPU
+log OTHER_CPU=$OTHER_CPU
+log MEMORY_BENCH $MEMORY_BENCH
+log CPU_BENCH $CPU_BENCH
+log MEMORY_RATIO $MEMORY_RATIO
+log CPU_RATIO $CPU_RATIO
+log
+
+log Setting P-states...
+# The voltage levels are fixed for the three P-states on our platform.
+sudo $BUILD/tools/amdpstate def 0 CpuFid=144 # 3600 MHz
+sudo $BUILD/tools/amdpstate def 2 CpuFid=50  #  800 MHz
+
+echo userspace | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_governor > /dev/null
+# Start out with P0 for everything. (zsh arrays are indexed from 1)
+frequencies=("${=$(< /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies)}")
+echo "${frequencies[1]}" | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_setspeed > /dev/null
+
+sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
+log
+
+log $(date -Ins) Benchmark start
+
+# Add timestamp to input. Simple reimplementation of ts from moreutils.
+ts() {
+	taskset -c $OTHER_CPU awk '{print strftime("%FT%T%z"), $0; fflush()}'
+}
+
+# Start monitoring power.
+powermeter |& ts > $bd/powermeter &
+sudo taskset -c $OTHER_CPU stdbuf -oL $BUILD/tools/amdpstate rapl 1000 |& ts > $bd/rapl &
+
+# Run test/micro with all parameter variations.
+run_micro() {
+	for membench in $MEMORY_BENCH; do
+		for cpubench in $CPU_BENCH; do
+			for memratio in $MEMORY_RATIO; do
+				memratio_opt=
+				if [[ $memratio != 1 ]]; then
+					memratio_opt=--memory-ratio=$memratio
+				fi
+				for cpuratio in $CPU_RATIO; do
+					cpuratio_opt=
+					if [[ $cpuratio != 1 ]]; then
+						cpuratio_opt=--cpu-ratio=$cpuratio
+					fi
+
+					cmd=($membench $cpubench $memratio_opt $cpuratio_opt)
+					log $(date -Ins) start: "$@" $cmd
+					time env "$@" $cmd &>> $bd/log
+					log $(date -Ins) end: "$@" $cmd
+
+					# Power meter measurements are a bit delayed and need
+					# smoothing. Sleep a bit to make sure that power usage from
+					# one benchmark doesn't bleed into the next.
+					log sleeping...
+					sleep 5
+				done
+			done
+		done
+	done
+}
+
+log $(date -Ins) start ultoverhead
+for i in $(seq 10); do
+	$BUILD/test/ultoverhead overall
+done
+log $(date -Ins) end ultoverhead
+
+log $(date -Ins) start ultoverhead other
+for i in $(seq 10); do
+	SLOW_CPU=$OCCX_CPU $BUILD/test/ultoverhead overall
+done
+log $(date -Ins) end ultoverhead other
+
+
+log Changing to asymmetric configuration...
+echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_setspeed > /dev/null
+echo "${frequencies[1]}" | sudo tee /sys/devices/system/cpu/cpu{0,1}/cpufreq/scaling_setspeed > /dev/null
+sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
+log
+
+log $(date -Ins) start ultoverhead asym
+for i in $(seq 10); do
+	$BUILD/test/ultoverhead overall
+done
+log $(date -Ins) end ultoverhead asym
+
+log $(date -Ins) start only fast cpu
+run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro --only-cpu
+log $(date -Ins) end only fast cpu
+
+log $(date -Ins) start only slow memory
+run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro --only-memory
+log $(date -Ins) end only slow memory
+
+
+log $(date -Ins) start fast/slow ultmigration
+run_micro $BUILD/test/micro
+log $(date -Ins) end fast/slow ultmigration
+
+log $(date -Ins) start fast/slow ultmigration to other CCX
+SLOW_CPU=$OCCX_CPU run_micro $BUILD/test/micro
+log $(date -Ins) end fast/slow ultmigration to other CCX
+
+
+log Setting P2 for all cores...
+echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_setspeed > /dev/null
+sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
+log
+
+log $(date -Ins) "start only slow memory (all P2)"
+run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro --only-memory
+log $(date -Ins) "end only slow memory (all P2)"
+
+
+log $(date -Ins) Benchmark end
