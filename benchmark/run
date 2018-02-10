@@ -6,6 +6,9 @@ set -eu
 
 # CPUs used for ultmigration
 export FAST_CPU=0 SLOW_CPU=2
+# CPUs used for ult_idle during baseline tests.
+IDLE_FAST_CPU=4
+IDLE_SLOW_CPU=5
 # CPU used for power monitoring.
 OTHER_CPU=11
 
@@ -19,6 +22,9 @@ MEMORY_BENCH=(indirect_access pointer_chasing)
 CPU_BENCH=(some)
 MEMORY_RATIO=(1 0.8 0.6)
 CPU_RATIO=(1 0.8 0.6)
+
+# Number of runs for each benchmark type.
+ITERATIONS=10
 
 # Extra single frequency ids as comparison.
 # Note: default "slow" is 50, "fast" is 144
@@ -58,19 +64,19 @@ log MEMORY_BENCH $MEMORY_BENCH
 log CPU_BENCH $CPU_BENCH
 log MEMORY_RATIO $MEMORY_RATIO
 log CPU_RATIO $CPU_RATIO
+log ITERATIONS $ITERATIONS
 log
 
 log Setting P-states...
-# The voltage levels are fixed for the three P-states on our platform. Skip the
-# first P-state as the middle voltage is sufficient for the base clock.
-sudo $BUILD/tools/amdpstate def 1 CpuFid=144 # 3600 MHz
+# The voltage levels are fixed for the three P-states on our platform.
+sudo $BUILD/tools/amdpstate def 0 CpuFid=144 # 3600 MHz
 sudo $BUILD/tools/amdpstate def 2 CpuFid=50  #  800 MHz
 
 echo userspace | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_governor > /dev/null
 # Set the first core to the middle p-state, rest to the last. (zsh arrays are indexed from 1)
 frequencies=("${=$(< /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies)}")
 echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_setspeed > /dev/null
-echo "${frequencies[2]}" | sudo tee /sys/devices/system/cpu/cpu{0,1}/cpufreq/scaling_setspeed > /dev/null
+echo "${frequencies[1]}" | sudo tee /sys/devices/system/cpu/cpu{0,1}/cpufreq/scaling_setspeed > /dev/null
 
 sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
 log
@@ -118,34 +124,53 @@ run_micro() {
 }
 
 log $(date -Ins) start fast/slow ultmigration
-run_micro $BUILD/test/micro
+for i in $(seq $ITERATIONS); do
+	run_micro $BUILD/test/micro
+done
 log $(date -Ins) end fast/slow ultmigration
 
+# During the baseline runs, run ult_idle to make results comparable.
+log Starting ult_idle...
+FAST_CPU=$IDLE_FAST_CPU SLOW_CPU=$IDLE_SLOW_CPU $BUILD/test/ult_idle slow &
+
 log $(date -Ins) start only fast baseline
-run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro
+for i in $(seq $ITERATIONS); do
+	run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro
+done
 log $(date -Ins) end only fast baseline
 
 log $(date -Ins) start only slow baseline
-run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro
+for i in $(seq $ITERATIONS); do
+	run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro
+done
 log $(date -Ins) end only slow baseline
 
 for fid in $CPU_FIDS; do
-	sudo $BUILD/tools/amdpstate def 1 CpuFid=$fid
+	sudo $BUILD/tools/amdpstate def 0 CpuFid=$fid
 	sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
 	log $(date -Ins) start CpuFid $fid
-	run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c 0 $BUILD/test/micro
+	for i in $(seq $ITERATIONS); do
+		run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c 0 $BUILD/test/micro
+	done
 	log $(date -Ins) end CpuFid $fid
 done
 
+log Killing ult_idle...
+kill -SIGTERM %%
+
 # Reset frequency settings.
-sudo $BUILD/tools/amdpstate def 1 CpuFid=144
+sudo $BUILD/tools/amdpstate def 0 CpuFid=144
 
 log $(date -Ins) start swp on fast
-run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro_swp
+for i in $(seq $ITERATIONS); do
+	run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro_swp
+done
 log $(date -Ins) end swp on fast
 
 log $(date -Ins) start swp on slow
-run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro_swp
+for i in $(seq $ITERATIONS); do
+	run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro_swp
+done
 log $(date -Ins) end swp on slow
 
 log $(date -Ins) Benchmark end
