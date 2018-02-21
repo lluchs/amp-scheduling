@@ -118,14 +118,16 @@ for pstate in $(seq 3); do
 	# Set given P-state on one core of the same CCX only (usual migration scenario).
 	echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_setspeed > /dev/null
 	echo "${frequencies[$pstate]}" | sudo tee /sys/devices/system/cpu/cpu{0,1}/cpufreq/scaling_setspeed > /dev/null
-	# MWAIT on slow core (as other benchmark runs).
-	$BUILD/test/ult_idle fast &
-	sleep 1
-	log $(date -Ins) start mwait pstate_same $pstate
-	sleep 20
-	log $(date -Ins) end mwait pstate_same $pstate
-	kill -SIGTERM %%
-	sleep 5
+	# MWAIT on slow and fast core.
+	for sf in fast slow; do
+		$BUILD/test/ult_idle $sf &
+		sleep 1
+		log $(date -Ins) start mwait_$sf pstate_same $pstate
+		sleep 20
+		log $(date -Ins) end mwait_$sf pstate_same $pstate
+		kill -SIGTERM %%
+		sleep 5
+	done
 done
 
 for cpuvid in 46 37 28; do
