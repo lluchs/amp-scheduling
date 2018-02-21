@@ -115,13 +115,13 @@ run_micro() {
 
 log $(date -Ins) start ultoverhead
 for i in $(seq 10); do
-	$BUILD/test/ultoverhead overall
+	$BUILD/test/ultoverhead overall &>> $bd/log
 done
 log $(date -Ins) end ultoverhead
 
 log $(date -Ins) start ultoverhead other
 for i in $(seq 10); do
-	SLOW_CPU=$OCCX_CPU $BUILD/test/ultoverhead overall
+	SLOW_CPU=$OCCX_CPU $BUILD/test/ultoverhead overall &>> $bd/log
 done
 log $(date -Ins) end ultoverhead other
 
@@ -134,7 +134,7 @@ log
 
 log $(date -Ins) start ultoverhead asym
 for i in $(seq 10); do
-	$BUILD/test/ultoverhead overall
+	$BUILD/test/ultoverhead overall &>> $bd/log
 done
 log $(date -Ins) end ultoverhead asym
 
