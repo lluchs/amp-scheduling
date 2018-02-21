@@ -1,7 +1,6 @@
 #!/usr/bin/env Rscript
 
 library(tidyverse)
-library(sqldf)
 
 pdf(NULL) # prevent Rplot.pdf files
 
@@ -44,20 +43,9 @@ freq <- read_tsv("freq.tsv", col_types =
 	 )
 
 powermeter <- read_tsv("powermeter.tsv")
-rapl <- read_tsv("rapl.tsv")
-# Join powermeter data via time ranges. Ignore the first second as the power
-# meter takes a bit of time to react.
-power_log <- sqldf("select tlog.*, avg(power) power from tlog
-		   left join powermeter on datetime(time, 'unixepoch') > datetime(time_start, 'unixepoch', '+1 second') and time < time_end
-		   group by time_start, time_end") %>% as.tibble()
-
-rapl_log <- sqldf("select tlog.*, avg(package) package, avg(core0) core0, avg(core1) core1, avg(core2) core2
-		  from tlog
-		  left join rapl on time > time_start and time < time_end
-		  group by time_start, time_end") %>% as.tibble()
-
-# Powermeter readings outside of benchmark execution.
-idle_power <- sqldf("select * from powermeter where time not in (select time from powermeter, tlog where time > time_start and time < time_end)") %>% as.tibble()
+power_log <- read_tsv("power_log.tsv", guess_max = 2000)
+rapl_log <- read_tsv("rapl_log.tsv", guess_max = 2000)
+idle_power <- read_tsv("idle_power.tsv")
 avg_idle_power <- as.double(idle_power %>% summarize(mean(power)))
 
 # Scale used in multiple graphs.
@@ -85,7 +73,7 @@ if ((file <- outname("powermeter")) != FALSE) {
 	ggsave(file, width = 150, height = 20, units = "cm", limitsize = FALSE, device = device)
 }
 
-cpufid <- power_log %>%
+cpufid_tsv <- power_log %>%
 	filter(type == "CpuFid") %>%
 	left_join(freq  %>% rename_at(paste0("core", c(0:5)), funs(paste0("freq.", .))), by = "cpufid") %>%
 	mutate(freq = freq.core0) %>%
@@ -93,7 +81,7 @@ cpufid <- power_log %>%
 	summarize(duration = mean(duration), power = mean(power)) %>%
 	select(type, freq, memory_bench, cpu_ratio, memory_ratio, power, duration)
 
-write.table(cpufid, file='cpufid.tsv', quote=FALSE, sep='\t', row.names=FALSE)
+write.table(cpufid_tsv, file='cpufid.tsv', quote=FALSE, sep='\t', row.names=FALSE)
 
 # Graph to compare power behavior between fast/slow/fast+slow.
 powergraph <- function(data)
@@ -130,8 +118,8 @@ if ((file <- outname("fastslow-rapl")) != FALSE) {
 }
 
 swp <- power_log %>% filter(str_detect(type, "swp")) %>%
-	group_by(type, memory_bench, memory_ratio, cpu_ratio) %>%
-	summarize(swp_cpu_instr = mean(swp_cpu_instr), swp_cpu_cpi = mean(swp_cpu_cpi), swp_cpu_l2 = mean(swp_cpu_l2), swp_cpu_l3 = mean(swp_cpu_l3), swp_mem_instr = mean(swp_mem_instr), swp_mem_cpi = mean(swp_mem_cpi), swp_mem_l2 = mean(swp_mem_l2), swp_mem_l3 = mean(swp_mem_l3))
+	group_by(type, memory_bench, memory_ratio, cpu_ratio, cpufid) %>%
+	summarize(duration = mean(duration), swp_cpu_instr = mean(swp_cpu_instr), swp_cpu_cpi = mean(swp_cpu_cpi), swp_cpu_l2 = mean(swp_cpu_l2), swp_cpu_l3 = mean(swp_cpu_l3), swp_mem_instr = mean(swp_mem_instr), swp_mem_cpi = mean(swp_mem_cpi), swp_mem_l2 = mean(swp_mem_l2), swp_mem_l3 = mean(swp_mem_l3))
 swp_fast <- swp %>% filter(str_detect(type, "fast"))
 swp_slow <- swp %>% filter(str_detect(type, "slow"))
 swp_combined <- inner_join(swp_fast, swp_slow, by = c("memory_bench", "cpu_ratio", "memory_ratio"), suffix = c(".fast", ".slow"))
