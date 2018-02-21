@@ -21,6 +21,8 @@ vcore() {
 		sleep 1
 	done
 }
+# Make sure the vcore driver is loaded.
+sudo modprobe it87
 
 # Path to build directory
 BUILD=../build
