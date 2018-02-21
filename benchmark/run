@@ -146,11 +146,11 @@ done
 log $(date -Ins) end only slow baseline
 
 for fid in $CPU_FIDS; do
-	sudo $BUILD/tools/amdpstate def 0 CpuFid=$fid
+	sudo $BUILD/tools/amdpstate def 2 CpuFid=$fid
 	sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
 	log $(date -Ins) start CpuFid $fid
 	for i in $(seq $ITERATIONS); do
-		run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c 0 $BUILD/test/micro
+		run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro
 	done
 	log $(date -Ins) end CpuFid $fid
 done
@@ -159,7 +159,7 @@ log Killing ult_idle...
 kill -SIGTERM %%
 
 # Reset frequency settings.
-sudo $BUILD/tools/amdpstate def 0 CpuFid=144
+sudo $BUILD/tools/amdpstate def 2 CpuFid=50
 
 log $(date -Ins) start swp on fast
 for i in $(seq $ITERATIONS); do
