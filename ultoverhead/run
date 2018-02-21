@@ -138,6 +138,14 @@ for i in $(seq 10); do
 done
 log $(date -Ins) end ultoverhead asym
 
+log $(date -Ins) start ultoverhead asym other
+for i in $(seq 10); do
+	SLOW_CPU=$OCCX_CPU $BUILD/test/ultoverhead overall &>> $bd/log
+done
+log $(date -Ins) end ultoverhead asym other
+
+
+
 # Different memory/cpu ratios don't make sense when running with --only-cpu/memory
 log $(date -Ins) start only fast cpu
 MEMORY_RATIO=(1) run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro --only-cpu
@@ -163,7 +171,7 @@ sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
 log
 
 log $(date -Ins) "start only slow memory (all P2)"
-run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro --only-memory
+CPU_RATIO=(1) run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro --only-memory
 log $(date -Ins) "end only slow memory (all P2)"
 
 
