@@ -1,0 +1,80 @@
+Benchmark configuration
+FAST_CPU=0 SLOW_CPU=2
+OTHER_CPU=11
+
+Setting P-states...
+CPU  0: P0 frequency = 3600 MHz
+CPU  0: effective frequency (ro) = 1674 MHz
+CPU  0: effective frequency      = 2338 MHz
+CPU  1: P0 frequency = 3600 MHz
+CPU  1: effective frequency (ro) = 778 MHz
+CPU  1: effective frequency      = 2486 MHz
+CPU  2: P0 frequency = 3600 MHz
+CPU  2: effective frequency (ro) = 701 MHz
+CPU  2: effective frequency      = 961 MHz
+CPU  3: P0 frequency = 3600 MHz
+CPU  3: effective frequency (ro) = 526 MHz
+CPU  3: effective frequency      = 961 MHz
+CPU  4: P0 frequency = 3600 MHz
+CPU  4: effective frequency (ro) = 346 MHz
+CPU  4: effective frequency      = 961 MHz
+CPU  5: P0 frequency = 3600 MHz
+CPU  5: effective frequency (ro) = 562 MHz
+CPU  5: effective frequency      = 961 MHz
+CPU  6: P0 frequency = 3600 MHz
+CPU  6: effective frequency (ro) = 283 MHz
+CPU  6: effective frequency      = 833 MHz
+CPU  7: P0 frequency = 3600 MHz
+CPU  7: effective frequency (ro) = 310 MHz
+CPU  7: effective frequency      = 833 MHz
+CPU  8: P0 frequency = 3600 MHz
+CPU  8: effective frequency (ro) = 259 MHz
+CPU  8: effective frequency      = 833 MHz
+CPU  9: P0 frequency = 3600 MHz
+CPU  9: effective frequency (ro) = 307 MHz
+CPU  9: effective frequency      = 833 MHz
+CPU 10: P0 frequency = 3600 MHz
+CPU 10: effective frequency (ro) = 241 MHz
+CPU 10: effective frequency      = 833 MHz
+CPU 11: P0 frequency = 3600 MHz
+CPU 11: effective frequency (ro) = 297 MHz
+CPU 11: effective frequency      = 833 MHz
+
+2018-02-21T09:55:06,784991959+01:00 Benchmark start
+2018-02-21T09:55:07,872923136+01:00 start idle pstate 1
+2018-02-21T09:55:27,875588354+01:00 end idle pstate 1
+2018-02-21T09:55:33,914142694+01:00 start idle pstate 2
+2018-02-21T09:55:53,917070793+01:00 end idle pstate 2
+2018-02-21T09:55:59,958764841+01:00 start idle pstate 3
+2018-02-21T09:56:19,965503932+01:00 end idle pstate 3
+2018-02-21T09:56:26,063144195+01:00 start mwait pstate 1
+2018-02-21T09:56:46,065132984+01:00 end mwait pstate 1
+2018-02-21T09:56:52,095935540+01:00 start mwait pstate 2
+2018-02-21T09:57:12,098199782+01:00 end mwait pstate 2
+2018-02-21T09:57:18,143356676+01:00 start mwait pstate 3
+2018-02-21T09:57:38,150039266+01:00 end mwait pstate 3
+2018-02-21T09:57:44,282624022+01:00 start mwait pstate_other 1
+2018-02-21T09:58:04,285235863+01:00 end mwait pstate_other 1
+2018-02-21T09:58:10,375361590+01:00 start mwait pstate_other 2
+2018-02-21T09:58:30,378969641+01:00 end mwait pstate_other 2
+2018-02-21T09:58:36,496122554+01:00 start mwait pstate_other 3
+2018-02-21T09:58:56,501847624+01:00 end mwait pstate_other 3
+2018-02-21T09:59:02,642458850+01:00 start mwait_fast pstate_same 1
+2018-02-21T09:59:22,649109662+01:00 end mwait_fast pstate_same 1
+2018-02-21T09:59:28,657090784+01:00 start mwait_slow pstate_same 1
+2018-02-21T09:59:48,662673379+01:00 end mwait_slow pstate_same 1
+2018-02-21T09:59:54,802519428+01:00 start mwait_fast pstate_same 2
+2018-02-21T10:00:14,808824946+01:00 end mwait_fast pstate_same 2
+2018-02-21T10:00:20,817494001+01:00 start mwait_slow pstate_same 2
+2018-02-21T10:00:40,822700362+01:00 end mwait_slow pstate_same 2
+2018-02-21T10:00:46,930449961+01:00 start mwait_fast pstate_same 3
+2018-02-21T10:01:06,936700515+01:00 end mwait_fast pstate_same 3
+2018-02-21T10:01:12,946521945+01:00 start mwait_slow pstate_same 3
+2018-02-21T10:01:32,952085613+01:00 end mwait_slow pstate_same 3
+2018-02-21T10:01:39,081682993+01:00 start mwait cpuvid 46
+2018-02-21T10:01:59,083757687+01:00 end mwait cpuvid 46
+2018-02-21T10:02:05,128464107+01:00 start mwait cpuvid 37
+2018-02-21T10:02:25,130273684+01:00 end mwait cpuvid 37
+2018-02-21T10:02:31,173218157+01:00 start mwait cpuvid 28
+2018-02-21T10:02:51,175026478+01:00 end mwait cpuvid 28
+2018-02-21T10:02:56,177600378+01:00 Benchmark end
