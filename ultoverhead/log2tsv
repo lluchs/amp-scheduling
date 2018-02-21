@@ -1,0 +1,51 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	OFS = "\t";
+	print "type", "time_start", "time_end", \
+			 "ultoverhead", \
+			 "memory_bench", "cpu_bench", "memory_ratio", "cpu_ratio";
+}
+
+/start / {
+	time_start = $1;
+	type = gensub(/^.*start /, "", 1);
+}
+
+/start:/ { time_start = $1 }
+/end:/ {
+	time_end = $1;
+	print type, time_start, time_end, \
+	      "", \
+	      memory_bench, cpu_bench, memory_ratio, cpu_ratio;
+      memory_bench = cpu_bench = memory_ratio = cpu_ratio = "";
+}
+
+/end / && ultoverhead_count > 0 {
+	time_end = $1;
+	print type, time_start, time_end, \
+	      ultoverhead / ultoverhead_count, \
+	      memory_bench, cpu_bench, memory_ratio, cpu_ratio;
+	ultoverhead_count = 0;
+}
+
+/for [0-9]+ migrations/ {
+	ultoverhead += $6;
+	ultoverhead_count += 1;
+}
+
+/^MEMORY_BENCH = / {
+	memory_bench = $3;
+	if ($4 == "@")
+		memory_ratio = $5;
+	else
+		memory_ratio = 1;
+}
+/^CPU_BENCH = / {
+	cpu_bench = $3
+	if ($4 == "@")
+		cpu_ratio = $5;
+	else
+		cpu_ratio = 1;
+}
+
