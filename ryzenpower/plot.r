@@ -52,6 +52,8 @@ rapl_log <- sqldf("select tlog.*, avg(package) package, avg(core0) core0, avg(co
 idle_power <- sqldf("select * from powermeter where time not in (select time from powermeter, tlog where time > time_start and time < time_end)") %>% as.tibble()
 avg_idle_power <- as.double(idle_power %>% summarize(mean(power)))
 
+min_power <- as.double(power_log %>% summarize(min(power)))
+
 if ((file <- outname("powermeter")) != FALSE) {
 	# Graph to check power meter behavior: does it reset properly between runs?
 	ggplot() +
@@ -64,7 +66,8 @@ if ((file <- outname("powermeter")) != FALSE) {
 
 if ((file <- outname("pstate-power")) != FALSE) {
 	ggplot(power_log %>% filter(!is.na(pstate))) +
-		geom_col(aes(x = factor(pstate), y = power)) +
+		geom_col(aes(x = paste0("P", pstate-1), y = power - min_power)) +
+		xlab("P-state") + ylab("Power (W)") +
 		facet_wrap(~type)
 
 	ggsave(file, width = 20, height = 20, units = "cm", device = device)
