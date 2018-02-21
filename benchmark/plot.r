@@ -24,7 +24,7 @@ if ((font_size <- Sys.getenv("FONT_SIZE")) != "") {
 	theme_update(text = element_text(size = as.integer(font_size)))
 }
 
-log <- read_tsv("log.tsv")
+log <- read_tsv("log.tsv", guess_max = 2000)
 # parse_datetime can't handle , as ISO8601 separator
 tlog <- log %>%
 	mutate(time_start = parse_datetime(stringr::str_replace(time_start, ",", ".")),
@@ -85,6 +85,16 @@ if ((file <- outname("powermeter")) != FALSE) {
 	ggsave(file, width = 150, height = 20, units = "cm", limitsize = FALSE, device = device)
 }
 
+cpufid <- power_log %>%
+	filter(type == "CpuFid") %>%
+	left_join(freq  %>% rename_at(paste0("core", c(0:5)), funs(paste0("freq.", .))), by = "cpufid") %>%
+	mutate(freq = freq.core0) %>%
+	group_by(type, memory_bench, cpu_ratio, memory_ratio, freq) %>%
+	summarize(duration = mean(duration), power = mean(power)) %>%
+	select(type, freq, memory_bench, cpu_ratio, memory_ratio, power, duration)
+
+write.table(cpufid, file='cpufid.tsv', quote=FALSE, sep='\t', row.names=FALSE)
+
 # Graph to compare power behavior between fast/slow/fast+slow.
 powergraph <- function(data)
 	ggplot(data %>%
@@ -92,10 +102,12 @@ powergraph <- function(data)
 		       mutate(freq = case_when(
 				type == "only fast baseline" ~ freq.core0,
 				type == "only slow baseline" ~ freq.core1,
-				type == "CpuFid" ~ freq.core2
+				type == "CpuFid" ~ freq.core0
 		              ),
 			      type = ifelse(str_detect(type, "ultmigration"), "migration", "constant frequency"),
-			      cpu_ratio = -cpu_ratio, memory_ratio = -memory_ratio),
+			      cpu_ratio = -cpu_ratio, memory_ratio = -memory_ratio) %>%
+		       group_by(type, memory_bench, cpu_ratio, memory_ratio, freq) %>%
+		       summarize(duration = mean(duration), power = mean(power)),
 	       aes(x = duration, y = power)) +
 		geom_line(aes(color = memory_bench), data = function(d) d %>% filter(!str_detect(type, "migration"))) +
 		geom_point(aes(shape = type, color = memory_bench), stroke = 1.3, data = function(d) d %>% filter(str_detect(type, "migration")), show.legend = FALSE) +
@@ -117,7 +129,9 @@ if ((file <- outname("fastslow-rapl")) != FALSE) {
 	ggsave(file, width = 25, height = 20, units = "cm", device = device)
 }
 
-swp <- power_log %>% filter(str_detect(type, "swp"))
+swp <- power_log %>% filter(str_detect(type, "swp")) %>%
+	group_by(type, memory_bench, memory_ratio, cpu_ratio) %>%
+	summarize(swp_cpu_instr = mean(swp_cpu_instr), swp_cpu_cpi = mean(swp_cpu_cpi), swp_cpu_l2 = mean(swp_cpu_l2), swp_cpu_l3 = mean(swp_cpu_l3), swp_mem_instr = mean(swp_mem_instr), swp_mem_cpi = mean(swp_mem_cpi), swp_mem_l2 = mean(swp_mem_l2), swp_mem_l3 = mean(swp_mem_l3))
 swp_fast <- swp %>% filter(str_detect(type, "fast"))
 swp_slow <- swp %>% filter(str_detect(type, "slow"))
 swp_combined <- inner_join(swp_fast, swp_slow, by = c("memory_bench", "cpu_ratio", "memory_ratio"), suffix = c(".fast", ".slow"))
