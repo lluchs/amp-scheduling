@@ -28,7 +28,7 @@ ITERATIONS=10
 
 # Extra single frequency ids as comparison.
 # Note: default "slow" is 50, "fast" is 144
-CPU_FIDS=(69 88 106 125)
+CPU_FIDS=(144 125 106 88 69 50)
 
 # Path to build directory
 BUILD=../build
