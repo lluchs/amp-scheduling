@@ -23,9 +23,9 @@ if ((font_size <- Sys.getenv("FONT_SIZE")) != "") {
 	theme_update(text = element_text(size = as.integer(font_size)))
 }
 
-log <- read_tsv("log.tsv", guess_max = 2000)
+log <- read_tsv("power_log.tsv", guess_max = 2000)
 # parse_datetime can't handle , as ISO8601 separator
-tlog <- log %>%
+power_log <- log %>%
 	mutate(time_start = parse_datetime(stringr::str_replace(time_start, ",", ".")),
 	       time_end = parse_datetime(stringr::str_replace(time_end, ",", ".")),
 	       duration = as.numeric(time_end - time_start))
@@ -43,10 +43,9 @@ freq <- read_tsv("freq.tsv", col_types =
 	 )
 
 powermeter <- read_tsv("powermeter.tsv")
-power_log <- read_tsv("power_log.tsv", guess_max = 2000)
-rapl_log <- read_tsv("rapl_log.tsv", guess_max = 2000)
-idle_power <- read_tsv("idle_power.tsv")
-avg_idle_power <- as.double(idle_power %>% summarize(mean(power)))
+#avg_idle_power <- as.double(idle_power %>% summarize(mean(power)))
+# TODO: Calculate differently
+avg_idle_power <- 39.0
 
 # Scale used in multiple graphs.
 mk_memory_bench_scale <- function(sc)
@@ -55,7 +54,7 @@ mk_memory_bench_scale <- function(sc)
 mixed_labeller <- function(title) as_labeller(function(x) paste0(title, ": ", -100 * as.double(x), "%"))
 
 if ((file <- outname("duration")) != FALSE) {
-	ggplot(data = tlog, mapping = aes(x = type, y = duration, shape = memory_bench)) +
+	ggplot(data = power_log, mapping = aes(x = type, y = duration, shape = memory_bench)) +
 		geom_jitter(aes(color = memory_ratio, fill = cpu_ratio), stroke = 1.5, size = 2) +
 		scale_shape_manual(values = c(21, 22)) +
 		scale_color_gradient(low = "red", high = "orange")
@@ -67,8 +66,8 @@ if ((file <- outname("powermeter")) != FALSE) {
 	# Graph to check power meter behavior: does it reset properly between runs?
 	ggplot() +
 		geom_line(aes(x = time, y = power), powermeter) +
-		geom_vline(aes(xintercept = time_start), tlog, color = "green") +
-		geom_vline(aes(xintercept = time_end), tlog, color = "red")
+		geom_vline(aes(xintercept = time_start), power_log, color = "green") +
+		geom_vline(aes(xintercept = time_end), power_log, color = "red")
 
 	ggsave(file, width = 150, height = 20, units = "cm", limitsize = FALSE, device = device)
 }
@@ -113,7 +112,7 @@ if ((file <- outname("fastslow-power")) != FALSE) {
 	ggsave(file, width = 25, height = 20, units = "cm", device = device)
 }
 if ((file <- outname("fastslow-rapl")) != FALSE) {
-	powergraph(rapl_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = core0+core1+core2))
+	powergraph(power_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = core0+core1+core2))
 	ggsave(file, width = 25, height = 20, units = "cm", device = device)
 }
 

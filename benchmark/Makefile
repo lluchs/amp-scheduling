@@ -23,9 +23,8 @@ analysis/$(b)/powermeter.tsv: results/$(b)/powermeter powermeter2tsv
 analysis/$(b)/rapl.tsv: results/$(b)/rapl rapl2tsv
 	$(AWK) -f rapl2tsv $< > $@
 
-# Note: also generates rapl_log.tsv and idle_power.tsv
-analysis/$(b)/power_log.tsv: $(addprefix analysis/$(b)/,log.tsv powermeter.tsv rapl.tsv) power_log.r
-	cd analysis/$(b) && ../../power_log.r
+analysis/$(b)/power_log.tsv: $(addprefix analysis/$(b)/,log.tsv powermeter.tsv rapl.tsv) power_log.awk
+	$(AWK) -f power_log.awk -v'power_file=analysis/$(b)/powermeter.tsv' -v'rapl_file=analysis/$(b)/rapl.tsv' $< > $@
 
 plot: tsv
 	cd analysis/$(b) && ../../plot.r $(plotargs)
