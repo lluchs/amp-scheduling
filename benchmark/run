@@ -23,8 +23,11 @@ CPU_BENCH=(some)
 MEMORY_RATIO=(1 0.8 0.6)
 CPU_RATIO=(1 0.8 0.6)
 
+# Whether to run SWP.
+RUN_SWP=0
+
 # Number of runs for each benchmark type.
-ITERATIONS=10
+ITERATIONS=3
 
 # Extra single frequency ids as comparison.
 # Note: default "slow" is 50, "fast" is 144
@@ -129,6 +132,10 @@ for i in $(seq $ITERATIONS); do
 done
 log $(date -Ins) end fast/slow ultmigration
 
+log $(date -Ins) start idle
+sleep 60
+log $(date -Ins) end idle
+
 # During the baseline runs, run ult_idle to make results comparable.
 log Starting ult_idle...
 FAST_CPU=$IDLE_FAST_CPU SLOW_CPU=$IDLE_SLOW_CPU $BUILD/test/ult_idle slow &
@@ -145,8 +152,10 @@ for i in $(seq $ITERATIONS); do
 done
 log $(date -Ins) end only slow baseline
 
+# Set core 2 to P1.
+echo "${frequencies[2]}" | sudo tee /sys/devices/system/cpu/cpu{2,3}/cpufreq/scaling_setspeed > /dev/null
 for fid in $CPU_FIDS; do
-	sudo $BUILD/tools/amdpstate def 2 CpuFid=$fid
+	sudo $BUILD/tools/amdpstate def 1 CpuFid=$fid
 	sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
 	log $(date -Ins) start CpuFid $fid
 	for i in $(seq $ITERATIONS); do
@@ -159,18 +168,22 @@ log Killing ult_idle...
 kill -SIGTERM %%
 
 # Reset frequency settings.
-sudo $BUILD/tools/amdpstate def 2 CpuFid=50
+echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu{2,3}/cpufreq/scaling_setspeed > /dev/null
 
-log $(date -Ins) start swp on fast
-for i in $(seq $ITERATIONS); do
-	run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro_swp
-done
-log $(date -Ins) end swp on fast
+if ((RUN_SWP)); then
 
-log $(date -Ins) start swp on slow
-for i in $(seq $ITERATIONS); do
-	run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro_swp
-done
-log $(date -Ins) end swp on slow
+	log $(date -Ins) start swp on fast
+	for i in $(seq $ITERATIONS); do
+		run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro_swp
+	done
+	log $(date -Ins) end swp on fast
+
+	log $(date -Ins) start swp on slow
+	for i in $(seq $ITERATIONS); do
+		run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro_swp
+	done
+	log $(date -Ins) end swp on slow
+
+fi
 
 log $(date -Ins) Benchmark end
