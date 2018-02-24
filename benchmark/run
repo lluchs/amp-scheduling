@@ -20,18 +20,18 @@ powermeter() {
 # test/micro parameters
 MEMORY_BENCH=(indirect_access pointer_chasing)
 CPU_BENCH=(some)
-MEMORY_RATIO=(1 0.8)
-CPU_RATIO=(1 0.8)
+MEMORY_RATIO=(1 0.8 0.6)
+CPU_RATIO=(1 0.8 0.6)
 
 # Whether to run SWP.
 RUN_SWP=0
 
 # Number of runs for each benchmark type.
-ITERATIONS=3
+ITERATIONS=5
 
 # Extra single frequency ids as comparison.
 # Note: default "slow" is 50, "fast" is 144
-CPU_FIDS=(144 125 106 88 69 50)
+CPU_FIDS=(125 106 88 69)
 
 # Path to build directory
 BUILD=../build
@@ -152,12 +152,14 @@ for i in $(seq $ITERATIONS); do
 done
 log $(date -Ins) end only slow baseline
 
+# Set core 2 to P1.
+echo "${frequencies[2]}" | sudo tee /sys/devices/system/cpu/cpu{2,3}/cpufreq/scaling_setspeed > /dev/null
 for fid in $CPU_FIDS; do
-	sudo $BUILD/tools/amdpstate def 0 CpuFid=$fid
+	sudo $BUILD/tools/amdpstate def 1 CpuFid=$fid
 	sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
 	log $(date -Ins) start CpuFid $fid
 	for i in $(seq $ITERATIONS); do
-		run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro
+		run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro
 	done
 	log $(date -Ins) end CpuFid $fid
 done
@@ -166,7 +168,7 @@ log Killing ult_idle...
 kill -SIGTERM %%
 
 # Reset frequency settings.
-sudo $BUILD/tools/amdpstate def 0 CpuFid=144
+echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu{2,3}/cpufreq/scaling_setspeed > /dev/null
 
 if ((RUN_SWP)); then
 
