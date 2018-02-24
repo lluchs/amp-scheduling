@@ -27,9 +27,9 @@ analysis/$(b)/power_log.tsv: $(addprefix analysis/$(b)/,log.tsv powermeter.tsv r
 	$(AWK) -f power_log.awk -v'power_file=analysis/$(b)/powermeter.tsv' -v'rapl_file=analysis/$(b)/rapl.tsv' $< > $@
 
 # R-based TSV
-tsv2: tsv analysis/$(b)/swp_cpi.tsv
+tsv2: tsv analysis/$(b)/swp_cpi.tsv analysis/$(b)/swp_l3.tsv
 
-analysis/$(b)/swp_cpi.tsv: $(addprefix analysis/$(b)/,power_log.tsv) plot_data.r
+analysis/$(b)/swp_cpi.tsv analysis/$(b)/swp_l3.tsv: $(addprefix analysis/$(b)/,power_log.tsv) plot_data.r
 	$(MAKE) plot_data
 
 plot: tsv

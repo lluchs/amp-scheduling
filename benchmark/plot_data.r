@@ -39,7 +39,6 @@ swp_cpi <- swp_combined %>%
 	filter(cpu_ratio == memory_ratio) %>%
 	mutate(mixed = -cpu_ratio)
 
-
 write.table(swp_cpi %>% ungroup() %>%
 			select(mixed, cpi_ratio, cpi_type, memory_bench) %>%
 			mutate(cpi_type = ifelse(cpi_type == "cpu", "CPU", "Memory")) %>%
@@ -48,3 +47,14 @@ write.table(swp_cpi %>% ungroup() %>%
 			mutate(mixed = paste0(as.double(-mixed*100), "%")),
 		file='swp_cpi.tsv', quote=FALSE, sep='\t', row.names=FALSE)
 
+write.table(swp_fast %>% ungroup() %>%
+		    filter(cpu_ratio == memory_ratio) %>%
+	            transmute(mixed = cpu_ratio, memory_bench, CPU = swp_cpu_l3, Memory = swp_mem_l3) %>%
+	            arrange(desc(mixed)) %>%
+	            mutate(mixed = paste0(as.double(mixed*100), "%")),
+		file='swp_l3.tsv', quote=FALSE, sep='\t', row.names=FALSE)
+
+swp_l3 <- swp %>%
+	gather(swp_mem_l3, swp_cpu_l3, key = "l3_type", value = "l3") %>%
+	filter(cpu_ratio == memory_ratio) %>%
+	mutate(mixed = -cpu_ratio)
