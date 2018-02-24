@@ -86,11 +86,11 @@ write.table(cpufid_tsv, file='cpufid.tsv', quote=FALSE, sep='\t', row.names=FALS
 powergraph <- function(data)
 	ggplot(data %>%
 		       left_join(freq  %>% rename_at(paste0("core", c(0:5)), funs(paste0("freq.", .))), by = "cpufid") %>%
-		       mutate(freq = case_when(
+		       mutate(freq = signif(case_when(
 				type == "only fast baseline" ~ freq.core0,
 				type == "only slow baseline" ~ freq.core1,
-				type == "CpuFid" ~ freq.core0
-		              ),
+				type == "CpuFid" ~ freq.core1
+		              ), digits = 3),
 			      type = ifelse(str_detect(type, "ultmigration"), "migration", "constant frequency"),
 			      cpu_ratio = -cpu_ratio, memory_ratio = -memory_ratio) %>%
 		       group_by(type, memory_bench, cpu_ratio, memory_ratio, freq) %>%
