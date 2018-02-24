@@ -129,6 +129,17 @@ swp_cpi <- swp_combined %>%
 	filter(cpu_ratio == memory_ratio) %>%
 	mutate(mixed = -cpu_ratio)
 
+if ((file <- outname("cpi-pointer-chasing")) != FALSE) {
+	ggplot(data = swp_cpi %>% filter(memory_bench == 'pointer_chasing')) +
+		geom_hline(yintercept = 1) +
+		geom_col(aes(x = mixed, y = cpi_ratio, fill = cpi_type), size = 2, position = "dodge") +
+		xlab("CPU/Memory ratio") +
+		ylab("CPI ratio") +
+		coord_cartesian(ylim = c(1, 2.1)) +
+		scale_y_continuous(expand = c(0, 0))
+	ggsave(file, width = 20, height = 20, units = "cm", device = device)
+}
+
 if ((file <- outname("cpi")) != FALSE) {
 	ggplot(data = swp_cpi) +
 		geom_hline(yintercept = 1) +
