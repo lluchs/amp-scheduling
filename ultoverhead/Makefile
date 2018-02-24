@@ -22,9 +22,18 @@ analysis/$(b)/rapl.tsv: results/$(b)/rapl ../benchmark/rapl2tsv
 
 analysis/$(b)/power_log.tsv: $(addprefix analysis/$(b)/,log.tsv powermeter.tsv rapl.tsv) ../benchmark/power_log.awk
 	$(AWK) -f ../benchmark/power_log.awk -v'power_file=analysis/$(b)/powermeter.tsv' -v'rapl_file=analysis/$(b)/rapl.tsv' $< > $@
+	#
+# R-based TSV
+tsv2: tsv analysis/$(b)/ultoverhead.tsv
+
+analysis/$(b)/ultoverhead.tsv: $(addprefix analysis/$(b)/,power_log.tsv) plot_data.r
+	$(MAKE) plot_data
+
+plot_data: tsv
+	cd analysis/$(b) && ../../plot_data.r
 
 plot: tsv
 	cd analysis/$(b) && ../../plot.r $(plotargs)
 
 .DELETE_ON_ERROR:
-.PHONY: tsv plot
+.PHONY: tsv tsv plot plot_data
