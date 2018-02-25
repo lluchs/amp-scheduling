@@ -12,7 +12,7 @@ BEGIN {
 }
 
 NR == 1 {
-    print $0, "vcore", "power", "package", "core0", "core1", "core2", "core3", "core4", "core5";
+    print $0, "vcore", "vcore_min", "vcore_max", "power", "package", "core0", "core1", "core2", "core3", "core4", "core5";
     next
 }
 
@@ -21,8 +21,10 @@ function mktime_iso(time) {
     return mktime(time)
 }
 
+# Note: Sets min and max as side effect
 function summarize(file, time_start, time_end,      result, n, time) {
     result = n = 0;
+    max = 0; min = 1*"+inf";
     while(1) {
         if ((getline < file) < 0) {
             print "Early EOF on " file > "/dev/stderr";
@@ -31,6 +33,8 @@ function summarize(file, time_start, time_end,      result, n, time) {
         time = mktime_iso($1);
         if (time_start + lag > time) continue;
         if (time_end < time) break;
+        max = $2 > max ? $2 : max;
+        min = $2 < min ? $2 : min;
         result += $2;
         n++;
     }
@@ -42,6 +46,7 @@ function summarize(file, time_start, time_end,      result, n, time) {
     time_start = mktime_iso($2); time_end = mktime_iso($3);
     
     vcore = summarize(vcore_file, time_start, time_end);
+    vcore_min = min; vcore_max = max;
     power = summarize(power_file, time_start, time_end);
 
     package = core0 = core1 = core2 = core3 = core4 = core5 = 0;
@@ -59,5 +64,5 @@ function summarize(file, time_start, time_end,      result, n, time) {
         nrapl++;
     }
 
-    print line, vcore, power, package / nrapl, core0 / nrapl, core1 / nrapl, core2 / nrapl, core3 / nrapl, core4 / nrapl, core5 / nrapl
+    print line, vcore, vcore_min, vcore_max, power, package / nrapl, core0 / nrapl, core1 / nrapl, core2 / nrapl, core3 / nrapl, core4 / nrapl, core5 / nrapl
 }
