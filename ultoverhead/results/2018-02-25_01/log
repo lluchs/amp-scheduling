@@ -1,0 +1,2618 @@
+Benchmark configuration
+FAST_CPU=0 SLOW_CPU=2
+OCCX_CPU=6
+OTHER_CPU=11
+MEMORY_BENCH indirect_access pointer_chasing
+CPU_BENCH some
+MEMORY_RATIO 1 0.8 0.6
+CPU_RATIO 1 0.8 0.6
+ITERATIONS 5
+
+Setting P-states...
+CPU  0: P0 frequency = 3600 MHz
+CPU  0: effective frequency (ro) = 2239 MHz
+CPU  0: effective frequency      = 3359 MHz
+CPU  1: P0 frequency = 3600 MHz
+CPU  1: effective frequency (ro) = 761 MHz
+CPU  1: effective frequency      = 3494 MHz
+CPU  2: P0 frequency = 3600 MHz
+CPU  2: effective frequency (ro) = 1193 MHz
+CPU  2: effective frequency      = 3441 MHz
+CPU  3: P0 frequency = 3600 MHz
+CPU  3: effective frequency (ro) = 493 MHz
+CPU  3: effective frequency      = 3543 MHz
+CPU  4: P0 frequency = 3600 MHz
+CPU  4: effective frequency (ro) = 335 MHz
+CPU  4: effective frequency      = 3321 MHz
+CPU  5: P0 frequency = 3600 MHz
+CPU  5: effective frequency (ro) = 546 MHz
+CPU  5: effective frequency      = 3365 MHz
+CPU  6: P0 frequency = 3600 MHz
+CPU  6: effective frequency (ro) = 323 MHz
+CPU  6: effective frequency      = 3453 MHz
+CPU  7: P0 frequency = 3600 MHz
+CPU  7: effective frequency (ro) = 373 MHz
+CPU  7: effective frequency      = 3371 MHz
+CPU  8: P0 frequency = 3600 MHz
+CPU  8: effective frequency (ro) = 288 MHz
+CPU  8: effective frequency      = 3314 MHz
+CPU  9: P0 frequency = 3600 MHz
+CPU  9: effective frequency (ro) = 336 MHz
+CPU  9: effective frequency      = 3229 MHz
+CPU 10: P0 frequency = 3600 MHz
+CPU 10: effective frequency (ro) = 289 MHz
+CPU 10: effective frequency      = 3440 MHz
+CPU 11: P0 frequency = 3600 MHz
+CPU 11: effective frequency (ro) = 336 MHz
+CPU 11: effective frequency      = 3009 MHz
+
+2018-02-25T17:43:35,585152057+01:00 Benchmark start
+2018-02-25T17:43:35,590392851+01:00 start ultoverhead
+3.407093 s for 10000000 migrations, 3.407093e-07 s/iter
+5.363282 s for 10000000 migrations, 5.363282e-07 s/iter
+3.412756 s for 10000000 migrations, 3.412756e-07 s/iter
+5.361148 s for 10000000 migrations, 5.361148e-07 s/iter
+3.456868 s for 10000000 migrations, 3.456868e-07 s/iter
+3.362424 s for 10000000 migrations, 3.362424e-07 s/iter
+5.392596 s for 10000000 migrations, 5.392596e-07 s/iter
+3.462523 s for 10000000 migrations, 3.462523e-07 s/iter
+5.401870 s for 10000000 migrations, 5.401870e-07 s/iter
+5.404899 s for 10000000 migrations, 5.404899e-07 s/iter
+2018-02-25T17:44:19,629365015+01:00 end ultoverhead
+2018-02-25T17:44:19,630227551+01:00 start symmetric idle
+2018-02-25T17:45:19,632833105+01:00 end symmetric idle
+2018-02-25T17:45:19,633978775+01:00 start ultoverhead other
+7.405219 s for 10000000 migrations, 7.405219e-07 s/iter
+8.364678 s for 10000000 migrations, 8.364678e-07 s/iter
+8.413421 s for 10000000 migrations, 8.413421e-07 s/iter
+8.412245 s for 10000000 migrations, 8.412245e-07 s/iter
+8.399294 s for 10000000 migrations, 8.399294e-07 s/iter
+7.456479 s for 10000000 migrations, 7.456479e-07 s/iter
+8.409995 s for 10000000 migrations, 8.409995e-07 s/iter
+8.440617 s for 10000000 migrations, 8.440617e-07 s/iter
+8.450465 s for 10000000 migrations, 8.450465e-07 s/iter
+8.363784 s for 10000000 migrations, 8.363784e-07 s/iter
+2018-02-25T17:46:41,762746146+01:00 end ultoverhead other
+Changing to asymmetric configuration...
+CPU  0: P0 frequency = 3600 MHz
+CPU  0: effective frequency (ro) = 2239 MHz
+CPU  0: effective frequency      = 3468 MHz
+CPU  1: P0 frequency = 3600 MHz
+CPU  1: effective frequency (ro) = 761 MHz
+CPU  1: effective frequency      = 3087 MHz
+CPU  2: P0 frequency = 3600 MHz
+CPU  2: effective frequency (ro) = 1194 MHz
+CPU  2: effective frequency      = 1440 MHz
+CPU  3: P0 frequency = 3600 MHz
+CPU  3: effective frequency (ro) = 493 MHz
+CPU  3: effective frequency      = 1440 MHz
+CPU  4: P0 frequency = 3600 MHz
+CPU  4: effective frequency (ro) = 335 MHz
+CPU  4: effective frequency      = 1440 MHz
+CPU  5: P0 frequency = 3600 MHz
+CPU  5: effective frequency (ro) = 546 MHz
+CPU  5: effective frequency      = 1439 MHz
+CPU  6: P0 frequency = 3600 MHz
+CPU  6: effective frequency (ro) = 325 MHz
+CPU  6: effective frequency      = 833 MHz
+CPU  7: P0 frequency = 3600 MHz
+CPU  7: effective frequency (ro) = 373 MHz
+CPU  7: effective frequency      = 833 MHz
+CPU  8: P0 frequency = 3600 MHz
+CPU  8: effective frequency (ro) = 288 MHz
+CPU  8: effective frequency      = 833 MHz
+CPU  9: P0 frequency = 3600 MHz
+CPU  9: effective frequency (ro) = 336 MHz
+CPU  9: effective frequency      = 833 MHz
+CPU 10: P0 frequency = 3600 MHz
+CPU 10: effective frequency (ro) = 289 MHz
+CPU 10: effective frequency      = 833 MHz
+CPU 11: P0 frequency = 3600 MHz
+CPU 11: effective frequency (ro) = 336 MHz
+CPU 11: effective frequency      = 833 MHz
+
+2018-02-25T17:46:42,879591173+01:00 start ultoverhead asym
+5.445835 s for 10000000 migrations, 5.445835e-07 s/iter
+5.448056 s for 10000000 migrations, 5.448056e-07 s/iter
+5.452051 s for 10000000 migrations, 5.452051e-07 s/iter
+5.451497 s for 10000000 migrations, 5.451497e-07 s/iter
+5.463770 s for 10000000 migrations, 5.463770e-07 s/iter
+5.772804 s for 10000000 migrations, 5.772804e-07 s/iter
+5.730453 s for 10000000 migrations, 5.730453e-07 s/iter
+5.456538 s for 10000000 migrations, 5.456538e-07 s/iter
+5.723127 s for 10000000 migrations, 5.723127e-07 s/iter
+5.719945 s for 10000000 migrations, 5.719945e-07 s/iter
+2018-02-25T17:47:38,571504676+01:00 end ultoverhead asym
+2018-02-25T17:47:38,573581885+01:00 start ultoverhead asym other
+13.543045 s for 10000000 migrations, 1.354304e-06 s/iter
+13.773650 s for 10000000 migrations, 1.377365e-06 s/iter
+15.978447 s for 10000000 migrations, 1.597845e-06 s/iter
+13.559209 s for 10000000 migrations, 1.355921e-06 s/iter
+13.568367 s for 10000000 migrations, 1.356837e-06 s/iter
+15.674680 s for 10000000 migrations, 1.567468e-06 s/iter
+15.693335 s for 10000000 migrations, 1.569334e-06 s/iter
+15.806119 s for 10000000 migrations, 1.580612e-06 s/iter
+16.076018 s for 10000000 migrations, 1.607602e-06 s/iter
+15.975057 s for 10000000 migrations, 1.597506e-06 s/iter
+2018-02-25T17:50:08,249827232+01:00 end ultoverhead asym other
+2018-02-25T17:50:08,251481485+01:00 start asymmetric idle
+2018-02-25T17:51:08,255191278+01:00 end asymmetric idle
+2018-02-25T17:51:08,256632166+01:00 start only fast cpu
+2018-02-25T17:51:08,259461422+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:51:15,006265746+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some
+sleeping...
+2018-02-25T17:51:20,011186908+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000 (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:51:27,652295159+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T17:51:32,657270378+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000 (only)
+buffer size = 100 MiB
+done 800000000
+2018-02-25T17:51:41,259902490+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T17:51:46,265561661+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:51:53,280477881+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some
+sleeping...
+2018-02-25T17:51:58,285073724+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000 (only)
+buffer size = 100 MiB
+done -1537491688
+2018-02-25T17:52:05,874817888+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T17:52:10,879223834+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000 (only)
+buffer size = 100 MiB
+done -1341215312
+2018-02-25T17:52:19,036056730+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T17:52:24,041949659+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:52:30,790243130+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some
+sleeping...
+2018-02-25T17:52:35,794856294+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000 (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:52:43,455770802+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T17:52:48,461179105+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000 (only)
+buffer size = 100 MiB
+done 800000000
+2018-02-25T17:52:57,028748070+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T17:53:02,034155395+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:53:09,050355361+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some
+sleeping...
+2018-02-25T17:53:14,055860114+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000 (only)
+buffer size = 100 MiB
+done -332513272
+2018-02-25T17:53:21,644640823+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T17:53:26,650464678+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000 (only)
+buffer size = 100 MiB
+done -86017368
+2018-02-25T17:53:34,797158489+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T17:53:39,801045796+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:53:46,552252123+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some
+sleeping...
+2018-02-25T17:53:51,556983178+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000 (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:53:59,207941094+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T17:54:04,211545196+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000 (only)
+buffer size = 100 MiB
+done 800000000
+2018-02-25T17:54:12,818816700+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T17:54:17,824293307+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:54:24,839754357+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some
+sleeping...
+2018-02-25T17:54:29,845449286+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000 (only)
+buffer size = 100 MiB
+done -651551480
+2018-02-25T17:54:37,432370481+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T17:54:42,435259970+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000 (only)
+buffer size = 100 MiB
+done 274209368
+2018-02-25T17:54:50,549330317+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T17:54:55,553970858+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:55:02,302895762+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some
+sleeping...
+2018-02-25T17:55:07,308159633+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000 (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:55:14,965220948+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T17:55:19,971273882+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000 (only)
+buffer size = 100 MiB
+done 800000000
+2018-02-25T17:55:28,564878356+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T17:55:33,571023690+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:55:40,588007551+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some
+sleeping...
+2018-02-25T17:55:45,593482900+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000 (only)
+buffer size = 100 MiB
+done -1815863680
+2018-02-25T17:55:53,180779350+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T17:55:58,186337391+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000 (only)
+buffer size = 100 MiB
+done 1481456016
+2018-02-25T17:56:06,347911313+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T17:56:11,352655568+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:56:18,099122568+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some
+sleeping...
+2018-02-25T17:56:23,103817095+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000 (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:56:30,744045472+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T17:56:35,748138459+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000 (only)
+buffer size = 100 MiB
+done 800000000
+2018-02-25T17:56:44,375701999+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T17:56:49,379333617+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some (only)
+buffer size = 100 MiB
+done 0
+2018-02-25T17:56:56,393525978+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some
+sleeping...
+2018-02-25T17:57:01,397382554+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000 (only)
+buffer size = 100 MiB
+done 300053824
+2018-02-25T17:57:08,979815535+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T17:57:13,984672512+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 0, core = 0
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000 (only)
+buffer size = 100 MiB
+done -1060177656
+2018-02-25T17:57:22,136333384+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 0 ../build/test/micro --only-cpu pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T17:57:27,141906510+01:00 end only fast cpu
+2018-02-25T17:57:27,144653354+01:00 start only slow memory
+2018-02-25T17:57:27,148854565+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T17:57:42,200935804+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+sleeping...
+2018-02-25T17:57:47,205175318+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T17:58:11,962257185+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T17:58:16,967572388+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T17:58:44,930939784+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T17:58:49,934907477+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1718061704
+2018-02-25T17:59:02,444898331+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+sleeping...
+2018-02-25T17:59:07,449993955+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 2106339096
+2018-02-25T17:59:19,379289945+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T17:59:24,382699539+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1849581368
+2018-02-25T17:59:38,006372829+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T17:59:43,009944593+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T17:59:57,476637448+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+sleeping...
+2018-02-25T18:00:02,480749013+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:00:27,235977022+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:00:32,242003905+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:01:00,186020195+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:01:05,190554787+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 900500648
+2018-02-25T18:01:17,705894618+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+sleeping...
+2018-02-25T18:01:22,711017969+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 869347104
+2018-02-25T18:01:34,625284679+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:01:39,629751316+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1163421208
+2018-02-25T18:01:53,243945096+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:01:58,248943571+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T18:02:13,333213447+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+sleeping...
+2018-02-25T18:02:18,339141994+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:02:42,927631346+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:02:47,933109698+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:03:15,876314017+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:03:20,881082227+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1204739184
+2018-02-25T18:03:33,408440564+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+sleeping...
+2018-02-25T18:03:38,413604353+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1924704696
+2018-02-25T18:03:50,353419784+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:03:55,358039302+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1286148064
+2018-02-25T18:04:08,998510314+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:04:14,002806538+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T18:04:28,508932491+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+sleeping...
+2018-02-25T18:04:33,513144347+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:04:58,157400355+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:05:03,162865298+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:05:31,053297740+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:05:36,056733035+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -448808960
+2018-02-25T18:05:48,589361710+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+sleeping...
+2018-02-25T18:05:53,593924657+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 988941560
+2018-02-25T18:06:05,491088231+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:06:10,494032335+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1212663080
+2018-02-25T18:06:24,108099005+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:06:29,113920206+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T18:06:43,650203193+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+sleeping...
+2018-02-25T18:06:48,654509475+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:07:13,440135400+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:07:18,445124167+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:07:46,469058317+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:07:51,475417433+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1144024864
+2018-02-25T18:08:04,006187570+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+sleeping...
+2018-02-25T18:08:09,009978356+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -206154456
+2018-02-25T18:08:20,945189284+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:08:25,948590269+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1307753632
+2018-02-25T18:08:39,566148978+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:08:44,571020394+01:00 end only slow memory
+2018-02-25T18:08:44,573879124+01:00 start fast/slow ultmigration
+2018-02-25T18:08:44,578424651+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T18:09:06,277356784+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-25T18:09:11,283564606+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-25T18:09:33,673163388+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:09:38,677956931+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-25T18:10:01,816283925+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:10:06,822178721+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:10:38,364579041+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:10:43,370029857+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:11:15,861938787+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:11:20,866320269+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-25T18:11:54,336019965+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:11:59,340937406+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:12:34,013298430+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:12:39,018441248+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:13:14,862195813+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:13:19,867023300+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-25T18:13:56,677244342+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:14:01,681323832+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1756363664
+2018-02-25T18:14:21,315532745+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-25T18:14:26,321229332+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 517673504
+2018-02-25T18:14:46,569961512+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:14:51,574940274+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1450256192
+2018-02-25T18:15:12,146155641+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:15:17,152239984+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1312930952
+2018-02-25T18:15:36,148252486+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:15:41,153736617+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -333277840
+2018-02-25T18:16:00,747428638+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:16:05,752852636+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1754274136
+2018-02-25T18:16:25,717283460+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:16:30,723227284+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1854984752
+2018-02-25T18:16:50,998622433+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:16:56,003347569+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1684737800
+2018-02-25T18:17:16,872866587+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:17:21,878454328+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -2006220344
+2018-02-25T18:17:43,483848529+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:17:48,489298963+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T18:18:10,322410536+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-25T18:18:15,328224632+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-25T18:18:37,812091970+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:18:42,817479337+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-25T18:19:06,486436148+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:19:11,491649752+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:19:42,931326924+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:19:47,936229875+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:20:20,583578821+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:20:25,588914227+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-25T18:20:58,930752708+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:21:03,934366326+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:21:38,659687711+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:21:43,665522922+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:22:19,339101578+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:22:24,342787222+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-25T18:23:01,061138836+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:23:06,066182438+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1175582888
+2018-02-25T18:23:25,485429117+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-25T18:23:30,490514338+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1043077696
+2018-02-25T18:23:50,482958863+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:23:55,489097425+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1673293616
+2018-02-25T18:24:16,339049533+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:24:21,343900647+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1419462880
+2018-02-25T18:24:40,083017331+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:24:45,086967218+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1268326568
+2018-02-25T18:25:04,402394389+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:25:09,406031877+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1057882112
+2018-02-25T18:25:29,611260457+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:25:34,617646100+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 614309424
+2018-02-25T18:25:55,295875909+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:26:00,299736094+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 389814000
+2018-02-25T18:26:21,576825080+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:26:26,580274740+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -75525488
+2018-02-25T18:26:48,201377714+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:26:53,207125071+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T18:27:14,876562307+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-25T18:27:19,881199542+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-25T18:27:42,773993057+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:27:47,779692851+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-25T18:28:10,969780059+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:28:15,975022325+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:28:47,602853826+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:28:52,608693652+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:29:25,052396576+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:29:30,057874764+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-25T18:30:03,372168264+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:30:08,377654125+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:30:43,068456147+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:30:48,073809381+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:31:23,847397742+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:31:28,852077080+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-25T18:32:05,651300522+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:32:10,656775308+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1280245024
+2018-02-25T18:32:30,350571685+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-25T18:32:35,355365173+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1105920024
+2018-02-25T18:32:55,603538363+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:33:00,609370176+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1219867400
+2018-02-25T18:33:21,466222562+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:33:26,471649647+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1860932472
+2018-02-25T18:33:45,084482177+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:33:50,089725092+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1127098240
+2018-02-25T18:34:09,396581323+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:34:14,400823068+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -109231008
+2018-02-25T18:34:34,213291491+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:34:39,219420897+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 374907224
+2018-02-25T18:34:59,903516159+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:35:04,906545116+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1807042632
+2018-02-25T18:35:25,921812745+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:35:30,927977001+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 97446248
+2018-02-25T18:35:52,804808436+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:35:57,808753147+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T18:36:19,352636901+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-25T18:36:24,356531850+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-25T18:36:47,153229282+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:36:52,159706181+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-25T18:37:15,910901422+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:37:20,916449157+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:37:52,491415357+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:37:57,496355476+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:38:30,101546845+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:38:35,107275945+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-25T18:39:08,545072749+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:39:13,550311007+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:39:48,226886430+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:39:53,232291693+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:40:29,024922761+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:40:34,030081825+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-25T18:41:10,638439130+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:41:15,644460197+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done -679611192
+2018-02-25T18:41:35,305555536+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-25T18:41:40,310114343+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 704195200
+2018-02-25T18:42:00,137997460+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:42:05,142776267+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -209286800
+2018-02-25T18:42:25,681170457+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:42:30,687394937+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1037246904
+2018-02-25T18:42:49,678938501+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:42:54,683024032+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1221980720
+2018-02-25T18:43:13,895670972+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:43:18,900871793+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -164596456
+2018-02-25T18:43:39,101491560+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:43:44,105693585+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 2061776048
+2018-02-25T18:44:04,786379555+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:44:09,790917027+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 2076161336
+2018-02-25T18:44:31,096070387+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:44:36,102048258+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1492953336
+2018-02-25T18:44:57,992142585+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:45:02,997532178+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T18:45:24,654263988+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-25T18:45:29,658959571+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-25T18:45:52,316920716+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:45:57,322451596+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-25T18:46:20,917981353+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:46:25,923501478+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:46:57,386808092+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:47:02,392221570+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:47:34,910390693+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:47:39,915477240+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-25T18:48:13,522719549+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:48:18,528316655+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:48:53,401863359+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:48:58,407291660+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:49:34,218742151+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:49:39,224106482+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-25T18:50:15,880572297+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:50:20,885318117+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done -303576960
+2018-02-25T18:50:40,510568941+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-25T18:50:45,514359057+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 321205224
+2018-02-25T18:51:05,779189448+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:51:10,784403760+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1455948240
+2018-02-25T18:51:31,600490449+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:51:36,605863732+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 7004040
+2018-02-25T18:51:55,593326345+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:52:00,598283237+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1801534272
+2018-02-25T18:52:19,791555742+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:52:24,795742777+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1806429264
+2018-02-25T18:52:44,702784822+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:52:49,708823689+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -485125664
+2018-02-25T18:53:10,117153406+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:53:15,121771569+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1707876168
+2018-02-25T18:53:35,990635861+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:53:40,996108185+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1223940856
+2018-02-25T18:54:02,590142038+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:54:07,596108417+01:00 end fast/slow ultmigration
+2018-02-25T18:54:07,598753224+01:00 start fast/slow ultmigration to other CCX
+2018-02-25T18:54:07,604303973+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T18:54:40,486250614+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-25T18:54:45,491745078+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-25T18:55:19,640011001+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:55:24,645659255+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-25T18:56:00,476341838+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:56:05,480730560+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:56:55,872819479+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T18:57:00,877955858+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T18:57:51,369127286+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T18:57:56,373969998+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-25T18:58:48,655005560+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T18:58:53,660694256+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T18:59:49,376163651+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T18:59:54,381530240+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-25T19:00:50,719998537+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:00:55,725707079+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-25T19:01:53,579268025+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:01:58,583526109+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done -389110632
+2018-02-25T19:02:22,188211160+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-25T19:02:27,193880766+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1726489432
+2018-02-25T19:02:51,338685436+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:02:56,342367159+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -60677928
+2018-02-25T19:03:20,735190789+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:03:25,740544295+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 317790264
+2018-02-25T19:03:49,168837282+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:03:54,173868821+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1168760624
+2018-02-25T19:04:18,198333768+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:04:23,202336296+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -2060918984
+2018-02-25T19:04:47,579306537+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:04:52,583141802+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 790736472
+2018-02-25T19:05:19,618767079+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:05:24,624153443+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1477912576
+2018-02-25T19:05:52,330722821+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:05:57,336311234+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1369512800
+2018-02-25T19:06:25,633550507+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:06:30,638925783+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T19:07:03,750747585+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-25T19:07:08,756266729+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-25T19:07:43,635485289+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:07:48,639097915+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-25T19:08:24,775202678+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:08:29,780051280+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T19:09:20,001001921+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:09:25,006431135+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T19:10:15,291108511+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:10:20,294790723+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-25T19:11:12,525202937+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:11:17,531340133+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T19:12:13,453410595+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:12:18,459485034+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-25T19:13:14,936059965+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:13:19,941012014+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-25T19:14:17,938522781+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:14:22,944004504+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1388608296
+2018-02-25T19:14:46,272773832+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-25T19:14:51,276397716+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1107325464
+2018-02-25T19:15:15,157172841+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:15:20,161743666+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1023721768
+2018-02-25T19:15:44,928334392+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:15:49,932957877+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 839946648
+2018-02-25T19:16:13,102689446+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:16:18,107707253+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1156205184
+2018-02-25T19:16:42,096797916+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:16:47,102319905+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -58878712
+2018-02-25T19:17:11,453914756+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:17:16,457548637+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1644044608
+2018-02-25T19:17:43,408126180+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:17:48,412270761+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 962415392
+2018-02-25T19:18:16,112704290+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:18:21,116457622+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1759775032
+2018-02-25T19:18:49,224273426+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:18:54,227975425+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T19:19:27,988448910+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-25T19:19:32,994352842+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-25T19:20:07,478725232+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:20:12,484402111+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-25T19:20:49,102226212+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:20:54,107004727+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T19:21:44,097528088+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:21:49,101558097+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T19:22:40,259336839+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:22:45,264835813+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-25T19:23:37,772896917+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:23:42,778106141+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T19:24:38,737494544+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:24:43,742780980+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-25T19:25:40,325094273+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:25:45,330349788+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-25T19:26:43,300787369+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:26:48,305899566+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done -2061651536
+2018-02-25T19:27:11,874258314+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-25T19:27:16,879558733+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 789941416
+2018-02-25T19:27:41,081018582+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:27:46,086267109+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -163465032
+2018-02-25T19:28:10,611904731+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:28:15,617643725+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1561623992
+2018-02-25T19:28:39,042416166+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:28:44,048668770+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1108617304
+2018-02-25T19:29:07,748833126+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:29:12,753581566+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1729795536
+2018-02-25T19:29:37,365331834+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:29:42,371336013+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1856737024
+2018-02-25T19:30:09,300466521+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:30:14,304997536+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1292124656
+2018-02-25T19:30:41,783579107+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:30:46,789463080+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -2119589440
+2018-02-25T19:31:14,881461297+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:31:19,887486000+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T19:31:52,909184082+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-25T19:31:57,913038897+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-25T19:32:32,505390265+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:32:37,510886420+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-25T19:33:13,975588942+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:33:18,979182699+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T19:34:09,020834868+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:34:14,025521566+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T19:35:04,575903079+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:35:09,581426219+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-25T19:36:02,252843466+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:36:07,258050506+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T19:37:03,138505282+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:37:08,144499133+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-25T19:38:04,745844987+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:38:09,749765749+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-25T19:39:07,788939700+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:39:12,794347236+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1000753816
+2018-02-25T19:39:36,378566056+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-25T19:39:41,383884056+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1057854664
+2018-02-25T19:40:04,073230994+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:40:09,078049002+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 241336608
+2018-02-25T19:40:33,537597650+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:40:38,542730501+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 496982744
+2018-02-25T19:41:01,706733709+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:41:06,711968156+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1244728936
+2018-02-25T19:41:30,679810879+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:41:35,685546435+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 638019512
+2018-02-25T19:42:00,323638243+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:42:05,327550251+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -941853736
+2018-02-25T19:42:32,530085385+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:42:37,535268149+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1919571448
+2018-02-25T19:43:04,996439176+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:43:10,001714968+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 867163176
+2018-02-25T19:43:38,002894149+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:43:43,008425979+01:00 start: ../build/test/micro indirect_access some
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T19:44:15,887785520+01:00 end: ../build/test/micro indirect_access some
+sleeping...
+2018-02-25T19:44:20,891509307+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -1734839296
+2018-02-25T19:44:55,273305329+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:45:00,279119246+01:00 start: ../build/test/micro indirect_access some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 345160704
+2018-02-25T19:45:36,667738956+01:00 end: ../build/test/micro indirect_access some --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:45:41,672840991+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T19:46:31,979505943+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:46:36,983972286+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T19:47:27,324272217+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:47:32,328907156+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done -1894967296
+2018-02-25T19:48:24,711398413+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:48:29,716407489+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T19:49:25,815529504+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:49:30,821036058+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 733330000
+2018-02-25T19:50:27,111476187+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:50:32,116192499+01:00 start: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = indirect_access @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 1533330000
+2018-02-25T19:51:30,024225102+01:00 end: ../build/test/micro indirect_access some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:51:35,029788654+01:00 start: ../build/test/micro pointer_chasing some
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some
+buffer size = 100 MiB
+done 720641680
+2018-02-25T19:51:58,597716405+01:00 end: ../build/test/micro pointer_chasing some
+sleeping...
+2018-02-25T19:52:03,602733312+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done 1946897224
+2018-02-25T19:52:27,407925138+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:52:32,413274837+01:00 start: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 963965152
+2018-02-25T19:52:56,942473791+01:00 end: ../build/test/micro pointer_chasing some --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:53:01,948191552+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some
+buffer size = 100 MiB
+done 820460448
+2018-02-25T19:53:25,367754509+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:53:30,371479358+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -2093507768
+2018-02-25T19:53:54,140550059+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:53:59,146368368+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.800000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 381685672
+2018-02-25T19:54:23,769974284+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.8 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:54:28,774954990+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some
+buffer size = 100 MiB
+done -864998880
+2018-02-25T19:54:55,995586075+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:55:01,000547645+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.800000
+buffer size = 100 MiB
+done -49735208
+2018-02-25T19:55:28,738137627+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.8
+sleeping...
+2018-02-25T19:55:33,744040443+01:00 start: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+fast CPU = 0, core = 0
+slow CPU = 6, core = 4
+MEMORY_BENCH = pointer_chasing @ 0.600000
+CPU_BENCH = some @ 0.600000
+buffer size = 100 MiB
+done 15396048
+2018-02-25T19:56:02,081365158+01:00 end: ../build/test/micro pointer_chasing some --memory-ratio=0.6 --cpu-ratio=0.6
+sleeping...
+2018-02-25T19:56:07,086226226+01:00 end fast/slow ultmigration to other CCX
+Setting P2 for all cores...
+CPU  0: P0 frequency = 3600 MHz
+CPU  0: effective frequency (ro) = 2262 MHz
+CPU  0: effective frequency      = 833 MHz
+CPU  1: P0 frequency = 3600 MHz
+CPU  1: effective frequency (ro) = 765 MHz
+CPU  1: effective frequency      = 833 MHz
+CPU  2: P0 frequency = 3600 MHz
+CPU  2: effective frequency (ro) = 1197 MHz
+CPU  2: effective frequency      = 833 MHz
+CPU  3: P0 frequency = 3600 MHz
+CPU  3: effective frequency (ro) = 495 MHz
+CPU  3: effective frequency      = 833 MHz
+CPU  4: P0 frequency = 3600 MHz
+CPU  4: effective frequency (ro) = 336 MHz
+CPU  4: effective frequency      = 833 MHz
+CPU  5: P0 frequency = 3600 MHz
+CPU  5: effective frequency (ro) = 548 MHz
+CPU  5: effective frequency      = 832 MHz
+CPU  6: P0 frequency = 3600 MHz
+CPU  6: effective frequency (ro) = 349 MHz
+CPU  6: effective frequency      = 833 MHz
+CPU  7: P0 frequency = 3600 MHz
+CPU  7: effective frequency (ro) = 374 MHz
+CPU  7: effective frequency      = 833 MHz
+CPU  8: P0 frequency = 3600 MHz
+CPU  8: effective frequency (ro) = 290 MHz
+CPU  8: effective frequency      = 832 MHz
+CPU  9: P0 frequency = 3600 MHz
+CPU  9: effective frequency (ro) = 338 MHz
+CPU  9: effective frequency      = 833 MHz
+CPU 10: P0 frequency = 3600 MHz
+CPU 10: effective frequency (ro) = 291 MHz
+CPU 10: effective frequency      = 833 MHz
+CPU 11: P0 frequency = 3600 MHz
+CPU 11: effective frequency (ro) = 338 MHz
+CPU 11: effective frequency      = 833 MHz
+
+2018-02-25T19:56:08,192925617+01:00 start only slow memory (all P2)
+2018-02-25T19:56:08,200363957+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T19:56:34,062747847+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+sleeping...
+2018-02-25T19:56:39,070664946+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T19:57:22,623306285+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:57:27,629254707+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T19:58:17,058521437+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:58:22,065240497+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1623467912
+2018-02-25T19:58:41,579113373+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+sleeping...
+2018-02-25T19:58:46,586398005+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1256756104
+2018-02-25T19:59:05,390709684+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T19:59:10,396816169+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 813496768
+2018-02-25T19:59:32,555683734+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T19:59:37,561934371+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T20:00:04,620549886+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+sleeping...
+2018-02-25T20:00:09,627731643+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T20:00:53,478788764+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T20:00:58,486342074+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T20:01:47,845467573+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T20:01:52,852978468+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1474635416
+2018-02-25T20:02:12,368683585+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+sleeping...
+2018-02-25T20:02:17,375758952+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 777394304
+2018-02-25T20:02:36,183782025+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T20:02:41,189663499+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 37759560
+2018-02-25T20:03:03,361827445+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T20:03:08,369077941+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T20:03:34,509693693+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+sleeping...
+2018-02-25T20:03:39,516961230+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T20:04:23,212712037+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T20:04:28,220434448+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T20:05:17,428287926+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T20:05:22,434516160+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1436289576
+2018-02-25T20:05:41,867191654+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+sleeping...
+2018-02-25T20:05:46,873677113+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -353271640
+2018-02-25T20:06:05,657058327+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T20:06:10,664642942+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1780205184
+2018-02-25T20:06:32,831725120+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T20:06:37,839118860+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T20:07:04,521718167+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+sleeping...
+2018-02-25T20:07:09,528931978+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T20:07:53,205647606+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T20:07:58,212714681+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T20:08:47,408452893+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T20:08:52,415477250+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -607328968
+2018-02-25T20:09:11,918383216+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+sleeping...
+2018-02-25T20:09:16,925770258+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1719150304
+2018-02-25T20:09:35,712604293+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T20:09:40,720368126+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -861560464
+2018-02-25T20:10:02,888203777+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T20:10:07,894337872+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 0
+2018-02-25T20:10:34,525190288+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some
+sleeping...
+2018-02-25T20:10:39,532375420+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 1600000000
+2018-02-25T20:11:23,083795821+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.8
+sleeping...
+2018-02-25T20:11:28,090744301+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = indirect_access @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done 733330000
+2018-02-25T20:12:17,519575864+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory indirect_access some --memory-ratio=0.6
+sleeping...
+2018-02-25T20:12:22,526538350+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -1839683272
+2018-02-25T20:12:42,015493137+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some
+sleeping...
+2018-02-25T20:12:47,023248528+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.800000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -646878768
+2018-02-25T20:13:05,844209338+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.8
+sleeping...
+2018-02-25T20:13:10,851398319+01:00 start: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+fast CPU = 2, core = 1
+slow CPU = 2, core = 1
+MEMORY_BENCH = pointer_chasing @ 0.600000 (only)
+CPU_BENCH = some
+buffer size = 100 MiB
+done -468422536
+2018-02-25T20:13:33,009099775+01:00 end: LD_PRELOAD=../build/libultmigration_dummy.so taskset -c 2 ../build/test/micro --only-memory pointer_chasing some --memory-ratio=0.6
+sleeping...
+2018-02-25T20:13:38,016630138+01:00 end only slow memory (all P2)
+2018-02-25T20:13:38,020696906+01:00 Benchmark end
