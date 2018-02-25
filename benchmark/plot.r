@@ -43,9 +43,11 @@ freq <- read_tsv("freq.tsv", col_types =
 	 )
 
 powermeter <- read_tsv("powermeter.tsv")
-#avg_idle_power <- as.double(idle_power %>% summarize(mean(power)))
-# TODO: Calculate differently
-avg_idle_power <- 39.0
+avg_idle_power <- as.double(power_log %>% filter(type == "idle") %>% summarize(mean(power)))
+if (is.nan(avg_idle_power)) {
+	print("Warning: Using fixed avg_idle_power")
+	avg_idle_power <- 35.0
+}
 
 # Scale used in multiple graphs.
 mk_memory_bench_scale <- function(sc)
@@ -107,12 +109,13 @@ powergraph <- function(data)
 		ylab("Power (W)") + xlab("Duration (s)") +
 		facet_grid(cpu_ratio ~ memory_ratio, labeller = labeller(cpu_ratio = mixed_labeller("CPU"), memory_ratio = mixed_labeller("Memory")))
 
+pg_data <- power_log %>% filter(str_detect(type, "ultmigration") | str_detect(type, "baseline") | str_detect(type, "CpuFid"))
 if ((file <- outname("fastslow-power")) != FALSE) {
-	powergraph(power_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = power - avg_idle_power))
+	powergraph(pg_data %>% mutate(power = power - avg_idle_power))
 	ggsave(file, width = 25, height = 20, units = "cm", device = device)
 }
 if ((file <- outname("fastslow-rapl")) != FALSE) {
-	powergraph(power_log %>% filter(!str_detect(type, "swp")) %>% mutate(power = core0+core1+core2))
+	powergraph(pg_data %>% mutate(power = core0+core1+core2))
 	ggsave(file, width = 25, height = 20, units = "cm", device = device)
 }
 

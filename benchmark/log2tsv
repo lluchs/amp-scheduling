@@ -15,6 +15,7 @@ BEGIN {
 /end CpuFid / { cpufid = "" }
 /start swp on fast/ { type = "swp on fast" }
 /start swp on slow/ { type = "swp on slow" }
+/(start|end) idle/ { type = "idle"; $2 = $2 ":" }
 
 /start:/ { time_start = $1 }
 /end:/ {
