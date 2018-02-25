@@ -119,6 +119,34 @@ if ((file <- outname("fastslow-rapl")) != FALSE) {
 	ggsave(file, width = 25, height = 20, units = "cm", device = device)
 }
 
+if ((file <- outname("fastslow-power-thesis")) != FALSE) {
+	ggplot(pg_data %>% mutate(power = power - avg_idle_power) %>%
+		       filter(memory_ratio == cpu_ratio) %>%
+		       left_join(freq  %>% rename_at(paste0("core", c(0:5)), funs(paste0("freq.", .))), by = "cpufid") %>%
+		       mutate(freq = signif(case_when(
+				type == "only fast baseline" ~ freq.core0,
+				type == "only slow baseline" ~ freq.core1,
+				type == "CpuFid" ~ freq.core1
+		              ), digits = 3),
+			      type = ifelse(str_detect(type, "ultmigration"), "migration", "constant frequency"),
+			      cpu_ratio = -cpu_ratio, memory_ratio = -memory_ratio) %>%
+		       group_by(type, memory_bench, cpu_ratio, memory_ratio, freq) %>%
+		       summarize(duration = mean(duration), power = mean(power)),
+	       aes(x = duration, y = power)) +
+		geom_line(aes(color = memory_bench), data = function(d) d %>% filter(!str_detect(type, "migration"))) +
+		geom_point(aes(shape = type, color = memory_bench), stroke = 1.3, data = function(d) d %>% filter(str_detect(type, "migration")), show.legend = FALSE) +
+		geom_point(aes(shape = type, fill = factor(freq))) +
+		scale_shape_manual(values = c(21, 2, 21, 21)) +
+		scale_fill_brewer(name = "Frequency (MHz)", na.translate = FALSE) +
+		mk_memory_bench_scale(scale_color_discrete) +
+		guides(fill = guide_legend(override.aes = list(shape = 21)),
+		       shape = guide_legend(title = NULL)) +
+		ylab("Power (W)") + xlab("Duration (s)") +
+		facet_grid(. ~ cpu_ratio, labeller = mixed_labeller("CPU/Mem"))
+
+	ggsave(file, width = 15, height = 9, units = "cm", device = device)
+}
+
 swp <- power_log %>% filter(str_detect(type, "swp")) %>%
 	group_by(type, memory_bench, memory_ratio, cpu_ratio, cpufid) %>%
 	summarize(duration = mean(duration), swp_cpu_instr = mean(swp_cpu_instr), swp_cpu_cpi = mean(swp_cpu_cpi), swp_cpu_l2 = mean(swp_cpu_l2), swp_cpu_l3 = mean(swp_cpu_l3), swp_mem_instr = mean(swp_mem_instr), swp_mem_cpi = mean(swp_mem_cpi), swp_mem_l2 = mean(swp_mem_l2), swp_mem_l3 = mean(swp_mem_l3))
