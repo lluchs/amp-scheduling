@@ -23,6 +23,9 @@ CPU_BENCH=(some)
 MEMORY_RATIO=(1 0.8 0.6)
 CPU_RATIO=(1 0.8 0.6)
 
+# Whether to run ult_idle during comparison runs.
+ULT_IDLE=0
+
 # Whether to run SWP.
 RUN_SWP=0
 
@@ -32,6 +35,8 @@ ITERATIONS=5
 # Extra single frequency ids as comparison.
 # Note: default "slow" is 50, "fast" is 144
 CPU_FIDS=(125 106 88 69)
+# P-state to run CpuFid with
+CPUFID_PSTATE=0
 
 # Path to build directory
 BUILD=../build
@@ -67,6 +72,8 @@ log MEMORY_BENCH $MEMORY_BENCH
 log CPU_BENCH $CPU_BENCH
 log MEMORY_RATIO $MEMORY_RATIO
 log CPU_RATIO $CPU_RATIO
+log ULT_IDLE $ULT_IDLE
+log RUN_SWP $RUN_SWP
 log ITERATIONS $ITERATIONS
 log
 
@@ -136,9 +143,11 @@ log $(date -Ins) start idle
 sleep 60
 log $(date -Ins) end idle
 
-# During the baseline runs, run ult_idle to make results comparable.
-log Starting ult_idle...
-FAST_CPU=$IDLE_FAST_CPU SLOW_CPU=$IDLE_SLOW_CPU $BUILD/test/ult_idle slow &
+if ((ULT_IDLE)); then
+	# During the baseline runs, run ult_idle to make results comparable.
+	log Starting ult_idle...
+	FAST_CPU=$IDLE_FAST_CPU SLOW_CPU=$IDLE_SLOW_CPU $BUILD/test/ult_idle slow &
+fi
 
 log $(date -Ins) start only fast baseline
 for i in $(seq $ITERATIONS); do
@@ -152,10 +161,24 @@ for i in $(seq $ITERATIONS); do
 done
 log $(date -Ins) end only slow baseline
 
-# Set core 2 to P1.
-echo "${frequencies[2]}" | sudo tee /sys/devices/system/cpu/cpu{2,3}/cpufreq/scaling_setspeed > /dev/null
+case $CPUFID_PSTATE in
+	0)
+		CPUFID_CPU=$FAST_CPU
+		;;
+	1)
+		# Set core 2 to P1.
+		echo "${frequencies[2]}" | sudo tee /sys/devices/system/cpu/cpu{2,3}/cpufreq/scaling_setspeed > /dev/null
+		CPUFID_CPU=$SLOW_CPU
+		;;
+	2)
+		CPUFID_CPU=$SLOW_CPU
+		;;
+	*)
+		echo Invalid CPUFID_PSTATE!
+		exit 1
+esac
 for fid in $CPU_FIDS; do
-	sudo $BUILD/tools/amdpstate def 1 CpuFid=$fid
+	sudo $BUILD/tools/amdpstate def $CPUFID_PSTATE CpuFid=$fid
 	sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
 	log $(date -Ins) start CpuFid $fid
 	for i in $(seq $ITERATIONS); do
@@ -164,11 +187,16 @@ for fid in $CPU_FIDS; do
 	log $(date -Ins) end CpuFid $fid
 done
 
-log Killing ult_idle...
-kill -SIGTERM %%
+if ((ULT_IDLE)); then
+	log Killing ult_idle...
+	kill -SIGTERM %%
+fi
 
 # Reset frequency settings.
-echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu{2,3}/cpufreq/scaling_setspeed > /dev/null
+sudo $BUILD/tools/amdpstate def 0 CpuFid=144 # 3600 MHz
+sudo $BUILD/tools/amdpstate def 2 CpuFid=50  #  800 MHz
+echo "${frequencies[3]}" | sudo tee /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_setspeed > /dev/null
+echo "${frequencies[1]}" | sudo tee /sys/devices/system/cpu/cpu{0,1}/cpufreq/scaling_setspeed > /dev/null
 
 if ((RUN_SWP)); then
 
