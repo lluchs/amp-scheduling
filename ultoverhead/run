@@ -21,6 +21,9 @@ CPU_BENCH=(some)
 MEMORY_RATIO=(1 0.8 0.6)
 CPU_RATIO=(1 0.8 0.6)
 
+# Number of runs for each benchmark type.
+ITERATIONS=5
+
 # Path to build directory
 BUILD=../build
 
@@ -56,6 +59,7 @@ log MEMORY_BENCH $MEMORY_BENCH
 log CPU_BENCH $CPU_BENCH
 log MEMORY_RATIO $MEMORY_RATIO
 log CPU_RATIO $CPU_RATIO
+log ITERATIONS $ITERATIONS
 log
 
 log Setting P-states...
@@ -119,6 +123,10 @@ for i in $(seq 10); do
 done
 log $(date -Ins) end ultoverhead
 
+log $(date -Ins) start symmetric idle
+sleep 60
+log $(date -Ins) end symmetric idle
+
 log $(date -Ins) start ultoverhead other
 for i in $(seq 10); do
 	SLOW_CPU=$OCCX_CPU $BUILD/test/ultoverhead overall &>> $bd/log
@@ -145,23 +153,35 @@ done
 log $(date -Ins) end ultoverhead asym other
 
 
+log $(date -Ins) start asymmetric idle
+sleep 60
+log $(date -Ins) end asymmetric idle
+
 
 # Different memory/cpu ratios don't make sense when running with --only-cpu/memory
 log $(date -Ins) start only fast cpu
-MEMORY_RATIO=(1) run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro --only-cpu
+for i in $(seq $ITERATIONS); do
+	MEMORY_RATIO=(1) run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $FAST_CPU $BUILD/test/micro --only-cpu
+done
 log $(date -Ins) end only fast cpu
 
 log $(date -Ins) start only slow memory
-CPU_RATIO=(1) run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro --only-memory
+for i in $(seq $ITERATIONS); do
+	CPU_RATIO=(1) run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro --only-memory
+done
 log $(date -Ins) end only slow memory
 
 
 log $(date -Ins) start fast/slow ultmigration
-run_micro $BUILD/test/micro
+for i in $(seq $ITERATIONS); do
+	run_micro $BUILD/test/micro
+done
 log $(date -Ins) end fast/slow ultmigration
 
 log $(date -Ins) start fast/slow ultmigration to other CCX
-SLOW_CPU=$OCCX_CPU run_micro $BUILD/test/micro
+for i in $(seq $ITERATIONS); do
+	SLOW_CPU=$OCCX_CPU run_micro $BUILD/test/micro
+done
 log $(date -Ins) end fast/slow ultmigration to other CCX
 
 
@@ -171,7 +191,9 @@ sudo $BUILD/tools/amdpstate -call frequency 1000 >> $bd/log
 log
 
 log $(date -Ins) "start only slow memory (all P2)"
-CPU_RATIO=(1) run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro --only-memory
+for i in $(seq $ITERATIONS); do
+	CPU_RATIO=(1) run_micro LD_PRELOAD=$BUILD/libultmigration_dummy.so taskset -c $SLOW_CPU $BUILD/test/micro --only-memory
+done
 log $(date -Ins) "end only slow memory (all P2)"
 
 
