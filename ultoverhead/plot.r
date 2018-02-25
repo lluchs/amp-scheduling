@@ -92,3 +92,19 @@ if ((file <- outname("power")) != FALSE) {
 
 	ggsave(file, width = 20, height = 20, units = "cm", device = device)
 }
+
+if ((file <- outname("power2")) != FALSE) {
+	ggplot(data = bind_rows(fake_asym, real_asym) %>%
+		      filter(cpu_ratio == 1, memory_ratio == 1) %>%
+		      mutate(type = ifelse(str_detect(type, "fake"), "independent", "migration")),
+	       mapping = aes(x = duration, y = power - avg_idle_power)) +
+		#geom_line(aes(group = paste(memory_bench, type))) +
+		geom_point(aes(color = memory_bench, shape = type), size = 2) +
+		expand_limits(x = c(19, 22)) +
+		mk_memory_bench_scale(scale_color_discrete) +
+		guides(fill = guide_legend(override.aes = list(shape = 21)),
+		       shape = guide_legend(title = NULL)) +
+		ylab("Power (W)") + xlab("Duration (s)")
+
+	ggsave(file, width = 9, height = 5, units = "cm", device = device)
+}
