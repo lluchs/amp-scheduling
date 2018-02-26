@@ -86,6 +86,9 @@ cpufid_tsv <- power_log %>%
 write.table(cpufid_tsv, file='cpufid.tsv', quote=FALSE, sep='\t', row.names=FALSE)
 
 have_p0 <- !is.null(cfg$CPUFID_PSTATE) && cfg$CPUFID_PSTATE == "0"
+if (have_p0) {
+	print("Using P0 frequencies")
+}
 
 # Graph to compare power behavior between fast/slow/fast+slow.
 powergraph <- function(data)
@@ -125,12 +128,12 @@ if ((file <- outname("fastslow-rapl")) != FALSE) {
 
 if ((file <- outname("fastslow-power-thesis")) != FALSE) {
 	ggplot(pg_data %>% mutate(power = power - avg_idle_power) %>%
-		       filter(memory_ratio == cpu_ratio) %>%
+		       filter(memory_ratio == cpu_ratio, cpu_ratio > 0.6) %>%
 		       left_join(freq  %>% rename_at(paste0("core", c(0:5)), funs(paste0("freq.", .))), by = "cpufid") %>%
 		       mutate(freq = signif(case_when(
 				type == "only fast baseline" ~ freq.core0,
 				type == "only slow baseline" ~ freq.core1,
-				type == "CpuFid" && have_p0 ~ freq.core0,
+				type == "CpuFid" & have_p0 ~ freq.core0,
 				type == "CpuFid" ~ freq.core1,
 		              ), digits = 3),
 			      type = ifelse(str_detect(type, "ultmigration"), "migration", "constant frequency"),
