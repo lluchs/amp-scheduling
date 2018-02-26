@@ -23,6 +23,7 @@ if ((font_size <- Sys.getenv("FONT_SIZE")) != "") {
 	theme_update(text = element_text(size = as.integer(font_size)))
 }
 
+cfg <- read_tsv("cfg.tsv", col_names = FALSE) %>% deframe() %>% as.list()
 log <- read_tsv("power_log.tsv", guess_max = 2000)
 # parse_datetime can't handle , as ISO8601 separator
 power_log <- log %>%
@@ -84,6 +85,8 @@ cpufid_tsv <- power_log %>%
 
 write.table(cpufid_tsv, file='cpufid.tsv', quote=FALSE, sep='\t', row.names=FALSE)
 
+have_p0 <- !is.null(cfg$CPUFID_PSTATE) && cfg$CPUFID_PSTATE == "0"
+
 # Graph to compare power behavior between fast/slow/fast+slow.
 powergraph <- function(data)
 	ggplot(data %>%
@@ -91,7 +94,8 @@ powergraph <- function(data)
 		       mutate(freq = signif(case_when(
 				type == "only fast baseline" ~ freq.core0,
 				type == "only slow baseline" ~ freq.core1,
-				type == "CpuFid" ~ freq.core1
+				type == "CpuFid" & have_p0 ~ freq.core0,
+				type == "CpuFid" ~ freq.core1,
 		              ), digits = 3),
 			      type = ifelse(str_detect(type, "ultmigration"), "migration", "constant frequency"),
 			      cpu_ratio = -cpu_ratio, memory_ratio = -memory_ratio) %>%
@@ -126,7 +130,8 @@ if ((file <- outname("fastslow-power-thesis")) != FALSE) {
 		       mutate(freq = signif(case_when(
 				type == "only fast baseline" ~ freq.core0,
 				type == "only slow baseline" ~ freq.core1,
-				type == "CpuFid" ~ freq.core1
+				type == "CpuFid" && have_p0 ~ freq.core0,
+				type == "CpuFid" ~ freq.core1,
 		              ), digits = 3),
 			      type = ifelse(str_detect(type, "ultmigration"), "migration", "constant frequency"),
 			      cpu_ratio = -cpu_ratio, memory_ratio = -memory_ratio) %>%

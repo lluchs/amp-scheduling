@@ -6,13 +6,16 @@ ifndef b
 $(error need b=<name of benchmark>)
 endif
 
-tsv: analysis/$(b) $(addprefix analysis/$(b)/,log.tsv freq.tsv powermeter.tsv rapl.tsv power_log.tsv)
+tsv: analysis/$(b) $(addprefix analysis/$(b)/,log.tsv cfg.tsv freq.tsv powermeter.tsv rapl.tsv power_log.tsv)
 
 analysis/$(b):
 	mkdir -p $@
 
 analysis/$(b)/log.tsv: results/$(b)/log log2tsv
 	$(AWK) -f log2tsv $< > $@
+
+analysis/$(b)/cfg.tsv: results/$(b)/log cfg2tsv
+	$(AWK) -f cfg2tsv $< > $@
 
 analysis/$(b)/freq.tsv: results/$(b)/log log_freq2tsv
 	$(AWK) -f log_freq2tsv $< > $@

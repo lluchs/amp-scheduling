@@ -5,6 +5,7 @@ MEMORY_BENCH indirect_access pointer_chasing
 CPU_BENCH some
 MEMORY_RATIO 1 0.8 0.6
 CPU_RATIO 1 0.8 0.6
+CPUFID_PSTATE 0
 ITERATIONS 10
 
 Setting P-states...

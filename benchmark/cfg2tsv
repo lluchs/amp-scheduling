@@ -1,0 +1,29 @@
+#!/usr/bin/awk -f
+
+BEGIN { OFS = "\t" }
+
+/^Benchmark configuration/ { cfg = 1; next }
+
+cfg && /^$/ { exit 0 }
+
+function cpunum(s, result) {
+    result[0] = gensub(/=.+/, "", 1, s);
+    result[1] = gensub(/.+=/, "", 1, s);
+}
+
+/^FAST_CPU/ {
+    cpunum($1, fast); cpunum($2, slow);
+    print fast[0], fast[1];
+    print slow[0], slow[1];
+    next
+}
+/^OTHER_CPU/ {
+    cpunum($1, cpu);
+    print cpu[0], cpu[1];
+    next
+}
+
+cfg {
+    sub(/ /, "\t");
+    print
+}
