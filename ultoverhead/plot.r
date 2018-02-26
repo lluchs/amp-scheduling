@@ -73,8 +73,16 @@ if ((file <- outname("powermeter")) != FALSE) {
 
 if ((file <- outname("ultoverhead")) != FALSE) {
 	# Graph that compares the ultoverhead types.
-	ggplot(log %>% filter(!is.na(ultoverhead))) +
-		geom_col(aes(x = type, y = ultoverhead))
+	ggplot(log %>% filter(!is.na(ultoverhead)) %>%
+	               mutate(type = case_when(
+				type == "ultoverhead"            ~ "P0, one CCX",
+				type == "ultoverhead other"      ~ "P0, two CCX",
+				type == "ultoverhead asym"       ~ "P0/P2, one CCX",
+				type == "ultoverhead asym other" ~ "P0/P2, two CCX",
+			      ))) +
+		geom_col(aes(x = type, y = ultoverhead / 1e-6)) +
+		xlab(NULL) +
+		ylab("time per migration (µs)")
 
 	ggsave(file, width = 20, height = 20, units = "cm", device = device)
 }
@@ -82,7 +90,7 @@ if ((file <- outname("ultoverhead")) != FALSE) {
 if ((file <- outname("power")) != FALSE) {
 	ggplot(data = bind_rows(fake_asym, fake_asym_p2, real_asym, real_asym_other_ccx) %>%
 		      mutate(cpu_ratio = -cpu_ratio, memory_ratio = -memory_ratio),
-	       mapping = aes(x = duration, y = power)) +
+	       mapping = aes(x = duration, y = power - avg_idle_power)) +
 		geom_point(aes(color = memory_bench, shape = type), stroke = 1.3) +
 		mk_memory_bench_scale(scale_color_discrete) +
 		guides(fill = guide_legend(override.aes = list(shape = 21)),
