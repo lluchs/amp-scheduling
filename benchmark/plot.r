@@ -119,11 +119,11 @@ powergraph <- function(data)
 pg_data <- power_log %>% filter(str_detect(type, "ultmigration") | str_detect(type, "baseline") | str_detect(type, "CpuFid"))
 if ((file <- outname("fastslow-power")) != FALSE) {
 	powergraph(pg_data %>% mutate(power = power - avg_idle_power))
-	ggsave(file, width = 25, height = 20, units = "cm", device = device)
+	ggsave(file, width = 15, height = 10, units = "cm", device = device)
 }
 if ((file <- outname("fastslow-rapl")) != FALSE) {
 	powergraph(pg_data %>% mutate(power = core0+core1+core2))
-	ggsave(file, width = 25, height = 20, units = "cm", device = device)
+	ggsave(file, width = 15, height = 10, units = "cm", device = device)
 }
 
 if ((file <- outname("fastslow-power-thesis")) != FALSE) {
