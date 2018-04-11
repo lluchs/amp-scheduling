@@ -22,7 +22,10 @@ args <- commandArgs(trailingOnly = TRUE)
 graphtobuild <- ifelse(length(args) > 0, args[1], "all")
 format <- ifelse(length(args) > 1, args[2], "png")
 # The default pdf device does not embed fonts and produces horrible kerning.
-if (format == "pdf") { device <- cairo_pdf } else { device <- NULL }
+device <- switch(format,
+  pdf = cairo_pdf,
+  svg = svg,
+)
 
 # outname returns the output file name or FALSE, depending on command line
 # options (above).
@@ -139,8 +142,7 @@ if ((file <- outname("fastslow-rapl")) != FALSE) {
 	ggsave(file, width = 15, height = 10, units = "cm", device = device)
 }
 
-if ((file <- outname("fastslow-power-thesis")) != FALSE) {
-	ggplot(pg_data %>% mutate(power = power - avg_idle_power) %>%
+powergraph2 <- ggplot(pg_data %>% mutate(power = power - avg_idle_power) %>%
 		       filter(memory_ratio == cpu_ratio, cpu_ratio > 0.6) %>%
 		       left_join(freq  %>% rename_at(paste0("core", c(0:5)), funs(paste0("freq.", .))), by = "cpufid") %>%
 		       mutate(freq = signif(case_when(
@@ -165,7 +167,15 @@ if ((file <- outname("fastslow-power-thesis")) != FALSE) {
 		ylab("Power (W)") + xlab("Duration (s)") +
 		facet_grid(. ~ cpu_ratio, labeller = mixed_labeller("CPU/Mem"))
 
-	ggsave(file, width = 15, height = 9, units = "cm", device = device)
+
+if ((file <- outname("fastslow-power-thesis")) != FALSE) {
+	ggsave(file, plot = powergraph2, width = 15, height = 9, units = "cm", device = device)
+}
+
+if ((file <- outname("fastslow-power-presentation")) != FALSE) {
+	ggsave(file,
+	       plot = powergraph2 + theme(legend.position="none"),
+	       width = 11, height = 6, units = "cm", device = device)
 }
 
 swp <- power_log %>% filter(str_detect(type, "swp")) %>%

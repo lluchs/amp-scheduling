@@ -23,7 +23,10 @@ args <- commandArgs(trailingOnly = TRUE)
 graphtobuild <- ifelse(length(args) > 0, args[1], "all")
 format <- ifelse(length(args) > 1, args[2], "png")
 # The default pdf device does not embed fonts and produces horrible kerning.
-if (format == "pdf") { device <- cairo_pdf } else { device <- NULL }
+device <- switch(format,
+  pdf = cairo_pdf,
+  svg = svg,
+)
 
 # outname returns the output file name or FALSE, depending on command line
 # options (above).
