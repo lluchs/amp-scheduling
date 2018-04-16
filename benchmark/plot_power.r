@@ -86,9 +86,10 @@ read_data <- function(b) {
 					       type == "CpuFid" & have_p0 ~ freq.core0,
 					       type == "CpuFid" ~ freq.core1,
 					       ), digits = 3),
+		       full_type = type,
 		       type = ifelse(str_detect(type, "ultmigration"), "migration", "constant frequency"),
 		       cpu_ratio = -cpu_ratio, memory_ratio = -memory_ratio) %>%
-		group_by(type, memory_bench, cpu_ratio, memory_ratio, freq) %>%
+		group_by(type, full_type, memory_bench, cpu_ratio, memory_ratio, freq) %>%
 		summarize(duration = mean(duration), power = mean(power))
 	pg_data
 }
@@ -99,15 +100,22 @@ sym_b <- "2018-02-21_01"
 asym <- read_data(asym_b) %>% mutate(config = "(1)")
 sym <- read_data(sym_b) %>% mutate(config = "(2)")
 
-plot_line <- function(data)
-	list(geom_line(aes(color = config), data = data %>% filter(!str_detect(type, "migration"))),
-	     geom_point(aes(shape = type, color = config), stroke = 1.3, data = data %>% filter(str_detect(type, "migration")), show.legend = FALSE),
-	     geom_point(aes(shape = type, fill = freq), data = data))
+plot_line <- function(data) {
+	d <- data %>% filter(!str_detect(type, "migration"))
+	list(geom_line(aes(color = config), data = d),
+	     geom_point(aes(shape = type, fill = freq), data = d))
+}
 
 powergraph3 <-
 	ggplot(NULL, aes(x = duration, y = power)) +
-		plot_line(asym %>% filter(memory_bench == "pointer_chasing")) +
-		plot_line(sym %>% filter(memory_bench == "pointer_chasing")) +
+		plot_line(asym %>% filter(memory_bench == "pointer_chasing",
+					  full_type != "only slow baseline")) +
+		plot_line(sym %>% filter(memory_bench == "pointer_chasing",
+					 full_type != "only slow baseline")) +
+		geom_point(aes(shape = type), stroke = 1.1,
+			   data = asym %>% filter(str_detect(type, "migration"),
+						  memory_bench == "pointer_chasing"),
+			   show.legend = FALSE) +
 		scale_shape_manual(values = c(21, 2, 21, 21)) +
 		#scale_fill_brewer(name = "Frequency (MHz)", na.translate = FALSE) +
 		scale_fill_gradient(name = "Frequency (MHz)", low = "#fff7fb", high = "#023858") +
